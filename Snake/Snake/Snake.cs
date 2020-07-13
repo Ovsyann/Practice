@@ -10,8 +10,11 @@ namespace Snake
     {
         Direction direction;
 
+        public int foodCount;
+
         public Snake(Point tail, int length, Direction _direction)
         {
+            foodCount = 0;
             direction = _direction;
             pList = new List<Point>();
             for (int i = 0; i < length; i++)
@@ -31,6 +34,9 @@ namespace Snake
 
             tail.Clear();
             head.Draw();
+
+            Point pointScore = new Point(2, 2, char.Parse(foodCount.ToString()));
+            pointScore.Draw();
         }
 
         public Point GetNextPoint()
@@ -69,12 +75,19 @@ namespace Snake
             Point head = GetNextPoint();
             if (head.IsHit(food))
             {
+                ToIncreaseScore();
                 food.sym = head.sym;
                 pList.Add(food);
                 return true;
             }
             else
                 return false;
+        }
+        public void ToIncreaseScore()
+        {
+            foodCount++;
+            Point pointScore = new Point(2, 2, char.Parse(foodCount.ToString()));
+            pointScore.Draw();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Snake
 {
     class Program
     {
-        static int foodcount = 0;
         static void Main(string[] args)
         {
             Console.SetBufferSize(80, 25);
@@ -34,7 +33,6 @@ namespace Snake
                 }
                 if (snake.Eat(food))
                 {
-                    foodcount++;
                     food = foodCreator.CreateFood();
                     food.Draw();
                 }
@@ -50,21 +48,21 @@ namespace Snake
                     snake.HandleKey(key.Key);
                 }
             }
-            WriteGameOver();
+            WriteGameOver(snake.foodCount);
             Console.ReadLine();
         }
 
 
-        static void WriteGameOver()
+        static void WriteGameOver(int score)
         {
             int xOffset = 25;
             int yOffset = 8;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(xOffset, yOffset++);
-            WriteText("===================+", xOffset, yOffset++);
+            WriteText("===================", xOffset, yOffset++);
             WriteText("G A M E    O V E R", xOffset + 1, yOffset++);
-            WriteText("Съедено:       " + foodcount, xOffset + 1, yOffset++);
-            WriteText("===================+", xOffset, yOffset++);
+            WriteText("Съедено:  " + score, xOffset + 1, yOffset++);
+            WriteText("===================", xOffset, yOffset++);
         }
 
         static void WriteText(String text, int xOffset, int yOffset)
