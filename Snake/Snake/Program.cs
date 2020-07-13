@@ -66,7 +66,7 @@ namespace Snake
             WriteText("===================", xOffset, yOffset++);
         }
 
-        static void WriteText(String text, int xOffset, int yOffset)
+        static void WriteText(string text, int xOffset, int yOffset)
         {
             Console.SetCursorPosition(xOffset, yOffset);
             Console.WriteLine(text);
@@ -75,7 +75,7 @@ namespace Snake
         {
             int xOffset = 1;
             int yOffset = 1;
-            WriteText(string.Format("Счёт: {0}", score), xOffset, yOffset++);
+            WriteText(string.Format("Съедено: {0}", score), xOffset, yOffset++);
         }
 
     }
