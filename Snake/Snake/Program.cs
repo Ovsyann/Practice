@@ -9,10 +9,11 @@ namespace Snake
 {
     class Program
     {
+        static int foodcount = 0;
         static void Main(string[] args)
         {
             Console.SetBufferSize(80, 25);
-
+            
             Walls walls = new Walls(80, 25);
             walls.Draw();
 
@@ -33,6 +34,7 @@ namespace Snake
                 }
                 if (snake.Eat(food))
                 {
+                    foodcount++;
                     food = foodCreator.CreateFood();
                     food.Draw();
                 }
@@ -59,10 +61,10 @@ namespace Snake
             int yOffset = 8;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(xOffset, yOffset++);
-            WriteText("============================", xOffset, yOffset++);
-            WriteText("G a m e          o v e r", xOffset + 1, yOffset++);
-            yOffset++;
-            WriteText("============================", xOffset, yOffset++);
+            WriteText("===================+", xOffset, yOffset++);
+            WriteText("G A M E    O V E R", xOffset + 1, yOffset++);
+            WriteText("Съедено:       " + foodcount, xOffset + 1, yOffset++);
+            WriteText("===================+", xOffset, yOffset++);
         }
 
         static void WriteText(String text, int xOffset, int yOffset)
