@@ -34,9 +34,7 @@ namespace Snake
 
             tail.Clear();
             head.Draw();
-
-            Point pointScore = new Point(2, 2, char.Parse(foodCount.ToString()));
-            pointScore.Draw();
+ 
         }
 
         public Point GetNextPoint()
@@ -86,8 +84,6 @@ namespace Snake
         public void ToIncreaseScore()
         {
             foodCount++;
-            Point pointScore = new Point(2, 2, char.Parse(foodCount.ToString()));
-            pointScore.Draw();
         }
     }
 }

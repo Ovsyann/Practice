@@ -27,6 +27,7 @@ namespace Snake
 
             while (true)
             {
+                WriteScorePoints(snake.foodCount);
                 if (walls.IsHit(snake) || snake.IsHitTail())
                 {
                     break;
@@ -69,6 +70,12 @@ namespace Snake
         {
             Console.SetCursorPosition(xOffset, yOffset);
             Console.WriteLine(text);
+        }
+        static void WriteScorePoints(int score)
+        {
+            int xOffset = 1;
+            int yOffset = 1;
+            WriteText(string.Format("Счёт: {0}", score), xOffset, yOffset++);
         }
 
     }
