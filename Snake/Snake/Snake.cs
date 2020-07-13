@@ -8,55 +8,69 @@ namespace Snake
 {
     class Snake:Figure
     {
-        public Direction _direction;
-        public Snake(Point tail, int length, Direction direction)
+        Direction direction;
+
+        public Snake(Point tail, int length, Direction _direction)
         {
-            _direction = direction;
-            line = new List<Point>();
-            for(int j = 0; j< length; j++)
+            direction = _direction;
+            pList = new List<Point>();
+            for (int i = 0; i < length; i++)
             {
                 Point p = new Point(tail);
-                p.Move(j, _direction);
-                line.Add(p);
-
+                p.Move(i, direction);
+                pList.Add(p);
             }
         }
 
-        internal void Move()
+        public void Move()
         {
-            Point tail = line.First();
-            line.Remove(tail);
+            Point tail = pList.First();
+            pList.Remove(tail);
             Point head = GetNextPoint();
-            line.Add(head);
+            pList.Add(head);
+
             tail.Clear();
             head.Draw();
         }
 
         public Point GetNextPoint()
         {
-            Point head = line.Last();
+            Point head = pList.Last();
             Point nextPoint = new Point(head);
-            nextPoint.Move(1, _direction);
+            nextPoint.Move(1, direction);
             return nextPoint;
         }
-        public void HandleSnake(ConsoleKey key)
+
+        public bool IsHitTail()
+        {
+            var head = pList.Last();
+            for (int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i]))
+                    return true;
+            }
+            return false;
+        }
+
+        public void HandleKey(ConsoleKey key)
         {
             if (key == ConsoleKey.LeftArrow)
-                _direction = Direction.LEFT;
+                direction = Direction.LEFT;
             else if (key == ConsoleKey.RightArrow)
-                _direction = Direction.RIGHT;
-            if (key == ConsoleKey.DownArrow)
-                _direction = Direction.DOWN;
+                direction = Direction.RIGHT;
+            else if (key == ConsoleKey.DownArrow)
+                direction = Direction.DOWN;
             else if (key == ConsoleKey.UpArrow)
-                _direction = Direction.UP;
+                direction = Direction.UP;
         }
+
         public bool Eat(Point food)
         {
             Point head = GetNextPoint();
             if (head.IsHit(food))
             {
                 food.sym = head.sym;
-                line.Add(food);
+                pList.Add(food);
                 return true;
             }
             else
