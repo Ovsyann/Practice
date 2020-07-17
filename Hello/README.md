@@ -17,28 +17,8 @@ You can also learn about markdown from articles:
  
 
 ## Markdown in details
-|                                                                             |
-|:------------------------------|--------------------------------------------:|
-| Filename extensions           |             .md, .markdown                  |
-| Internet media type           |              text/markdown                  |
-| Uniform Type Identifier (UTI) | net.daringfireball.markdown                 |
-| Developed by                  |                John Gruber                  |
-| Initial release               | March 19, 2004 (14 years ago)               |
-| Latest release                | 1.0.1 (December 17, 2004 (13 years ago))    |
-| Type of format                |            Markup language                  | 
-| Extended to                   | MultiMarkdown, Markdown Extra, CommonMark   |
-| Open format?                  |                 yes                         |
-| Website                       | http://daringfireball.net/projects/markdown | 
 
-| Left-Aligned  | Center Aligned  | Right Aligned |
-
-|:------------- |:---------------:| -------------:|
-
-| col 3 is      | some wordy text |     **$1600** |
-
-| col 2 is      | centered        |         $12   |
-
-| zebra stripes | are neat        |        ~~$1~~ |
+|-------------------------:|:-----------------------|| Filename extensions | .md, .markdown || Internet media type | text/markdown || Uniform Type Identifier (UTI) | net.daringfireball.markdown || Developed by | John Gruber || Initial release | March 19, 2004 (14 years ago) || Latest release | 1.0.1 (December 17, 2004 (13 years ago)) || Type of format | Markup language || Extended to | MultiMarkdown, Markdown Extra, CommonMark || Open format? | yes || Website | http://daringfireball.net/projects/markdown ||
 
 ## Real example
 
