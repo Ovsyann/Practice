@@ -33,8 +33,3 @@ You can also learn about markdown from articles:
 ## Real example
 
 [EXAMPLE!](https://github.com/Microsoft/TypeScript/blob/master/README.md)
-
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
