@@ -51,7 +51,7 @@ body{
 .leftDiv{
     grid-row: 1/2;
     grid-column: 1/2;
-    background-color: rgb(63, 245, 8);
+    background-color: #EAEDF1;
     display:grid;
     grid-template-columns: auto;
     grid-template-rows: 272px 255px 137px 134px;
@@ -94,12 +94,14 @@ body{
 }
 .topContainer{
     grid-row:1/2;
-    background-color: rgb(63, 245, 8);
-    border-bottom: 5px dotted #DBE1E8;
+    background-color: #EAEDF1;
+    border-bottom: 5px dotted #7b8794;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 100px 100px;
+    grid-template-rows: 135px 135px;
     row-gap: 27px;
+    padding-top: 13px;
+    padding-right: 65px;
 }
 .bottomBlock1{
     grid-row: 1/2;
@@ -114,5 +116,25 @@ body{
 }
 .botContainer{
     grid-row:2/3;
-    background-color: rgb(7, 7, 7);
+    background-color: #EAEDF1;
+    padding-right: 65px;;
+    display: grid;
+    row-gap: 27px;
+    grid-template-columns: auto;
+    grid-template-rows: 102px 102px 322px;
+}
+.bottomBlock3{
+    grid-row: 1/2;
+    grid-column: 1/2;
+    background-color: rgb(245, 8, 8);
+}
+.bottomBlock4{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background-color: rgb(245, 8, 8);
+}
+.bottomBlock5{
+    grid-row: 3/4;
+    grid-column: 1/2;
+    background-color: rgb(245, 8, 8);
 }
