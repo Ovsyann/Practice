@@ -24,7 +24,7 @@ You can also learn about markdown from articles:
 
 [EXAMPLE!](https://github.com/Microsoft/TypeScript/blob/master/README.md)
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
