@@ -17,7 +17,7 @@ You can also learn about markdown from articles:
  
 
  Markdown in details
---------------------
+|----------------------------------------------------------------------------|
 
 Filename extensions            |               .md, .markdown
 
