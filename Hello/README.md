@@ -16,7 +16,8 @@ You can also learn about markdown from articles:
 
  
 
-|                Markdown in details                                          |
+## Markdown in details
+
 | ------------------------------|---------------------------------------------|
 | Filename extensions           |             .md, .markdown                  |
 | Internet media type           |              text/markdown                  |
