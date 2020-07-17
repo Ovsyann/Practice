@@ -17,8 +17,8 @@ You can also learn about markdown from articles:
  
 
 ## Markdown in details
-
-| ------------------------------|---------------------------------------------|
+|                                                                             |
+|:------------------------------|--------------------------------------------:|
 | Filename extensions           |             .md, .markdown                  |
 | Internet media type           |              text/markdown                  |
 | Uniform Type Identifier (UTI) | net.daringfireball.markdown                 |
@@ -31,9 +31,13 @@ You can also learn about markdown from articles:
 | Website                       | http://daringfireball.net/projects/markdown | 
 
 | Left-Aligned  | Center Aligned  | Right Aligned |
+
 |:------------- |:---------------:| -------------:|
+
 | col 3 is      | some wordy text |     **$1600** |
+
 | col 2 is      | centered        |         $12   |
+
 | zebra stripes | are neat        |        ~~$1~~ |
 
 ## Real example
