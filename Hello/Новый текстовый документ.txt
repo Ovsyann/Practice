@@ -1,0 +1,20 @@
+.botBlock1 .bot{
+    grid-row: 3/4;
+    grid-column: 1/4;
+    display: grid;
+    background-color: yellow;
+    grid-template-columns: 100px 100px 130px;
+    grid-template-rows: 100px;
+}
+.botBlock1 .bot .botDiv1{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+.botBlock1 .bot .botDiv2{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.botBlock1 .bot .botDiv3{
+    grid-row: 1/2;
+    grid-column: 3/4;
+}
