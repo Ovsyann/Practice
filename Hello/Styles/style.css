@@ -1,11 +1,38 @@
 body{
     display: grid;
     padding:77px;
-    grid-template-rows: 310px auto;
+    grid-template-rows: 310px 1200px 120px;
     grid-template-columns: auto;
     background-color: #EAEDF1;
     border-collapse: collapse;
 }   
+
+.UnderContent{
+    grid-row: 3/4;
+    grid-column: 1/2;
+    
+    padding-left: 375px;
+}
+.UnderContent div{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.UnderContent div p:first-child{
+    margin-top: 20px;
+    font-size: 100px;
+}
+.UnderContent div p:nth-child(2){
+    margin-top: 45px;
+    margin-left: 19px;
+    font-size: 18px;
+}
+.UnderContent div p:last-child{
+    margin-top: 20px;
+    margin-left: 27px;
+    font-size: 100px;
+}
 
 .topDiv{
     grid-row: 1/2;
