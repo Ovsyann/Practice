@@ -1259,6 +1259,417 @@ body{
     grid-template-columns: 110px 104px 104px 104px 104px 104px;
     grid-template-rows: 132px 250px;
 }
+.leftProgress{
+    grid-row: 2/3;
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: column; 
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.left1{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.left1 .name{
+    width: 195px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.left1 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.left1 .value p{
+    margin-top: 3px;
+}
+.left1 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.left1 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+.left2{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+.left2 .name{
+    width: 121px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.left2 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.left2 .value p{
+    margin-top: 3px;
+}
+.left2 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.left2 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+.left3{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.left3 .name{
+    width: 229px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.left3 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.left3 .value p{
+    margin-top: 3px;
+}
+.left3 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.left3 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+.left4{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+.left4 .name{
+    width: 203px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.left4 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.left4 .value p{
+    margin-top: 3px;
+}
+.left4 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.left4 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+
+
+
+
+
+.rightProgress{
+    grid-row: 2/3;
+    grid-column: 4/7;
+    display: flex;
+    flex-direction: column; 
+    padding-top: 20px;
+    padding-left: 21px;
+}
+
+
+.right1{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.right1 .name{
+    width: 170px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.right1 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.right1 .value p{
+    margin-top: 3px;
+}
+.right1 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.right1 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+.right2{
+   
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+.right2 .name{
+    width: 187px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.right2 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.right2 .value p{
+    margin-top: 3px;
+}
+.right2 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.right2 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+.right3{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.right3 .name{
+    width: 137px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.right3 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.right3 .value p{
+    margin-top: 3px;
+}
+.right3 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.right3 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+.right4{
+    
+    width: 290px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+.right4 .name{
+    width: 170px;
+    margin-left: 4px;
+    margin-top: 10px;
+}
+.right4 .value{
+    margin-top: 7px;
+    font-size: 11px;
+    position: relative;
+    background-color: black;
+    width: 36px;
+    height: 18px;
+    border-radius: 18%;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+}
+.right4 .value p{
+    margin-top: 3px;
+}
+.right4 .value::before{
+    margin-top: 8px;
+    font-size: 13px;
+    content: '';
+    left:16px; top: 10px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+}
+.right4 progress{
+    height: 28px;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 271px;
+}
+
+
+
+
+
+
+
+
+
+
 
 .bottomBlock5 .hob1{
     grid-row: 1/2;
