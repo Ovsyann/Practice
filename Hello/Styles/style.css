@@ -1229,3 +1229,83 @@ body{
     grid-column: 1/2;
     background-color: rgb(245, 8, 8);
 }
+
+/*TimeLine*/
+.centerDiv{
+    padding: 0;
+  	margin: 0;
+  	font-family: sans-serif;
+}
+.timeline{
+    display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+      min-height: 100%;
+      padding-top: 19px;
+  	background-color: rgb(243, 242, 242);
+}
+.timelineLine{
+    height: 150px;
+    width: 5px;
+    background: rgb(218, 216, 216);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
+}
+.timelineLine:first-child{
+    height: 160px;
+}
+.timelineLine:nth-child(3){
+    height: 80px;
+}
+.timelineLine:nth-child(5){
+    height: 185px;
+}
+.timelineLine:nth-child(7){
+    height: 38px;
+}
+.timelineLine:nth-child(9){
+    height: 120px;
+}
+.timelineLine:nth-child(11){
+    height: 120px;
+}
+.timelineLine:nth-child(13){
+    height: 60px;
+}
+.timelineLine:nth-child(15){
+    height: 97px;
+}
+.timelineLine:nth-child(17){
+    height: 23px;
+}
+.timelineLine:nth-child(19){
+    height: 76px;
+}
+
+
+.timelineCircle{
+    height: 20px;
+  	width: 20px;
+    border-radius: 50%;
+    
+ 	box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
+}
+.timelineYear{
+    padding: 3px 12px;
+    text-align: center;
+    padding-top: 8px;
+    background: rgb(218, 216, 216);
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    width: 48px;
+    height: 25px;
+}
+.gray {
+    background: rgb(218, 216, 216);
+} 
+.white {
+    background: white;
+}
