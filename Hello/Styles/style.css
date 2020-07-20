@@ -55,6 +55,7 @@ body{
     grid-template-rows: 212px 81px;
     grid-template-columns: 108px 109px 109px 109px;
     color: #33495F;
+    font-family: Lato;
 }
 .TopBlockContent1{
     grid-row: 1/2;
@@ -76,7 +77,8 @@ body{
     margin-top: 72px;
     margin-left: 0px;;
     padding-bottom: 0px;
-    
+    font-weight: normal;
+    font-family: Signika;
 }
 .TopBlockContent2 p{
     margin-top: 0px;
@@ -185,7 +187,8 @@ body{
     grid-column: 1/7;
     padding-top: 20px;
     font-size: 35px;
-    
+    font-family: Signika;
+    font-weight: normal;
 }
 .topBlock2 p{
     grid-row: 2/3;
@@ -193,7 +196,7 @@ body{
     font-size: 20px;
     line-height: 30px;
     padding-top: 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Lato;
 }
 .twitter{
     background-image: url("tvitter.png");
@@ -245,11 +248,13 @@ body{
     margin-left: 63px;
     border-bottom: 1px solid black;
     width:280px
+    
 }
 .websites p:first-child{
  
     margin-top: 93px;
     margin-left: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .websites p:nth-child(2){
     margin-left: 0px;
@@ -259,6 +264,7 @@ body{
     font-size: 26px;
     color:#FA5351;
     font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .botDiv{
@@ -268,6 +274,7 @@ body{
     grid-template-columns: 634px 85px 695px;
     grid-template-rows: 952px;
     padding:0;
+    font-family: Lato;
 }
 
 .leftDiv{
@@ -307,6 +314,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .botBlock1 .top div:nth-child(2){
     margin-top: 20px;
@@ -444,6 +453,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .botBlock2 .top div:nth-child(2){
     margin-top: 20px;
@@ -579,6 +590,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .botBlock3 .top div:nth-child(2){
     margin-top: 20px;
@@ -691,6 +704,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .botBlock4 .top div:nth-child(2){
     margin-top: 20px;
@@ -824,6 +839,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .bottomBlock1 .topic div:nth-child(2){
     margin-top: 20px;
@@ -942,6 +959,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .bottomBlock2 .topic div:nth-child(2){
     margin-top: 20px;
@@ -1073,6 +1092,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .bottomBlock3 .topic div:nth-child(2){
     margin-top: 20px;
@@ -1222,6 +1243,8 @@ body{
     margin-left: 0px;
     margin-top: 30px;
     color: #33495F;
+    font-weight: normal;
+    font-family: Signika;
 }
 .bottomBlock4 .topic div:nth-child(2){
     margin-top: 15px;
