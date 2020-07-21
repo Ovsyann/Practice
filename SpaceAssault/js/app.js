@@ -41,6 +41,7 @@ function init() {
     lastTime = Date.now();
     main();
     placeMegaliths();
+    placeMana();
 }
 
 resources.load([
@@ -56,7 +57,7 @@ var player = {
     sprite: new Sprite('img/sprites.png', [0, 0], [39, 39], 16, [0, 1])
 };
 
-//MEGALITHS--------------------------------------------------------------------
+//--------------------------------------------------MEGALITHS--------------------------------------------------------------------
 
 function placeMegaliths() {
     var minCount = 3;
@@ -69,7 +70,7 @@ function placeMegaliths() {
     for (var i = 0; i < megalithsCount; i++) {
         megaliths.push({
             pos: [Math.random() * (canvas.width) + Size[0],
-                Math.random() * (canvas.height) + Size[1]
+            Math.random() * (canvas.height) + Size[1]
             ],
             sprite: new Sprite(
                 "img/sprites_02.png",
@@ -80,62 +81,62 @@ function placeMegaliths() {
         });
     }
 }
-function bulletMegalithCollision(){
+function bulletMegalithCollision() {
 
-    for(var i = 0; i < megaliths.length; i++){
+    for (var i = 0; i < megaliths.length; i++) {
         var pos1 = megaliths[i].pos;
         var size1 = megaliths[i].sprite.size;
 
-        for(var j = 0; j < bullets.length; j++){
+        for (var j = 0; j < bullets.length; j++) {
             var pos2 = bullets[j].pos;
             var size2 = bullets[j].sprite.size;
 
-            if(boxCollides(pos1,size1,pos2,size2)){
+            if (boxCollides(pos1, size1, pos2, size2)) {
                 bullets.splice(j, 1);
             }
         }
     }
 }
-function enemyMegalithCollision(){
-    for(var i = 0; i < megaliths.length; i++){
+function enemyMegalithCollision() {
+    for (var i = 0; i < megaliths.length; i++) {
         var pos1 = megaliths[i].pos;
         var size1 = megaliths[i].sprite.size;
 
-        for(var j = 0; j < enemies.length; j++){
+        for (var j = 0; j < enemies.length; j++) {
             var pos2 = enemies[j].pos;
             var size2 = enemies[j].sprite.size;
 
-            if(boxCollides(pos1,size1,pos2,size2)){
-                
-                if(enemies[j].pos[1] < megaliths[i].pos[1]){
-                    enemies[j].pos[1] = pos1[1] - size2[1] ;
+            if (boxCollides(pos1, size1, pos2, size2)) {
+
+                if (enemies[j].pos[1] < megaliths[i].pos[1]) {
+                    enemies[j].pos[1] = pos1[1] - size2[1];
                 }
-                else{
-                    enemies[j].pos[1] = pos1[1] + size1[1] ;
+                else {
+                    enemies[j].pos[1] = pos1[1] + size1[1];
                 }
 
             }
         }
     }
 }
-function playerMegalithCollision(){
-    for(var i = 0; i < megaliths.length; i++){
+function playerMegalithCollision() {
+    for (var i = 0; i < megaliths.length; i++) {
         var pos1 = megaliths[i].pos;
         var size1 = megaliths[i].sprite.size;
         var pos2 = player.pos;
         var size2 = player.sprite.size;
-        if(boxCollides(pos1,size1,pos2,size2)){
+        if (boxCollides(pos1, size1, pos2, size2)) {
 
-            if(pos2[0] < pos1[0]){
+            if (pos2[0] < pos1[0]) {
                 pos2[0] = pos2[0] - 5;
             }
-            if(pos2[0] > pos1[0]){
+            if (pos2[0] > pos1[0]) {
                 pos2[0] = pos2[0] + 5;
             }
-            if(pos2[1] < pos1[1]){
+            if (pos2[1] < pos1[1]) {
                 pos2[1] = pos2[1] - 5;
             }
-            if(pos2[1] > pos1[1]){
+            if (pos2[1] > pos1[1]) {
                 pos2[1] = pos2[1] + 5;
             }
 
@@ -144,6 +145,54 @@ function playerMegalithCollision(){
 }
 
 
+//-----------------------------------------------MANA-----------------------------------
+function placeMana() {
+
+    var minCount = 3;
+    var maxCount = 8;
+    Size = [55, 55];
+
+    var manaCount = Math.floor(
+        Math.random() * (maxCount - minCount + 1) + minCount
+    );
+    for (var i = 0; i < manaCount; i++) {
+        mana.push({
+            pos: [Math.random() * (canvas.width) + Size[0],
+            Math.random() * (canvas.height) + Size[1]
+            ],
+            sprite: new Sprite(
+                "img/sprites_02.png",
+                [3, 160],
+                [Size[0], Size[1]],
+                10, [0, 1]
+            ),
+        });
+    }
+}
+function manaPlayerCollision() {
+    for (var i = 0; i < mana.length; i++) {
+        var pos1 = mana[i].pos;
+        var size1 = mana[i].sprite.size;
+        var pos2 = player.pos;
+        var size2 = player.sprite.size;
+        if (boxCollides(pos1, size1, pos2, size2)) {
+
+            mana.splice(i, 1);
+            i--;
+            manaPoint+=1;
+            explosions.push({
+                pos: pos1,
+                sprite: new Sprite('img/sprites_02.png',
+                    [3, 160],
+                    [size1[0], size1[1]],
+                    10,
+                    [0, 1, 2, 3],
+                    null,
+                    true)
+            });
+        }
+    }
+}
 
 var bullets = [];
 var enemies = [];
@@ -158,6 +207,8 @@ var terrainPattern;
 
 var score = 0;
 var scoreEl = document.getElementById('score');
+var manaPoint = 0;
+var manascore = document.getElementById('manaPoint');
 
 // Speed in pixels per second
 var playerSpeed = 200;
@@ -185,6 +236,7 @@ function update(dt) {
     checkCollisions();
 
     scoreEl.innerHTML = score;
+    manascore.innerHTML = "Mana points: " + manaPoint;
 };
 
 function handleInput(dt) {
@@ -234,6 +286,10 @@ function updateEntities(dt) {
     // Update the player sprite animation
     player.sprite.update(dt);
 
+    //updateMana
+    for (var i = 0; i < mana.length; i++) {
+        mana[i].sprite.update(dt);
+    }
 
 
     // Update all the bullets
@@ -301,6 +357,9 @@ function checkCollisions() {
     enemyMegalithCollision();
 
     playerMegalithCollision();
+
+    manaPlayerCollision();
+
 
     // Run collision detection for all enemies and bullets
     for (var i = 0; i < enemies.length; i++) {
@@ -373,6 +432,7 @@ function render() {
     renderEntities(bullets);
     renderEntities(enemies);
     renderEntities(explosions);
+    renderEntities(mana);
 };
 
 function renderEntities(list) {
