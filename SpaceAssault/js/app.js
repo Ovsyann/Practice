@@ -41,7 +41,7 @@ function init() {
     lastTime = Date.now();
     main();
     placeMegaliths();
-    placeMana();
+    placeMana(7);
 }
 
 resources.load([
@@ -64,13 +64,11 @@ function placeMegaliths() {
     var maxCount = 5;
     Size = [55, 60];
 
-    var megalithsCount = Math.floor(
-        Math.random() * (maxCount - minCount + 1) + minCount
-    );
+    var megalithsCount = Math.floor( Math.random() * (maxCount - minCount ) + minCount  );
     for (var i = 0; i < megalithsCount; i++) {
         megaliths.push({
-            pos: [Math.random() * (canvas.width) + Size[0],
-            Math.random() * (canvas.height) + Size[1]
+            pos: [Math.floor(Math.random() * (canvas.width - Size[0])),
+            Math.floor(Math.random() * (canvas.height - Size[1]))
             ],
             sprite: new Sprite(
                 "img/sprites_02.png",
@@ -146,19 +144,16 @@ function playerMegalithCollision() {
 
 
 //-----------------------------------------------MANA-----------------------------------
-function placeMana() {
+function placeMana(count) {
 
     var minCount = 3;
     var maxCount = 8;
     Size = [55, 55];
 
-    var manaCount = Math.floor(
-        Math.random() * (maxCount - minCount + 1) + minCount
-    );
-    for (var i = 0; i < manaCount; i++) {
+    for (var i = 0; i < count; i++) {
         mana.push({
-            pos: [Math.random() * (canvas.width) + Size[0],
-            Math.random() * (canvas.height) + Size[1]
+            pos: [Math.floor(Math.random() * (canvas.width - Size[0])),
+            Math.floor(Math.random() * (canvas.height - Size[1]))
             ],
             sprite: new Sprite(
                 "img/sprites_02.png",
@@ -233,10 +228,12 @@ function update(dt) {
                 6, [0, 1, 2, 3, 2, 1])
         });
     }
+    
     checkCollisions();
 
     scoreEl.innerHTML = score;
     manascore.innerHTML = "Mana points: " + manaPoint;
+
 };
 
 function handleInput(dt) {
@@ -289,8 +286,10 @@ function updateEntities(dt) {
     //updateMana
     for (var i = 0; i < mana.length; i++) {
         mana[i].sprite.update(dt);
+        if(mana.length<3){
+            placeMana(3);
+        }
     }
-
 
     // Update all the bullets
     for (var i = 0; i < bullets.length; i++) {
