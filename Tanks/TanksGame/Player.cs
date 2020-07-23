@@ -26,7 +26,7 @@ namespace TanksGame
         public override void CreateSubject(Bitmap bitmap)
         {
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(image, Top, Left, Width, Height);  
+            graphics.DrawImage(image, Left, Top,  Width, Height);  
         }
     }
 }

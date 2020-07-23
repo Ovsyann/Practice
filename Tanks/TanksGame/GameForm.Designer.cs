@@ -58,7 +58,6 @@
             // 
             // timeRefresh
             // 
-            this.timeRefresh.Interval = 500;
             this.timeRefresh.Tick += new System.EventHandler(this.timeRefresh_Tick);
             // 
             // GameForm
@@ -71,7 +70,6 @@
             this.Name = "GameForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.GameForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pBGameField)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

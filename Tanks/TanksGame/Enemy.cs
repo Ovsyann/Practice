@@ -19,13 +19,16 @@ namespace TanksGame
             Height = height;
             Damage = damage;
             Direction = dir;
-        }
 
+        }
+        Image image = Properties.Resources.Tank;
+        public int counter = 0;
+        public int timeToShoot=0;
         public override void CreateSubject(Bitmap bitmap)
         {
-            Image image = Properties.Resources.Tank;
+            
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(image, Top, Left, Width, Height);
+            graphics.DrawImage(image, Left, Top, Width, Height);
         }
     }
 }

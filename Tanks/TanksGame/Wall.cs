@@ -18,11 +18,12 @@ namespace TanksGame
             Health = health;
            
         }
-
+        public Image image = Properties.Resources.Wall;
         public override void CreateSubject(Bitmap bitmap)
         {
+            
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.FillRectangle(Brushes.Brown, Left, Top, Width, Height);
+            graphics.DrawImage(image, Left, Top, Width, Height);
         }
     }
 }

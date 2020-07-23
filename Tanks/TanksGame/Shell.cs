@@ -21,12 +21,13 @@ namespace TanksGame
             Affiliation = affiliation;
             Damage = damage;
         }
-
+        public Image image = Properties.Resources.Shell;
+        public int lifeTime=1500;
         public override void CreateSubject(Bitmap bitmap)
         {
-            Image image = Properties.Resources.Shell;
+            
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(image, Top, Left, Width, Height);
+            graphics.DrawImage(image, Left, Top, Width, Height);
         }
     }
 }

@@ -16,12 +16,11 @@ namespace TanksGame
             Width = width;
             Height = height;
         }
-
+        Image image = Properties.Resources.bonus;
         public override void CreateSubject(Bitmap bitmap)
         {
-            Image image = Properties.Resources.Tank;
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(image, Top, Left, Width, Height);
+            graphics.DrawImage(image, Left, Top, Width, Height);
         }
     }
 }

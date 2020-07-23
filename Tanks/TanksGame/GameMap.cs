@@ -9,10 +9,10 @@ namespace TanksGame
 {
     public class GameMap : GameObject
     {
-        public GameMap(float top, float bot, float width, float height)
+        public GameMap(float top, float left, float width, float height)
         {
             Top = top;
-            Left = bot;
+            Left = left;
             Width = width;
             Height = height;
         }
@@ -21,7 +21,7 @@ namespace TanksGame
         {
             
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.FillRectangle(Brushes.AliceBlue,Left,Top,Width,Height);
+            graphics.FillRectangle(Brushes.Gray,Left,Top,Width,Height);
         }
     }
 }
