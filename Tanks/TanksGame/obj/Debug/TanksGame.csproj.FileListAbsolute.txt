@@ -1,0 +1,10 @@
+D:\Hlam\PRACTICE\Tanks\TanksGame\bin\Debug\TanksGame.exe.config
+D:\Hlam\PRACTICE\Tanks\TanksGame\bin\Debug\TanksGame.exe
+D:\Hlam\PRACTICE\Tanks\TanksGame\bin\Debug\TanksGame.pdb
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.csprojAssemblyReference.cache
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.GameForm.resources
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.Properties.Resources.resources
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.csproj.GenerateResource.cache
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.csproj.CoreCompileInputs.cache
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.exe
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.pdb

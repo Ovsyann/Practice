@@ -9,49 +9,12 @@ namespace TanksGame
 {
     public abstract class Subject :GameObject
     {
-        protected int Speed
-        {
-            get
-            {
-                return Speed;
-            }
-            set
-            {
-                Speed = value;
-            }
-        }
-        protected int Damage
-        {
-            get
-            {
-                return Damage;
-            }
-            set
-            {
-                Damage = value;
-            }
-        }
-        public Direction Direction
-        {
-            get
-            {
-                return Direction;
-            }
-            set
-            {
-                Direction = value;
-            }
-        }
-        public bool Affiliation
-        {
-            get
-            {
-                return Affiliation;
-            }
-            set
-            {
-                Affiliation = value;
-            }
-        }
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public Direction Direction { get; set; }
+        public bool Affiliation { get; set; }
+
+        
+
     }
 }

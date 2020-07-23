@@ -9,49 +9,16 @@ namespace TanksGame
 {
     public abstract class GameObject
     {
-        protected int[,] Size
-        {
-            get
-            {
-                return Size;
-            }
-            set
-            {
-                Size = value;
-            }
-        }
-        protected int[,] Position
-        {
-            get
-            {
-                return Position;
-            }
-            set
-            {
-                Position = value;
-            }
-        }
-        protected Bitmap Bitmap
-        {
-            get
-            {
-                return Bitmap;
-            }
-            set
-            {
-                Bitmap = value;
-            }
-        }
-        protected int Health
-        {
-            get
-            {
-                return Health;
-            }
-            set
-            {
-                Health = value;
-            }
-        }
+        public float Top { get; set; }
+
+        public float Left { get; set; }
+
+        public float Width { get; set; }
+
+        public float Height { get; set; }
+
+        public int Health { get; set; }
+
+        public abstract void CreateSubject(Bitmap bitmap);
     }
 }

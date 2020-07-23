@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace TanksGame
 {
-    public class Wall : GameObject
+    public class GameMap : GameObject
     {
-        public Wall(float top, float left, float width, float height, int health)
+        public GameMap(float top, float bot, float width, float height)
         {
             Top = top;
-            Left = left;
+            Left = bot;
             Width = width;
             Height = height;
-            Health = health;
-           
         }
 
         public override void CreateSubject(Bitmap bitmap)
         {
+            
             Graphics graphics = Graphics.FromImage(bitmap);
-            graphics.FillRectangle(Brushes.Brown, Left, Top, Width, Height);
+            graphics.FillRectangle(Brushes.AliceBlue,Left,Top,Width,Height);
         }
     }
 }

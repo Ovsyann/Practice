@@ -9,15 +9,23 @@ namespace TanksGame
 {
     public class Enemy : Subject
     {
-        public Enemy(int health, int[,] size, int speed, Bitmap img, int[,] pos, int damage, Direction dir)
+        public Enemy(int health, float top, float left, float width, float height, int speed, int damage, Direction dir)
         {
             Health = health;
-            Size = size;
+            Top = top;
+            Left = left;
             Speed = speed;
-            Bitmap = new Bitmap(img);
-            Position = pos;
+            Width = width;
+            Height = height;
             Damage = damage;
             Direction = dir;
+        }
+
+        public override void CreateSubject(Bitmap bitmap)
+        {
+            Image image = Properties.Resources.Tank;
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.DrawImage(image, Top, Left, Width, Height);
         }
     }
 }
