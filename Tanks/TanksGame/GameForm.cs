@@ -45,7 +45,7 @@ namespace TanksGame
             enemies = new List<Enemy>(countEnemies);
             for(int i = 0; i < countEnemies; i++)
             {
-                Enemy enemy = new Enemy(health, 67 * i, 640, 50, 50, speed, damageEnemy, Direction.LEFT);
+                Enemy enemy = new Enemy(health, 67 * i, 640, 50, 50, speed, damageEnemy, Direction.TOP);
                 enemies.Add(enemy);
                 enemy.CreateSubject(bitmap);
             }
@@ -85,6 +85,7 @@ namespace TanksGame
             UpdateEnemies();
             RandomShooting();
             ShellBallistics();
+            CheckCollisions();
         }
         public void UpdateEnemies()
         {
@@ -94,18 +95,70 @@ namespace TanksGame
 
                 if (enemies[i].Direction == Direction.BOTTOM)
                 {
+                    if (enemies[i].oldDirection==Direction.LEFT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.TOP)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.RIGHT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    enemies[i].oldDirection = enemies[i].Direction;
                     enemies[i].Top++;
                 }
                 else if (enemies[i].Direction == Direction.LEFT)
                 {
+                    if (enemies[i].oldDirection == Direction.BOTTOM)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.TOP)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.RIGHT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    enemies[i].oldDirection = enemies[i].Direction;
                     enemies[i].Left--;
                 }
                 else if (enemies[i].Direction == Direction.RIGHT)
                 {
+                    if (enemies[i].oldDirection == Direction.BOTTOM)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.TOP)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.LEFT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    enemies[i].oldDirection = enemies[i].Direction;
                     enemies[i].Left++;
                 }
                 else if (enemies[i].Direction == Direction.TOP)
                 {
+                    if (enemies[i].oldDirection == Direction.BOTTOM)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.LEFT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    }
+                    else if (enemies[i].oldDirection == Direction.RIGHT)
+                    {
+                        enemies[i].image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    }
+                    enemies[i].oldDirection = enemies[i].Direction;
                     enemies[i].Top--;
                 }
                 enemies[i].counter += timeRefresh.Interval;
@@ -121,11 +174,12 @@ namespace TanksGame
             for(int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].timeToShoot += timeRefresh.Interval;
-                if (enemies[i].timeToShoot >= 500)
+                if (enemies[i].timeToShoot >= 1500)
                 {
+                    enemies[i].timeToShoot = 0;
                     Shell shell = new Shell(enemies[i].Top + (enemies[i].Height / 2),
                                             enemies[i].Left + (enemies[i].Width / 2),
-                                            20, 10, 1, enemies[i].Damage, false, enemies[i].Direction);
+                                            10, 10, 1, enemies[i].Damage, false, enemies[i].Direction);
                     shells.Add(shell);
                 }
             }
@@ -150,7 +204,7 @@ namespace TanksGame
                 {
                     shells[i].Top -= 10;
                 }
-                shells[i].CreateSubject(bitmap);
+                
                 shells[i].lifeTime -= timeRefresh.Interval;
                 if (shells[i].lifeTime <= 0)
                 {
@@ -165,6 +219,7 @@ namespace TanksGame
             return direction;
             //var v = Enum.GetValues(typeof(T));
             //return (T)v.GetValue(new Random().Next(v.Length));
+
         }
         public void HandleInput()
         {
@@ -243,16 +298,86 @@ namespace TanksGame
             
         }
 
+        public void CheckCollisions()
+        {
+            EnemyCollidesEnemy();
+        }
+        public void EnemyCollidesEnemy()
+        {
+            for(int i = 0; i < enemies.Count; i++)
+            {
+                for(int j = 0; j < enemies.Count; j++)
+                {
+                    if(HitBoxCollides(enemies[i].Left,enemies[i].Top,enemies[i].Width,enemies[i].Height,
+                        enemies[j].Left, enemies[j].Top, enemies[j].Width, enemies[j].Height))
+                    {
+                        if (enemies[i].Direction == Direction.TOP)
+                        {
+                            enemies[i].Direction = Direction.BOTTOM;
+                            enemies[i].Top += 2;
+                        }
+                        else if (enemies[i].Direction == Direction.RIGHT)
+                        {
+                            enemies[i].Direction = Direction.LEFT;
+                            enemies[i].Left -= 2;
+                        }
+                        else if (enemies[i].Direction == Direction.BOTTOM)
+                        {
+                            enemies[i].Direction = Direction.TOP;
+                            enemies[i].Top -= 2;
+                        }
+                        else if (enemies[i].Direction == Direction.LEFT)
+                        {
+                            enemies[i].Direction = Direction.RIGHT;
+                            enemies[i].Left += 2;
+                        }
+
+                        if (enemies[j].Direction == Direction.TOP)
+                        {
+                            enemies[j].Direction = Direction.BOTTOM;
+                            enemies[j].Top += 2;
+                        }
+                        else if (enemies[j].Direction == Direction.RIGHT)
+                        {
+                            enemies[j].Direction = Direction.LEFT;
+                            enemies[j].Left -= 2;
+                        }
+                        else if (enemies[j].Direction == Direction.BOTTOM)
+                        {
+                            enemies[j].Direction = Direction.TOP;
+                            enemies[j].Top -= 2;
+                        }
+                        else if (enemies[j].Direction == Direction.LEFT)
+                        {
+                            enemies[j].Direction = Direction.RIGHT;
+                            enemies[j].Left += 2;
+                        }
+                    }
+                }
+            }
+        }
+        public bool HitBoxCollides(float x, float y, float width, float height,
+                                    float x2, float y2, float width2, float height2)
+        {
+            bool yes = Collides(x, y, x + width, y + height, x2, y2, x2 + width2, y2 + height2);
+            return yes;
+        }
+        public bool Collides(float x, float y, float right, float bottom,
+                            float x2, float y2, float right2, float bottom2)
+        {
+            return !((right <= x2) || (x > right2) || (bottom <= y2) || (y > bottom2));
+        }
+
         private void timeRefresh_Tick(object sender, EventArgs e)
         {
             gameMap.CreateSubject(bitmap);
 
             UpdateGameObjects();
-            //for(int i = 0; i < shells.Count; i++)
-            //{
-            //    shells[i].CreateSubject(bitmap);
-            //}
-            for(int i = 0; i < bonuses.Count; i++)
+            for (int i = 0; i < shells.Count; i++)
+            {
+                shells[i].CreateSubject(bitmap);
+            }
+            for (int i = 0; i < bonuses.Count; i++)
             {
                 bonuses[i].CreateSubject(bitmap);
             }

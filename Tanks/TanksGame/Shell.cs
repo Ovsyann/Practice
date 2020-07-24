@@ -21,8 +21,8 @@ namespace TanksGame
             Affiliation = affiliation;
             Damage = damage;
         }
-        public Image image = Properties.Resources.Shell;
-        public int lifeTime=1500;
+        public Image image = Properties.Resources.SmallShell;
+        public int lifeTime=3000;
         public override void CreateSubject(Bitmap bitmap)
         {
             

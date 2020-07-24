@@ -21,9 +21,11 @@ namespace TanksGame
             Direction = dir;
 
         }
-        Image image = Properties.Resources.Tank;
+        public Image image = Properties.Resources.Tank;
         public int counter = 0;
         public int timeToShoot=0;
+        public Direction oldDirection;
+
         public override void CreateSubject(Bitmap bitmap)
         {
             

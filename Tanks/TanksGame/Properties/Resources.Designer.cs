@@ -73,9 +73,9 @@ namespace TanksGame.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Shell {
+        internal static System.Drawing.Bitmap SmallShell {
             get {
-                object obj = ResourceManager.GetObject("Shell", resourceCulture);
+                object obj = ResourceManager.GetObject("SmallShell", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
