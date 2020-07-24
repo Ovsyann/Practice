@@ -25,15 +25,21 @@ namespace TanksGame
         List<Shell> shells = new List<Shell>(5);
         Bitmap bitmap;
         GameMap gameMap;
+        public byte BonusesCount;
+        public byte enemiesCount;
+        public byte mapWidth;
+        public byte mapHeight;
+        public byte speed;
         
         private void GameForm_Load(object sender, EventArgs e)
         {
-            GameStart(5, 30, 5, 10, 10);
+            GameStart(5, 30, 5, 30, 30,5);
         }
 
-        public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer)
+        public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer,byte countBonuses)
         {
-            labelStart.Visible = false;
+
+            
             bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
 
             gameMap = new GameMap(0, 0, bitmap.Width, bitmap.Height);
@@ -45,7 +51,7 @@ namespace TanksGame
             enemies = new List<Enemy>(countEnemies);
             for(int i = 0; i < countEnemies; i++)
             {
-                Enemy enemy = new Enemy(health, 67 * i, 640, 50, 50, speed, damageEnemy, Direction.TOP);
+                Enemy enemy = new Enemy(health, 67 * i, 640, 35, 35, speed, damageEnemy, Direction.TOP);
                 enemies.Add(enemy);
                 enemy.CreateSubject(bitmap);
             }
@@ -54,16 +60,16 @@ namespace TanksGame
             walls = new List<Wall>(10);
             for (int i = 0; i < 15; i++)
             {
-                Wall wall = new Wall(random.Next(10, 340) - 50, random.Next(100, 600), 25, 50, 10);
+                Wall wall = new Wall(random.Next(10, pBGameField.Height - 5) - 50, random.Next(100, pBGameField.Width - 100), 25, 50, 10);
                 wall.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 walls.Add(wall);
                 wall.CreateSubject(bitmap);
             }
-
-            bonuses = new List<Bonus>(5);
-            for (int i = 0; i < 5; i++)
+            BonusesCount = countBonuses;
+            bonuses = new List<Bonus>(countBonuses);
+            for (int i = 0; i < countBonuses; i++)
             {
-                Bonus bonus = new Bonus(random.Next(10, 340), random.Next(100, 600), 10, 10);
+                Bonus bonus = new Bonus(random.Next(10, pBGameField.Height - 5), random.Next(100, pBGameField.Width - 100), 10, 10);
                 bonuses.Add(bonus);
                 bonus.CreateSubject(bitmap);
             }
@@ -77,16 +83,23 @@ namespace TanksGame
 
         public void UpdateGameObjects()
         {
-            for(int i = 0; i < walls.Count; i++)
-            {
-                walls[i].CreateSubject(bitmap);
-            }
+            
             HandleInput();
             UpdateEnemies();
             UpdateWalls();
             RandomShooting();
             ShellBallistics();
             CheckCollisions();
+            if (player.Health <= 0)
+            {
+                //GAMEOVER
+            }
+            if (bonuses.Count < BonusesCount)
+            {
+                Random random = new Random();
+                Bonus bonus = new Bonus(random.Next(10, 340), random.Next(100, 600), 10, 10);
+                bonuses.Add(bonus);
+            }
         }
         public void UpdateWalls()
         {
@@ -180,6 +193,10 @@ namespace TanksGame
                 {
                     enemies[i].Direction = AutoInput(random);
                     enemies[i].counter = 0;
+                }
+                if (enemies[i].Health <= 0)
+                {
+                    enemies.RemoveAt(i);
                 }
             }
         }
@@ -333,6 +350,107 @@ namespace TanksGame
             EnemyCollidesWall();
             ShellColidesWall();
             EnenemyCollidesBorder();
+            PlayerCollidesBorder();
+            PlayerCollidesWall();
+            ShellColidesPlayer();
+            ShellCollidesEnemy();
+            PlayerCollidesBonus();
+        }
+        public void PlayerCollidesBonus()
+        {
+            for (int i = 0; i < bonuses.Count; i++)
+            {
+                if (HitBoxCollides(bonuses[i].Left, bonuses[i].Top, bonuses[i].Width, bonuses[i].Height,
+                                        player.Left, player.Top, player.Width, player.Height))
+                {
+                    bonuses.RemoveAt(i);
+                    player.Health += 10;
+                }
+            }
+        }
+        public void ShellCollidesEnemy()
+        {
+            for (int i = 0; i < shells.Count; i++)
+            {
+                if (shells[i].Affiliation == true)
+                {
+                    for (int j = 0; j < enemies.Count; j++)
+                    {
+                        if (HitBoxCollides(shells[i].Left, shells[i].Top, shells[i].Width, shells[i].Height,
+                                           enemies[j].Left, enemies[j].Top, enemies[j].Width, enemies[j].Height))
+                        {
+                            enemies[j].Health -= shells[i].Damage;
+                        }
+                    }
+                }
+            }
+        }
+        public void ShellColidesPlayer()
+        {
+            for (int i = 0; i < shells.Count; i++)
+            {
+                if (shells[i].Affiliation == false)
+                {
+                    if (HitBoxCollides(shells[i].Left, shells[i].Top, shells[i].Width, shells[i].Height,
+                                            player.Left, player.Top, player.Width, player.Height))
+                    {
+                        player.Health -= shells[i].Damage;
+                    }
+                }
+            }
+        }
+        public void PlayerCollidesWall()
+        {
+            for(int i = 0; i < walls.Count; i++)
+            {
+                if(HitBoxCollides(walls[i].Left, walls[i].Top, walls[i].Width, walls[i].Height,
+                                        player.Left, player.Top, player.Width, player.Height))
+                {
+                    if (player.Direction == Direction.TOP)
+                    {
+                        player.Top += 2;
+                        //enemies[i].Direction = Direction.BOTTOM;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    else if (player.Direction == Direction.RIGHT)
+                    {
+                        player.Left -= 2;
+                        //enemies[i].Direction = Direction.LEFT;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    else if (player.Direction == Direction.BOTTOM)
+                    {
+                        player.Top -= 2;
+                        //enemies[i].Direction = Direction.TOP;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    else if (player.Direction == Direction.LEFT)
+                    {
+                        player.Left += 2;
+                        //enemies[i].Direction = Direction.RIGHT;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                }
+            }
+        }
+        public void PlayerCollidesBorder()
+        {
+            if ((player.Top + player.Height) > gameMap.Height)
+            {
+                player.Top = gameMap.Height - player.Height - 2;
+            }
+            if ((player.Left + player.Width) > gameMap.Width)
+            {
+                player.Left = gameMap.Width - player.Width - 2;
+            }
+            if (player.Top < 0)
+            {
+                player.Top = 2;
+            }
+            if (player.Left < 0)
+            {
+                player.Left = 2;
+            }
         }
         public void EnenemyCollidesBorder()
         {
@@ -483,6 +601,10 @@ namespace TanksGame
             gameMap.CreateSubject(bitmap);
 
             UpdateGameObjects();
+            for (int i = 0; i < walls.Count; i++)
+            {
+                walls[i].CreateSubject(bitmap);
+            }
             for (int i = 0; i < shells.Count; i++)
             {
                 shells[i].CreateSubject(bitmap);
@@ -498,6 +620,20 @@ namespace TanksGame
             }
             player.CreateSubject(bitmap);
             pBGameField.Image = bitmap;
+
+        }
+
+        private void btnParameters_Click(object sender, EventArgs e)
+        {
+            BonusesCount = (byte)tbBonus.Value;
+            enemiesCount = (byte)tbEnemy.Value;
+            mapHeight = (byte)tbMapHeight.Value;
+            speed = (byte)tbSpeed.Value;
+            mapWidth = (byte)tbMapWidth.Value;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }
