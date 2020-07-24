@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pBGameField = new System.Windows.Forms.PictureBox();
             this.timeRefresh = new System.Windows.Forms.Timer(this.components);
             this.btnParameters = new System.Windows.Forms.Button();
@@ -42,22 +43,29 @@
             this.tbMapWidth = new System.Windows.Forms.TrackBar();
             this.tbMapHeight = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGameStart = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvGameData = new System.Windows.Forms.DataGridView();
+            this.SubjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Abciss = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ordinate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pBGameField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEnemy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbBonus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMapWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMapHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGameData)).BeginInit();
             this.SuspendLayout();
             // 
             // pBGameField
             // 
-            this.pBGameField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pBGameField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pBGameField.Location = new System.Drawing.Point(-1, -2);
             this.pBGameField.Name = "pBGameField";
-            this.pBGameField.Size = new System.Drawing.Size(710, 352);
+            this.pBGameField.Size = new System.Drawing.Size(718, 454);
             this.pBGameField.TabIndex = 0;
             this.pBGameField.TabStop = false;
             // 
@@ -144,12 +152,12 @@
             // tbMapWidth
             // 
             this.tbMapWidth.Location = new System.Drawing.Point(88, 407);
-            this.tbMapWidth.Maximum = 6;
-            this.tbMapWidth.Minimum = 3;
+            this.tbMapWidth.Maximum = 8;
+            this.tbMapWidth.Minimum = 5;
             this.tbMapWidth.Name = "tbMapWidth";
             this.tbMapWidth.Size = new System.Drawing.Size(104, 45);
             this.tbMapWidth.TabIndex = 9;
-            this.tbMapWidth.Value = 3;
+            this.tbMapWidth.Value = 5;
             // 
             // tbMapHeight
             // 
@@ -170,22 +178,80 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Map height";
             // 
-            // button1
+            // btnGameStart
             // 
-            this.button1.Location = new System.Drawing.Point(596, 396);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 34);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "StartGame";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGameStart.Enabled = false;
+            this.btnGameStart.Location = new System.Drawing.Point(596, 396);
+            this.btnGameStart.Name = "btnGameStart";
+            this.btnGameStart.Size = new System.Drawing.Size(102, 34);
+            this.btnGameStart.TabIndex = 13;
+            this.btnGameStart.Text = "StartGame";
+            this.btnGameStart.UseVisualStyleBackColor = true;
+            this.btnGameStart.Click += new System.EventHandler(this.btnGameStart_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(292, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(105, 37);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Tanks";
+            // 
+            // dgvGameData
+            // 
+            this.dgvGameData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvGameData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvGameData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGameData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SubjectName,
+            this.Abciss,
+            this.Ordinate});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGameData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvGameData.Location = new System.Drawing.Point(715, -2);
+            this.dgvGameData.Name = "dgvGameData";
+            this.dgvGameData.RowHeadersVisible = false;
+            this.dgvGameData.Size = new System.Drawing.Size(143, 444);
+            this.dgvGameData.TabIndex = 15;
+            // 
+            // SubjectName
+            // 
+            this.SubjectName.HeaderText = "Name";
+            this.SubjectName.Name = "SubjectName";
+            this.SubjectName.ReadOnly = true;
+            this.SubjectName.Width = 60;
+            // 
+            // Abciss
+            // 
+            this.Abciss.HeaderText = "X";
+            this.Abciss.Name = "Abciss";
+            this.Abciss.ReadOnly = true;
+            this.Abciss.Width = 39;
+            // 
+            // Ordinate
+            // 
+            this.Ordinate.HeaderText = "Y";
+            this.Ordinate.Name = "Ordinate";
+            this.Ordinate.ReadOnly = true;
+            this.Ordinate.Width = 39;
             // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 454);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(870, 454);
+            this.Controls.Add(this.dgvGameData);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnGameStart);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbMapHeight);
             this.Controls.Add(this.label4);
@@ -207,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMapWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMapHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGameData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,7 +294,12 @@
         private System.Windows.Forms.TrackBar tbMapWidth;
         private System.Windows.Forms.TrackBar tbMapHeight;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGameStart;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dgvGameData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Abciss;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ordinate;
     }
 }
 

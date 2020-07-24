@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Xml.Schema;
 
 namespace TanksGame
 {
@@ -22,24 +24,69 @@ namespace TanksGame
         List<Enemy> enemies;
         List<Bonus> bonuses;
         List<Wall> walls;
-        List<Shell> shells = new List<Shell>(5);
+        List<Shell> shells = new List<Shell>();
         Bitmap bitmap;
         GameMap gameMap;
-        public byte BonusesCount;
-        public byte enemiesCount;
-        public byte mapWidth;
-        public byte mapHeight;
-        public byte speed;
-        
+        public int BonusesCount;
+        public int enemiesCount;
+        public int mapWidth;
+        public int mapHeight;
+        public int speed;
+        public int oldWidth;
+        public int oldHeight;
+        public int pbOldwidth;
+        public int pbOldHeight;
+
+
         private void GameForm_Load(object sender, EventArgs e)
         {
-            GameStart(5, 30, 5, 30, 30,5);
+            
         }
-
-        public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer,byte countBonuses)
+        public void GameOver(bool winOrnot)
         {
 
-            
+            btnGameStart.Enabled = false;
+            if (winOrnot)
+            {
+                label6.Text = "YOU WIN";
+            }
+            else
+            {
+                label6.Text = "K.I.A.";
+            }
+            tbBonus.Visible = true;
+            tbEnemy.Visible = true;
+            tbMapHeight.Visible = true;
+            tbMapWidth.Visible = true;
+            tbSpeed.Visible = true;
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            btnGameStart.Visible = true;
+            btnParameters.Visible = true;
+            this.Height = oldHeight;
+            this.Width = oldWidth;
+            label6.Visible = true;
+            timeRefresh.Enabled = false;
+            pBGameField.Width = this.Width - dgvGameData.Width;
+            pBGameField.Height = this.Height - 200;
+            bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            graphics.FillRectangle(System.Drawing.Brushes.Red, 0, 0, pBGameField.Width, pBGameField.Height);
+        }
+
+        public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer,int countBonuses)
+        {
+            List<Shell> shells = new List<Shell>(5);
+            oldWidth = this.Width;
+            oldHeight = this.Height;
+            this.Height = 100 * mapHeight;
+            this.Width = 100 * mapWidth;
+            pBGameField.Width = this.Width - dgvGameData.Width - 20;
+            pBGameField.Height = this.Height;
+            shells.Clear();
             bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
 
             gameMap = new GameMap(0, 0, bitmap.Width, bitmap.Height);
@@ -51,7 +98,7 @@ namespace TanksGame
             enemies = new List<Enemy>(countEnemies);
             for(int i = 0; i < countEnemies; i++)
             {
-                Enemy enemy = new Enemy(health, 67 * i, 640, 35, 35, speed, damageEnemy, Direction.TOP);
+                Enemy enemy = new Enemy(health, 67 * i, pBGameField.Width - 40, 35, 35, speed, damageEnemy, Direction.TOP);
                 enemies.Add(enemy);
                 enemy.CreateSubject(bitmap);
             }
@@ -74,7 +121,13 @@ namespace TanksGame
                 bonus.CreateSubject(bitmap);
             }
 
+            dgvGameData.RowCount = enemiesCount+1 ;
+            
 
+            for (int i = 0; i < enemies.Count+1; i++)
+            {
+                dgvGameData[0, i].Value = "Enemy " + (i+1);
+            }
 
             pBGameField.Image = bitmap;
             timeRefresh.Enabled = true;
@@ -92,13 +145,17 @@ namespace TanksGame
             CheckCollisions();
             if (player.Health <= 0)
             {
-                //GAMEOVER
+                GameOver(false);
             }
             if (bonuses.Count < BonusesCount)
             {
                 Random random = new Random();
                 Bonus bonus = new Bonus(random.Next(10, 340), random.Next(100, 600), 10, 10);
                 bonuses.Add(bonus);
+            }
+            if (enemies.Count == 0)
+            {
+                GameOver(true);
             }
         }
         public void UpdateWalls()
@@ -132,7 +189,7 @@ namespace TanksGame
                         enemies[i].image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     }
                     enemies[i].oldDirection = enemies[i].Direction;
-                    enemies[i].Top++;
+                    enemies[i].Top+=enemies[i].Speed;
                 }
                 else if (enemies[i].Direction == Direction.LEFT)
                 {
@@ -149,7 +206,7 @@ namespace TanksGame
                         enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                     }
                     enemies[i].oldDirection = enemies[i].Direction;
-                    enemies[i].Left--;
+                    enemies[i].Left-= enemies[i].Speed; 
                 }
                 else if (enemies[i].Direction == Direction.RIGHT)
                 {
@@ -166,7 +223,7 @@ namespace TanksGame
                         enemies[i].image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                     }
                     enemies[i].oldDirection = enemies[i].Direction;
-                    enemies[i].Left++;
+                    enemies[i].Left+= enemies[i].Speed; 
                 }
                 else if (enemies[i].Direction == Direction.TOP)
                 {
@@ -183,7 +240,7 @@ namespace TanksGame
                         enemies[i].image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     }
                     enemies[i].oldDirection = enemies[i].Direction;
-                    enemies[i].Top--;
+                    enemies[i].Top-= enemies[i].Speed; 
                 }
                 if (enemies[i].counter < 1500)
                 {
@@ -221,19 +278,19 @@ namespace TanksGame
             {
                 if (shells[i].Direction == Direction.BOTTOM)
                 {
-                    shells[i].Top += 10;
+                    shells[i].Top += 15;
                 }
                 else if (shells[i].Direction == Direction.LEFT)
                 {
-                    shells[i].Left -= 10;
+                    shells[i].Left -= 15;
                 }
                 else if (shells[i].Direction == Direction.RIGHT)
                 {
-                    shells[i].Left += 10;
+                    shells[i].Left += 15;
                 }
                 else if (shells[i].Direction == Direction.TOP)
                 {
-                    shells[i].Top -= 10;
+                    shells[i].Top -= 15;
                 }
                 
                 shells[i].lifeTime -= timeRefresh.Interval;
@@ -270,7 +327,7 @@ namespace TanksGame
                     player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
                 player.Direction = Direction.TOP;
-                player.Top--;
+                player.Top-= player.Speed; 
             }
             else if(Keyboard.IsKeyDown(Key.Right))
             {
@@ -288,7 +345,7 @@ namespace TanksGame
                     player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 }
                 player.Direction = Direction.RIGHT;
-                player.Left++;
+                player.Left+= player.Speed;
             }
             else if (Keyboard.IsKeyDown(Key.Down))
             {
@@ -306,7 +363,7 @@ namespace TanksGame
                     player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
                 player.Direction = Direction.BOTTOM;
-                player.Top++;
+                player.Top+=player.Speed;
             }
             else if (Keyboard.IsKeyDown(Key.Left))
             {
@@ -324,7 +381,7 @@ namespace TanksGame
                     player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
                 player.Direction = Direction.LEFT;
-                player.Left--;
+                player.Left-= player.Speed;
             }
             if (player.timeToShoot > 0)
             {
@@ -395,6 +452,7 @@ namespace TanksGame
                                             player.Left, player.Top, player.Width, player.Height))
                     {
                         player.Health -= shells[i].Damage;
+                        shells.RemoveAt(i);
                     }
                 }
             }
@@ -620,21 +678,44 @@ namespace TanksGame
             }
             player.CreateSubject(bitmap);
             pBGameField.Image = bitmap;
-
+            SentCoordinates();
         }
 
         private void btnParameters_Click(object sender, EventArgs e)
         {
-            BonusesCount = (byte)tbBonus.Value;
-            enemiesCount = (byte)tbEnemy.Value;
-            mapHeight = (byte)tbMapHeight.Value;
-            speed = (byte)tbSpeed.Value;
-            mapWidth = (byte)tbMapWidth.Value;
+            BonusesCount = tbBonus.Value;
+            enemiesCount = tbEnemy.Value;
+            mapHeight = tbMapHeight.Value;
+            speed = tbSpeed.Value;
+            mapWidth = tbMapWidth.Value;
+            btnGameStart.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGameStart_Click(object sender, EventArgs e)
         {
-
+            tbBonus.Visible = false;
+            tbEnemy.Visible = false;
+            tbMapHeight.Visible = false;
+            tbMapWidth.Visible = false;
+            tbSpeed.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            btnGameStart.Visible = false;
+            btnParameters.Visible = false;
+            GameStart(speed, 30, enemiesCount, 30, 30, BonusesCount);
+        }
+        public void SentCoordinates()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                dgvGameData[1, i].Value = enemies[i].Left;
+                dgvGameData[2, i].Value = enemies[i].Top; ;
+            }
+            
         }
     }
 }
