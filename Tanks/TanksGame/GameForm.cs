@@ -83,9 +83,20 @@ namespace TanksGame
             }
             HandleInput();
             UpdateEnemies();
+            UpdateWalls();
             RandomShooting();
             ShellBallistics();
             CheckCollisions();
+        }
+        public void UpdateWalls()
+        {
+            for(int i = 0; i < walls.Count; i++)
+            {
+                if (walls[i].Health <= 0)
+                {
+                    walls.RemoveAt(i);
+                }
+            }
         }
         public void UpdateEnemies()
         {
@@ -161,8 +172,11 @@ namespace TanksGame
                     enemies[i].oldDirection = enemies[i].Direction;
                     enemies[i].Top--;
                 }
-                enemies[i].counter += timeRefresh.Interval;
-                if (enemies[i].counter >= 1000)
+                if (enemies[i].counter < 1500)
+                {
+                    enemies[i].counter += timeRefresh.Interval;
+                }
+                else if (enemies[i].counter >= 1500)
                 {
                     enemies[i].Direction = AutoInput(random);
                     enemies[i].counter = 0;
@@ -295,12 +309,108 @@ namespace TanksGame
                 player.Direction = Direction.LEFT;
                 player.Left--;
             }
+            if (player.timeToShoot > 0)
+            {
+                player.timeToShoot -= timeRefresh.Interval;
+            }
+            if (Keyboard.IsKeyDown(Key.Space))
+            {
+                if (player.timeToShoot <= 0)
+                {
+                    Shell shell = new Shell(player.Top + (player.Height / 2),
+                                                player.Left + (player.Width / 2),
+                                                10, 10, 1, player.Damage, true, player.Direction);
+                    shells.Add(shell);
+                    player.timeToShoot = 1500;
+                }
+            }
             
         }
 
         public void CheckCollisions()
         {
             EnemyCollidesEnemy();
+            EnemyCollidesWall();
+            ShellColidesWall();
+            EnenemyCollidesBorder();
+        }
+        public void EnenemyCollidesBorder()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if ((enemies[i].Top + enemies[i].Height) > gameMap.Height)
+                {
+                    enemies[i].Top = gameMap.Height - enemies[i].Height-2;
+                }
+                if ((enemies[i].Left + enemies[i].Width) > gameMap.Width)
+                {
+                    enemies[i].Left = gameMap.Width - enemies[i].Width - 2;
+                }
+                if (enemies[i].Top<0)
+                {
+                    enemies[i].Top = 2;
+                }
+                if (enemies[i].Left < 0)
+                {
+                    enemies[i].Left = 2;
+                }
+
+            }
+        }
+        public void ShellColidesWall()
+        {
+            for(int i = 0; i < walls.Count; i++)
+            {
+                for(int j = 0; j < shells.Count; j++)
+                {
+                    if (HitBoxCollides(walls[i].Left, walls[i].Top, walls[i].Width, walls[i].Height,
+                                        shells[j].Left, shells[j].Top, shells[j].Width, shells[j].Height))
+                    {
+
+                        walls[i].Health -= shells[j].Damage;
+                        shells.RemoveAt(j);
+                    }
+
+                    
+                }
+            }
+        }
+        public void EnemyCollidesWall()
+        {
+            for(int i = 0; i < enemies.Count; i++)
+            {
+                for(int j = 0; j < walls.Count; j++)
+                {
+                    if (HitBoxCollides(enemies[i].Left, enemies[i].Top, enemies[i].Width, enemies[i].Height,
+                                        walls[j].Left, walls[j].Top, walls[j].Width, walls[j].Height))
+                    {
+                        if (enemies[i].Direction == Direction.TOP)
+                        {
+                            enemies[i].Top+=2;
+                            //enemies[i].Direction = Direction.BOTTOM;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        else if(enemies[i].Direction == Direction.RIGHT)
+                        {
+                            enemies[i].Left-=2;
+                            //enemies[i].Direction = Direction.LEFT;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        else if (enemies[i].Direction == Direction.BOTTOM)
+                        {
+                            enemies[i].Top-=2;
+                            //enemies[i].Direction = Direction.TOP;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        else if (enemies[i].Direction == Direction.LEFT)
+                        {
+                            enemies[i].Left+=2;
+                            //enemies[i].Direction = Direction.RIGHT;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                    }
+                }
+            }
         }
         public void EnemyCollidesEnemy()
         {
