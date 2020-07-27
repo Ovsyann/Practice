@@ -36,11 +36,13 @@ namespace TanksGame
         public int oldHeight;
         public int pbOldwidth;
         public int pbOldHeight;
-
+        public int score=0;
+        public delegate void Transfer(object sender, ReportEventArgs reportEventArgs);
+        public event Transfer OnTransferInfo;
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            
+            btnGameStart.Enabled = false;
         }
         public void GameOver(bool winOrnot)
         {
@@ -48,10 +50,12 @@ namespace TanksGame
             btnGameStart.Enabled = false;
             if (winOrnot)
             {
+                label6.BackColor = System.Drawing.Color.Red;
                 label6.Text = "YOU WIN";
             }
             else
             {
+                label6.BackColor = System.Drawing.Color.Red;
                 label6.Text = "K.I.A.";
             }
             tbBonus.Visible = true;
@@ -70,11 +74,12 @@ namespace TanksGame
             this.Width = oldWidth;
             label6.Visible = true;
             timeRefresh.Enabled = false;
-            pBGameField.Width = this.Width - dgvGameData.Width;
-            pBGameField.Height = this.Height - 200;
+            pBGameField.Width = this.Width;
+            pBGameField.Height = this.Height - 130;
             bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.FillRectangle(System.Drawing.Brushes.Red, 0, 0, pBGameField.Width, pBGameField.Height);
+            labelcountScore.Text = "0";
         }
 
         public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer,int countBonuses)
@@ -84,7 +89,7 @@ namespace TanksGame
             oldHeight = this.Height;
             this.Height = 100 * mapHeight;
             this.Width = 100 * mapWidth;
-            pBGameField.Width = this.Width - dgvGameData.Width - 20;
+            pBGameField.Width = this.Width;
             pBGameField.Height = this.Height;
             shells.Clear();
             bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
@@ -121,14 +126,7 @@ namespace TanksGame
                 bonus.CreateSubject(bitmap);
             }
 
-            dgvGameData.RowCount = enemiesCount+1 ;
-            
-
-            for (int i = 0; i < enemies.Count+1; i++)
-            {
-                dgvGameData[0, i].Value = "Enemy " + (i+1);
-            }
-
+            score = 0;
             pBGameField.Image = bitmap;
             timeRefresh.Enabled = true;
         }
@@ -412,6 +410,7 @@ namespace TanksGame
             ShellColidesPlayer();
             ShellCollidesEnemy();
             PlayerCollidesBonus();
+            EnemyCollidesPlayer();
         }
         public void PlayerCollidesBonus()
         {
@@ -422,6 +421,8 @@ namespace TanksGame
                 {
                     bonuses.RemoveAt(i);
                     player.Health += 10;
+                    score++;
+                    labelcountScore.Text = "Score: " + score;
                 }
             }
         }
@@ -440,6 +441,21 @@ namespace TanksGame
                         }
                     }
                 }
+            }
+        }
+        public void EnemyCollidesPlayer()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                
+                
+                    if (HitBoxCollides(enemies[i].Left, enemies[i].Top, enemies[i].Width, enemies[i].Height,
+                                            player.Left, player.Top, player.Width, player.Height))
+                    {
+                        player.Health = 0;
+                        
+                    }
+                
             }
         }
         public void ShellColidesPlayer()
@@ -678,7 +694,7 @@ namespace TanksGame
             }
             player.CreateSubject(bitmap);
             pBGameField.Image = bitmap;
-            SentCoordinates();
+            OnTransferInfo?.Invoke(this, new ReportEventArgs(player, enemies, bonuses));
         }
 
         private void btnParameters_Click(object sender, EventArgs e)
@@ -708,14 +724,12 @@ namespace TanksGame
             btnParameters.Visible = false;
             GameStart(speed, 30, enemiesCount, 30, 30, BonusesCount);
         }
-        public void SentCoordinates()
+
+        private void labelReport_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                dgvGameData[1, i].Value = enemies[i].Left;
-                dgvGameData[2, i].Value = enemies[i].Top; ;
-            }
-            
+
+            Form form = new FormReport(this);
+            form.Show();
         }
     }
 }

@@ -8,3 +8,4 @@ D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.csproj.GenerateResource.cac
 D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.csproj.CoreCompileInputs.cache
 D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.exe
 D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.pdb
+D:\Hlam\PRACTICE\Tanks\TanksGame\obj\Debug\TanksGame.FormReport.resources
