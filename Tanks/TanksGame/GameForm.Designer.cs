@@ -44,7 +44,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnGameStart = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.labelcountScore = new System.Windows.Forms.Label();
             this.labelReport = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBGameField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEnemy)).BeginInit();
@@ -196,16 +195,6 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Tanks";
             // 
-            // labelcountScore
-            // 
-            this.labelcountScore.AutoSize = true;
-            this.labelcountScore.BackColor = System.Drawing.Color.Transparent;
-            this.labelcountScore.Location = new System.Drawing.Point(12, 9);
-            this.labelcountScore.Name = "labelcountScore";
-            this.labelcountScore.Size = new System.Drawing.Size(47, 13);
-            this.labelcountScore.TabIndex = 16;
-            this.labelcountScore.Text = "Score: 0";
-            // 
             // labelReport
             // 
             this.labelReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -224,7 +213,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 454);
             this.Controls.Add(this.labelReport);
-            this.Controls.Add(this.labelcountScore);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnGameStart);
             this.Controls.Add(this.label5);
@@ -240,7 +228,7 @@
             this.Controls.Add(this.btnParameters);
             this.Controls.Add(this.pBGameField);
             this.Name = "GameForm";
-            this.Text = "Form1";
+            this.Text = "Tanks";
             this.Load += new System.EventHandler(this.GameForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pBGameField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEnemy)).EndInit();
@@ -270,7 +258,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnGameStart;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelcountScore;
         private System.Windows.Forms.Label labelReport;
     }
 }

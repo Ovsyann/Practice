@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,13 @@ namespace TanksGame
 
         }
         Player player;
+        River river;
         List<Enemy> enemies;
         List<Bonus> bonuses;
         List<Wall> walls;
+        List<SuperWall> superWalls;
         List<Shell> shells = new List<Shell>();
+        List<Explosion> explosions = new List<Explosion>();
         Bitmap bitmap;
         GameMap gameMap;
         public int BonusesCount;
@@ -79,7 +83,7 @@ namespace TanksGame
             bitmap = new Bitmap(pBGameField.Width - 5, pBGameField.Height - 5);
             Graphics graphics = Graphics.FromImage(bitmap);
             graphics.FillRectangle(System.Drawing.Brushes.Red, 0, 0, pBGameField.Width, pBGameField.Height);
-            labelcountScore.Text = "0";
+            
         }
 
         public void GameStart(int speed, int health, int countEnemies, int damageEnemy, int damagePlayer,int countBonuses)
@@ -110,21 +114,33 @@ namespace TanksGame
 
             Random random = new Random();
             walls = new List<Wall>(10);
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Wall wall = new Wall(random.Next(10, pBGameField.Height - 5) - 50, random.Next(100, pBGameField.Width - 100), 25, 50, 10);
                 wall.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 walls.Add(wall);
                 wall.CreateSubject(bitmap);
             }
+
+            superWalls = new List<SuperWall>();
+            for (int i = 0; i < 5; i++)
+            {
+                SuperWall wall = new SuperWall(random.Next(10, pBGameField.Height - 5) - 50, random.Next(100, pBGameField.Width - 100), 50, 50);
+                wall.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                superWalls.Add(wall);
+                wall.CreateSubject(bitmap);
+            }
+
             BonusesCount = countBonuses;
             bonuses = new List<Bonus>(countBonuses);
             for (int i = 0; i < countBonuses; i++)
             {
-                Bonus bonus = new Bonus(random.Next(10, pBGameField.Height - 5), random.Next(100, pBGameField.Width - 100), 10, 10);
+                Bonus bonus = new Bonus(random.Next(10, pBGameField.Height - 5), random.Next(80, pBGameField.Width/2 - 5), 10, 10);
                 bonuses.Add(bonus);
                 bonus.CreateSubject(bitmap);
             }
+
+            river = new River(pBGameField.Width / 2 - 10, 0, 40, pBGameField.Height);
 
             score = 0;
             pBGameField.Image = bitmap;
@@ -141,6 +157,8 @@ namespace TanksGame
             RandomShooting();
             ShellBallistics();
             CheckCollisions();
+            UpdatePlayer();
+            UpdateExplosions();
             if (player.Health <= 0)
             {
                 GameOver(false);
@@ -148,12 +166,23 @@ namespace TanksGame
             if (bonuses.Count < BonusesCount)
             {
                 Random random = new Random();
-                Bonus bonus = new Bonus(random.Next(10, 340), random.Next(100, 600), 10, 10);
+                Bonus bonus = new Bonus(random.Next(10, pBGameField.Height - 5),
+                                        random.Next(80, pBGameField.Width / 2 - 5), 10, 10);
                 bonuses.Add(bonus);
             }
             if (enemies.Count == 0)
             {
                 GameOver(true);
+            }
+
+        }
+        public void UpdateExplosions()
+        {
+            for(int i = 0; i < explosions.Count; i++)
+            {
+                explosions[i].timeOfExplosion += timeRefresh.Interval;
+                if (explosions[i].timeOfExplosion > 700)
+                    explosions.RemoveAt(i);
             }
         }
         public void UpdateWalls()
@@ -307,79 +336,101 @@ namespace TanksGame
             //return (T)v.GetValue(new Random().Next(v.Length));
 
         }
+        public void UpdatePlayer()
+        {
+            if (player.Direction == Direction.BOTTOM)
+            {
+                if (player.oldDirection == Direction.LEFT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+                else if (player.oldDirection == Direction.TOP)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (player.oldDirection == Direction.RIGHT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                player.oldDirection = player.Direction;
+                player.Top += player.Speed;
+            }
+            else if (player.Direction == Direction.LEFT)
+            {
+                if (player.oldDirection == Direction.BOTTOM)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (player.oldDirection == Direction.TOP)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+                else if (player.oldDirection == Direction.RIGHT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                player.oldDirection = player.Direction;
+                player.Left -= player.Speed;
+            }
+            else if (player.Direction == Direction.RIGHT)
+            {
+                if (player.oldDirection == Direction.BOTTOM)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+                else if (player.oldDirection == Direction.TOP)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (player.oldDirection == Direction.LEFT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                player.oldDirection = player.Direction;
+                player.Left += player.Speed;
+            }
+            else if (player.Direction == Direction.TOP)
+            {
+                if (player.oldDirection == Direction.BOTTOM)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (player.oldDirection == Direction.LEFT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (player.oldDirection == Direction.RIGHT)
+                {
+                    player.image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+                player.oldDirection = player.Direction;
+                player.Top -= player.Speed;
+            }
+        }
         public void HandleInput()
         {
             if (Keyboard.IsKeyDown(Key.Up))
-            {  
-                if(player.Direction == Direction.RIGHT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                else if(player.Direction == Direction.BOTTOM)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                }
-                else if(player.Direction == Direction.LEFT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                player.Direction = Direction.TOP;
-                player.Top-= player.Speed; 
+            {
+
+                player.Direction = Direction.TOP; 
             }
             else if(Keyboard.IsKeyDown(Key.Right))
             {
-                if (player.Direction == Direction.TOP)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                else if (player.Direction == Direction.BOTTOM)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                else if (player.Direction == Direction.LEFT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                }
+                
                 player.Direction = Direction.RIGHT;
-                player.Left+= player.Speed;
+            
             }
             else if (Keyboard.IsKeyDown(Key.Down))
             {
-                if (player.Direction == Direction.TOP)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                }
-                else if (player.Direction == Direction.RIGHT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                else if (player.Direction == Direction.LEFT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
+                
                 player.Direction = Direction.BOTTOM;
-                player.Top+=player.Speed;
+  
             }
             else if (Keyboard.IsKeyDown(Key.Left))
             {
-                if (player.Direction == Direction.TOP)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
-                else if (player.Direction == Direction.RIGHT)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                }
-                else if (player.Direction == Direction.BOTTOM)
-                {
-                    player.image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                }
+                
                 player.Direction = Direction.LEFT;
-                player.Left-= player.Speed;
+
             }
             if (player.timeToShoot > 0)
             {
@@ -411,7 +462,29 @@ namespace TanksGame
             ShellCollidesEnemy();
             PlayerCollidesBonus();
             EnemyCollidesPlayer();
+            PlayerCollidesSuperWall();
+            EnemyCollidesSuperWall();
+            ShellCollidesSuperWall();
+            PlayerCollidesRiver();
+            EnemyCollidesRiver();
+            BonusCollidesSuperWall();
         }
+
+        public void BonusCollidesSuperWall()
+        {
+            for(int i = 0; i < bonuses.Count; i++)
+            {
+                for(int j = 0; j < superWalls.Count; j++)
+                {
+                    if(HitBoxCollides(bonuses[i].Left,bonuses[i].Top,bonuses[i].Width,bonuses[i].Height,
+                                      superWalls[j].Left, superWalls[j].Top, superWalls[j].Width, superWalls[j].Height))
+                    {
+                        bonuses[i].Left = superWalls[j].Left - bonuses[i].Width;
+                    }
+                }
+            }
+        }
+
         public void PlayerCollidesBonus()
         {
             for (int i = 0; i < bonuses.Count; i++)
@@ -422,7 +495,7 @@ namespace TanksGame
                     bonuses.RemoveAt(i);
                     player.Health += 10;
                     score++;
-                    labelcountScore.Text = "Score: " + score;
+                    
                 }
             }
         }
@@ -438,9 +511,39 @@ namespace TanksGame
                                            enemies[j].Left, enemies[j].Top, enemies[j].Width, enemies[j].Height))
                         {
                             enemies[j].Health -= shells[i].Damage;
+                            Explosion explosion = new Explosion(shells[i].Left, shells[i].Top,
+                                                                shells[i].Width*2, shells[i].Height*2);
+                            explosions.Add(explosion);
+                            shells.RemoveAt(i);
                         }
                     }
                 }
+            }
+        }
+        public void EnemyCollidesRiver()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+
+
+                if (HitBoxCollides(enemies[i].Left, enemies[i].Top, enemies[i].Width, enemies[i].Height,
+                                        river.Left, river.Top, river.Width, river.Height))
+                {
+                    if (enemies[i].Left < river.Left)
+                    {
+                        enemies[i].Left -= 10;
+                        //enemies[i].Direction = Direction.BOTTOM;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    if (enemies[i].Left > river.Left)
+                    {
+                        enemies[i].Left += 10;
+                        //enemies[i].Direction = Direction.LEFT;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+
+                }
+
             }
         }
         public void EnemyCollidesPlayer()
@@ -468,7 +571,64 @@ namespace TanksGame
                                             player.Left, player.Top, player.Width, player.Height))
                     {
                         player.Health -= shells[i].Damage;
+                        Explosion explosion = new Explosion(shells[i].Left, shells[i].Top,
+                                                                shells[i].Width * 2, shells[i].Height * 2);
+                        explosions.Add(explosion);
                         shells.RemoveAt(i);
+                    }
+                }
+            }
+        }
+        public void PlayerCollidesRiver()
+        {
+            
+                if (HitBoxCollides(river.Left, river.Top, river.Width, river.Height,
+                                        player.Left, player.Top, player.Width, player.Height))
+                {
+                    if (player.Left < river.Left)
+                    {
+                        player.Left -= 10;
+
+                    }
+                    if (player.Left > river.Left)
+                    {
+                        player.Left += 10;
+
+                    }
+                    
+                }
+           
+        }
+        public void PlayerCollidesSuperWall()
+        {
+            for (int i = 0; i < superWalls.Count; i++)
+            {
+                if (HitBoxCollides(superWalls[i].Left, superWalls[i].Top, superWalls[i].Width, superWalls[i].Height,
+                                        player.Left, player.Top, player.Width, player.Height))
+                {
+                    if (player.Left<superWalls[i].Left)
+                    {
+                        player.Left  -= 10;
+                        //enemies[i].Direction = Direction.BOTTOM;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    if (player.Left > superWalls[i].Left)
+                    {
+                        player.Left += 10;
+                        //enemies[i].Direction = Direction.LEFT;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    if (player.Top < superWalls[i].Top)
+                    {
+                        player.Top -= 10;
+                        //enemies[i].Direction = Direction.TOP;
+                        //enemies[i].oldDirection = enemies[i].Direction;
+                    }
+                    if (player.Top > superWalls[i].Top)
+                    {
+                        player.Top += 10;
+                        //enemies[i].Direction = Direction.RIGHT;
+                        //enemies[i].oldDirection = enemies[i].Direction;
                     }
                 }
             }
@@ -480,27 +640,27 @@ namespace TanksGame
                 if(HitBoxCollides(walls[i].Left, walls[i].Top, walls[i].Width, walls[i].Height,
                                         player.Left, player.Top, player.Width, player.Height))
                 {
-                    if (player.Direction == Direction.TOP)
+                    if (player.Left < walls[i].Left)
                     {
-                        player.Top += 2;
+                        player.Left -= 10;
                         //enemies[i].Direction = Direction.BOTTOM;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    else if (player.Direction == Direction.RIGHT)
+                    if (player.Left > walls[i].Left)
                     {
-                        player.Left -= 2;
+                        player.Left += 10;
                         //enemies[i].Direction = Direction.LEFT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    else if (player.Direction == Direction.BOTTOM)
+                    if (player.Top < walls[i].Top)
                     {
-                        player.Top -= 2;
+                        player.Top -= 10;
                         //enemies[i].Direction = Direction.TOP;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    else if (player.Direction == Direction.LEFT)
+                    if (player.Top > walls[i].Top)
                     {
-                        player.Left += 2;
+                        player.Top += 10;
                         //enemies[i].Direction = Direction.RIGHT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
@@ -549,6 +709,25 @@ namespace TanksGame
 
             }
         }
+        public void ShellCollidesSuperWall()
+        {
+            for (int i = 0; i < superWalls.Count; i++)
+            {
+                for (int j = 0; j < shells.Count; j++)
+                {
+                    if (HitBoxCollides(superWalls[i].Left, superWalls[i].Top, superWalls[i].Width, superWalls[i].Height,
+                                        shells[j].Left, shells[j].Top, shells[j].Width, shells[j].Height))
+                    {
+                        Explosion explosion = new Explosion(shells[j].Left, shells[j].Top,
+                                                                shells[j].Width * 2, shells[j].Height * 2);
+                        explosions.Add(explosion);
+                        shells.RemoveAt(j);
+                    }
+
+
+                }
+            }
+        }
         public void ShellColidesWall()
         {
             for(int i = 0; i < walls.Count; i++)
@@ -560,10 +739,50 @@ namespace TanksGame
                     {
 
                         walls[i].Health -= shells[j].Damage;
+                        Explosion explosion = new Explosion(shells[j].Left, shells[j].Top,
+                                                                shells[j].Width * 2, shells[j].Height * 2);
+                        explosions.Add(explosion);
                         shells.RemoveAt(j);
                     }
 
                     
+                }
+            }
+        }
+        public void EnemyCollidesSuperWall()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                for (int j = 0; j < superWalls.Count; j++)
+                {
+                    if (HitBoxCollides(enemies[i].Left, enemies[i].Top, enemies[i].Width, enemies[i].Height,
+                                        superWalls[j].Left, superWalls[j].Top, superWalls[j].Width, superWalls[j].Height))
+                    {
+                        if (enemies[i].Left < superWalls[j].Left)
+                        {
+                            enemies[i].Left -= 10;
+                            //enemies[i].Direction = Direction.BOTTOM;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        if (enemies[i].Left > superWalls[j].Left)
+                        {
+                            enemies[i].Left += 10;
+                            //enemies[i].Direction = Direction.LEFT;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        if (enemies[i].Top < superWalls[j].Top)
+                        {
+                            enemies[i].Top -= 10;
+                            //enemies[i].Direction = Direction.TOP;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                        if (enemies[i].Top > superWalls[j].Top)
+                        {
+                            enemies[i].Top += 10;
+                            //enemies[i].Direction = Direction.RIGHT;
+                            //enemies[i].oldDirection = enemies[i].Direction;
+                        }
+                    }
                 }
             }
         }
@@ -576,27 +795,27 @@ namespace TanksGame
                     if (HitBoxCollides(enemies[i].Left, enemies[i].Top, enemies[i].Width, enemies[i].Height,
                                         walls[j].Left, walls[j].Top, walls[j].Width, walls[j].Height))
                     {
-                        if (enemies[i].Direction == Direction.TOP)
+                        if (enemies[i].Left < walls[j].Left)
                         {
-                            enemies[i].Top+=2;
+                            enemies[i].Left -= 10;
                             //enemies[i].Direction = Direction.BOTTOM;
                             //enemies[i].oldDirection = enemies[i].Direction;
                         }
-                        else if(enemies[i].Direction == Direction.RIGHT)
+                        if (enemies[i].Left > walls[j].Left)
                         {
-                            enemies[i].Left-=2;
+                            enemies[i].Left += 10;
                             //enemies[i].Direction = Direction.LEFT;
                             //enemies[i].oldDirection = enemies[i].Direction;
                         }
-                        else if (enemies[i].Direction == Direction.BOTTOM)
+                        if (enemies[i].Top < walls[j].Top)
                         {
-                            enemies[i].Top-=2;
+                            enemies[i].Top -= 10;
                             //enemies[i].Direction = Direction.TOP;
                             //enemies[i].oldDirection = enemies[i].Direction;
                         }
-                        else if (enemies[i].Direction == Direction.LEFT)
+                        if (enemies[i].Top > walls[j].Top)
                         {
-                            enemies[i].Left+=2;
+                            enemies[i].Top += 10;
                             //enemies[i].Direction = Direction.RIGHT;
                             //enemies[i].oldDirection = enemies[i].Direction;
                         }
@@ -616,43 +835,43 @@ namespace TanksGame
                         if (enemies[i].Direction == Direction.TOP)
                         {
                             enemies[i].Direction = Direction.BOTTOM;
-                            enemies[i].Top += 2;
+                            enemies[i].Top += enemies[i].Speed;
                         }
                         else if (enemies[i].Direction == Direction.RIGHT)
                         {
                             enemies[i].Direction = Direction.LEFT;
-                            enemies[i].Left -= 2;
+                            enemies[i].Left -= enemies[i].Speed;
                         }
                         else if (enemies[i].Direction == Direction.BOTTOM)
                         {
                             enemies[i].Direction = Direction.TOP;
-                            enemies[i].Top -= 2;
+                            enemies[i].Top -= enemies[i].Speed;
                         }
                         else if (enemies[i].Direction == Direction.LEFT)
                         {
                             enemies[i].Direction = Direction.RIGHT;
-                            enemies[i].Left += 2;
+                            enemies[i].Left += enemies[i].Speed;
                         }
 
                         if (enemies[j].Direction == Direction.TOP)
                         {
                             enemies[j].Direction = Direction.BOTTOM;
-                            enemies[j].Top += 2;
+                            enemies[j].Top += enemies[i].Speed;
                         }
                         else if (enemies[j].Direction == Direction.RIGHT)
                         {
                             enemies[j].Direction = Direction.LEFT;
-                            enemies[j].Left -= 2;
+                            enemies[j].Left -= enemies[i].Speed;
                         }
                         else if (enemies[j].Direction == Direction.BOTTOM)
                         {
                             enemies[j].Direction = Direction.TOP;
-                            enemies[j].Top -= 2;
+                            enemies[j].Top -= enemies[i].Speed;
                         }
                         else if (enemies[j].Direction == Direction.LEFT)
                         {
                             enemies[j].Direction = Direction.RIGHT;
-                            enemies[j].Left += 2;
+                            enemies[j].Left += enemies[i].Speed;
                         }
                     }
                 }
@@ -673,8 +892,16 @@ namespace TanksGame
         private void timeRefresh_Tick(object sender, EventArgs e)
         {
             gameMap.CreateSubject(bitmap);
-
+            river.CreateSubject(bitmap);
             UpdateGameObjects();
+            for(int i = 0; i < explosions.Count; i++)
+            {
+                explosions[i].CreateSubject(bitmap);
+            }
+            for (int i = 0; i < superWalls.Count; i++)
+            {
+                superWalls[i].CreateSubject(bitmap);
+            }
             for (int i = 0; i < walls.Count; i++)
             {
                 walls[i].CreateSubject(bitmap);
@@ -727,9 +954,12 @@ namespace TanksGame
 
         private void labelReport_Click(object sender, EventArgs e)
         {
-
+            labelReport.Enabled = false;
             Form form = new FormReport(this);
-            form.Show();
+            form.Owner = this;
+            form.ShowDialog();
+            
+            labelReport.Enabled = true;
         }
     }
 }

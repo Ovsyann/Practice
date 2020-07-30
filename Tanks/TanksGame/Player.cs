@@ -24,6 +24,7 @@ namespace TanksGame
         }
         public Image image = Properties.Resources.Tank;
         public int timeToShoot = 1500;
+        public Direction oldDirection;
         public override void CreateSubject(Bitmap bitmap)
         {
             Graphics graphics = Graphics.FromImage(bitmap);

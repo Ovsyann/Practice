@@ -21,7 +21,10 @@ namespace TanksGame
 
         private void TransferHandler(object sender, ReportEventArgs e)
         {
+            labelcountScore.Text = "Scores: " + gameform.score;
+
             dataGridView.Rows.Clear();
+            
             dataGridView.Rows.Add("Player",e.Player.Left, e.Player.Top);
 
             for (int i = 0; i < e.Enemies.Count; i++)
@@ -40,6 +43,7 @@ namespace TanksGame
         private void FormReport_FormClosing(object sender, FormClosingEventArgs e)
         {
             gameform.OnTransferInfo -= TransferHandler;
+            
         }
     }
 }
