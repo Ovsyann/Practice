@@ -409,28 +409,30 @@ namespace TanksGame
         }
         public void HandleInput()
         {
+         
             if (Keyboard.IsKeyDown(Key.Up))
             {
 
-                player.Direction = Direction.TOP; 
+                player.Direction = Direction.TOP;
+                player.Speed = speed;
             }
             else if(Keyboard.IsKeyDown(Key.Right))
             {
                 
                 player.Direction = Direction.RIGHT;
-            
+                player.Speed = speed;
             }
             else if (Keyboard.IsKeyDown(Key.Down))
             {
                 
                 player.Direction = Direction.BOTTOM;
-  
+                player.Speed = speed;
             }
             else if (Keyboard.IsKeyDown(Key.Left))
             {
                 
                 player.Direction = Direction.LEFT;
-
+                player.Speed = speed;
             }
             if (player.timeToShoot > 0)
             {
@@ -585,17 +587,22 @@ namespace TanksGame
                 if (HitBoxCollides(river.Left, river.Top, river.Width, river.Height,
                                         player.Left, player.Top, player.Width, player.Height))
                 {
-                    if (player.Left < river.Left)
-                    {
-                        player.Left -= 10;
+                
+                if (player.Direction == Direction.LEFT)
+                {
+                    player.Left += player.Speed + 2;
+                    //enemies[i].Direction = Direction.LEFT;
+                    //enemies[i].oldDirection = enemies[i].Direction;
+                }
+                if (player.Direction == Direction.RIGHT)
+                {
+                    player.Left -= player.Speed + 2;
+                    //enemies[i].Direction = Direction.TOP;
+                    //enemies[i].oldDirection = enemies[i].Direction;
+                }
+                
+                player.Speed = 0;
 
-                    }
-                    if (player.Left > river.Left)
-                    {
-                        player.Left += 10;
-
-                    }
-                    
                 }
            
         }
@@ -606,30 +613,31 @@ namespace TanksGame
                 if (HitBoxCollides(superWalls[i].Left, superWalls[i].Top, superWalls[i].Width, superWalls[i].Height,
                                         player.Left, player.Top, player.Width, player.Height))
                 {
-                    if (player.Left<superWalls[i].Left)
+                    if (player.Direction==Direction.BOTTOM)
                     {
-                        player.Left  -= 10;
+                        player.Top-=player.Speed+2;
                         //enemies[i].Direction = Direction.BOTTOM;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Left > superWalls[i].Left)
+                    if (player.Direction == Direction.LEFT)
                     {
-                        player.Left += 10;
+                        player.Left += player.Speed+2;
                         //enemies[i].Direction = Direction.LEFT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Top < superWalls[i].Top)
+                    if (player.Direction == Direction.RIGHT)
                     {
-                        player.Top -= 10;
+                        player.Left -= player.Speed+2;
                         //enemies[i].Direction = Direction.TOP;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Top > superWalls[i].Top)
+                    if (player.Direction == Direction.TOP)
                     {
-                        player.Top += 10;
+                        player.Top += player.Speed+2;
                         //enemies[i].Direction = Direction.RIGHT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
+                    player.Speed = 0;
                 }
             }
         }
@@ -640,30 +648,31 @@ namespace TanksGame
                 if(HitBoxCollides(walls[i].Left, walls[i].Top, walls[i].Width, walls[i].Height,
                                         player.Left, player.Top, player.Width, player.Height))
                 {
-                    if (player.Left < walls[i].Left)
+                    if (player.Direction == Direction.BOTTOM)
                     {
-                        player.Left -= 10;
+                        player.Top -= player.Speed + 2;
                         //enemies[i].Direction = Direction.BOTTOM;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Left > walls[i].Left)
+                    if (player.Direction == Direction.LEFT)
                     {
-                        player.Left += 10;
+                        player.Left += player.Speed + 2;
                         //enemies[i].Direction = Direction.LEFT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Top < walls[i].Top)
+                    if (player.Direction == Direction.RIGHT)
                     {
-                        player.Top -= 10;
+                        player.Left -= player.Speed + 2;
                         //enemies[i].Direction = Direction.TOP;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
-                    if (player.Top > walls[i].Top)
+                    if (player.Direction == Direction.TOP)
                     {
-                        player.Top += 10;
+                        player.Top += player.Speed + 2;
                         //enemies[i].Direction = Direction.RIGHT;
                         //enemies[i].oldDirection = enemies[i].Direction;
                     }
+                    player.Speed = 0;
                 }
             }
         }
