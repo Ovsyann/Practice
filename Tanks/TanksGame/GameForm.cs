@@ -143,8 +143,18 @@ namespace TanksGame
             river = new River(pBGameField.Width / 2 - 10, 0, 40, pBGameField.Height);
 
             score = 0;
-            pBGameField.Image = bitmap;
-            timeRefresh.Enabled = true;
+            CreateGameFieldFile();
+            DialogResult dialogResult = MessageBox.Show("Файл со схемой поля создан \n Начать игру?", "Подтверждение!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                pBGameField.Image = bitmap;
+                timeRefresh.Enabled = true;
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                Application.Restart();
+            }
+
         }
         
 
@@ -969,6 +979,62 @@ namespace TanksGame
             form.ShowDialog();
             
             labelReport.Enabled = true;
+        }
+        public void CreateGameFieldFile()
+        {
+            using (StreamWriter streamWriter = new StreamWriter("GameField.txt", false))
+            {
+                int fieldHeight = 100 * mapHeight;
+                int fieldWidth = 100 * mapWidth;
+                char[,] field = new char[fieldHeight, fieldWidth];
+                for (int i = 0; i < fieldHeight; i++)
+                {
+                    for (int j = 0; j < fieldWidth; j++)
+                    {
+                        field[i, j] = '/';
+                        if ((player.Left == j) && (player.Top == i))
+                        {
+                            field[i, j] = 'K';
+                        }
+
+                        if (j == river.Left)
+                            field[i, j] = 'R';
+
+                        for (int i1 = 0; i1 < enemies.Count; i1++)
+                        {
+                            if ((enemies[i1].Left == j) && (enemies[i1].Top == i))
+                                field[i, j] = 'T';
+                        }
+
+                        for (int i1 = 0; i1 < walls.Count; i1++)
+                        {
+                            if ((walls[i1].Left == j) && (walls[i1].Top == i))
+                                field[i, j] = 'W';
+                        }
+
+                        for (int i1 = 0; i1 < superWalls.Count; i1++)
+                        {
+                            if ((superWalls[i1].Left == j) && (superWalls[i1].Top == i))
+                                field[i, j] = 'W';
+                        }
+
+                        for (int i1 = 0; i1 < bonuses.Count; i1++)
+                        {
+                            if ((bonuses[i1].Left == j) && (bonuses[i1].Top == i))
+                                field[i, j] = 'B';
+                        }
+                    }
+                }
+                for (int i = 0; i < fieldHeight; i++)
+                {
+                    for (int j = 0; j < fieldWidth; j++)
+                    {
+                        streamWriter.Write(field[i, j]);
+                    }
+                    streamWriter.WriteLine();
+                }
+
+            }
         }
     }
 }
