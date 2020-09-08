@@ -15,7 +15,8 @@ namespace PointProcessor
                     {
                         while (sr.Peek() >= 0)
                         {
-                            string processedLine = ProcessLine(sr.ReadLine());
+                            string readLine = ProcessLine(sr.ReadLine());
+                            Console.WriteLine(readLine);
                         }
                     }
                 }
@@ -29,16 +30,13 @@ namespace PointProcessor
 
         public static string ProcessLine(string line)
         {
-            throw new NotImplementedException();
-
-            //Код для парсера, а не для процессера
-
-            //string[] pointsInLine = line.Split(',');
-            //decimal pointX = decimal.Parse(pointsInLine[0]);
-            //decimal pointY = decimal.Parse(pointsInLine[1]);
-
-            //Point point = new Point(pointX, pointY);
-            //return line;
+            //throw new NotImplementedException();
+            bool canParse = Parser.TryParsePoint(line, out Point point);
+            if (canParse)
+                line = Formatter.Format(point);
+            else
+                line = "What a pity! I Can't process this line!";
+            return line;
         }
     }
 }
