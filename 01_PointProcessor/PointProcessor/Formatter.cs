@@ -7,10 +7,12 @@ namespace PointProcessor
     {
         public static string Format(Point point)
         {
-            //throw new NotImplementedException();
-
-            string formattedLine = string.Format("X: {0,-9} Y: {1,-9}", point.X, point.Y);
-            return formattedLine;
+            if (point != null)
+            {
+                string formattedLine = string.Format("X: {0,9:###0.0###;###0.0###;'   '0.0'   '} Y: {1,9:###0.0###;###0.0###;'   '0.0'   '}", point.X, point.Y);
+                return formattedLine;
+            }
+            return null;
         }
     }
 }

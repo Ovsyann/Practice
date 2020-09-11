@@ -25,17 +25,17 @@ namespace PointProcessor
 
         public static void ProcessConsole()
         {
-            throw new NotImplementedException();
+            string readLine = ProcessLine(Console.ReadLine());
+            Console.WriteLine(readLine);
         }
 
         public static string ProcessLine(string line)
         {
-            //throw new NotImplementedException();
             bool canParse = Parser.TryParsePoint(line, out Point point);
             if (canParse)
                 line = Formatter.Format(point);
             else
-                line = "What a pity! I Can't process this line!";
+                line = null;
             return line;
         }
     }
