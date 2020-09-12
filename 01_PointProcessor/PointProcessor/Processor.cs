@@ -25,8 +25,14 @@ namespace PointProcessor
 
         public static void ProcessConsole()
         {
-            string readLine = ProcessLine(Console.ReadLine());
-            Console.WriteLine(readLine);
+            string readLine = default;
+            var streamRead = Console.In;
+            while (streamRead.Peek() >= 0)
+            {
+                readLine = ProcessLine(streamRead.ReadLine());
+                
+                Console.WriteLine(readLine);
+            }
         }
 
         public static string ProcessLine(string line)

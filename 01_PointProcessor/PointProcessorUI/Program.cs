@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PointProcessor;
+using System;
 
 namespace PointProcessorUI
 {
@@ -8,11 +9,13 @@ namespace PointProcessorUI
         {
             if (args.Length != 0)
             {
-                string mode = args[0];
-                if (mode.Equals("1"))
-                {
-                    Console.WriteLine("Welcome to files processing mode \n Please");
-                }
+                Console.WriteLine("Welcome to files processing mode");
+                Processor.ProcessFiles(args);    
+            }
+            else
+            {
+                Console.WriteLine("Welcome to console processing mode");
+                Processor.ProcessConsole();
             }
             // я должен сделать main и батники для запуска
         }

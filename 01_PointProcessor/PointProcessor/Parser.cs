@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace PointProcessor
 {
@@ -13,8 +14,10 @@ namespace PointProcessor
                 string[] twoLines = line.Split(',');
                 if (twoLines.Length == 2)
                 {
-                    if (decimal.TryParse(twoLines[0], out decimal pointValueX))
-                        if (decimal.TryParse(twoLines[1], out decimal pointValueY))
+                    NumberStyles numberStyles = NumberStyles.AllowDecimalPoint;
+                    CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("en-GB");
+                    if (decimal.TryParse(twoLines[0].ToString(), numberStyles, cultureInfo, out decimal pointValueX))
+                        if (decimal.TryParse(twoLines[1], numberStyles, cultureInfo, out decimal pointValueY))
                         {
                             point = new Point(pointValueX, pointValueY);
                             return true;
