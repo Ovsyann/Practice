@@ -13,4 +13,8 @@
     <Folder Include="Tests\" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;D:\EPAM_Lab\netlab\CSharp\CSharp_01\01_PointProcessor\PointProcessorUI\Post-BuildEvents\RunCopyTestFiles.bat&quot;" />
+  </Target>
+
 </Project>

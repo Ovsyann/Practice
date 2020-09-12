@@ -1,0 +1,2 @@
+mkdir "D:\EPAM_Lab\Netlab\CSharp\CSharp_01\01_PointProcessor\PointProcessorUI\bin\TestFiles"
+copy "D:\EPAM_Lab\Netlab\CSharp\CSharp_01\01_PointProcessor\TestFiles" "D:\EPAM_Lab\Netlab\CSharp\CSharp_01\01_PointProcessor\PointProcessorUI\bin\TestFiles"

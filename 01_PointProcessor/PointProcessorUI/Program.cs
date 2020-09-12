@@ -17,7 +17,7 @@ namespace PointProcessorUI
                 Console.WriteLine("Welcome to console processing mode");
                 Processor.ProcessConsole();
             }
-            // я должен сделать main и батники для запуска
+            
         }
     }
 }
