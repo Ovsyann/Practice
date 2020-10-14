@@ -41,6 +41,8 @@
             this.chart1Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelPearsonTest = new System.Windows.Forms.Label();
+            this.labelKolmogorovTest = new System.Windows.Forms.Label();
+            this.labelCollector = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2Histogram)).BeginInit();
             this.SuspendLayout();
@@ -48,36 +50,40 @@
             // labelExpectedValue
             // 
             this.labelExpectedValue.AutoSize = true;
-            this.labelExpectedValue.Location = new System.Drawing.Point(608, 176);
+            this.labelExpectedValue.Location = new System.Drawing.Point(811, 217);
+            this.labelExpectedValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelExpectedValue.Name = "labelExpectedValue";
-            this.labelExpectedValue.Size = new System.Drawing.Size(35, 13);
+            this.labelExpectedValue.Size = new System.Drawing.Size(46, 17);
             this.labelExpectedValue.TabIndex = 0;
             this.labelExpectedValue.Text = "label1";
             // 
             // labelDispersion
             // 
             this.labelDispersion.AutoSize = true;
-            this.labelDispersion.Location = new System.Drawing.Point(608, 199);
+            this.labelDispersion.Location = new System.Drawing.Point(811, 245);
+            this.labelDispersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDispersion.Name = "labelDispersion";
-            this.labelDispersion.Size = new System.Drawing.Size(35, 13);
+            this.labelDispersion.Size = new System.Drawing.Size(46, 17);
             this.labelDispersion.TabIndex = 1;
             this.labelDispersion.Text = "label2";
             // 
             // labelSecondCentralPoint
             // 
             this.labelSecondCentralPoint.AutoSize = true;
-            this.labelSecondCentralPoint.Location = new System.Drawing.Point(608, 223);
+            this.labelSecondCentralPoint.Location = new System.Drawing.Point(811, 274);
+            this.labelSecondCentralPoint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSecondCentralPoint.Name = "labelSecondCentralPoint";
-            this.labelSecondCentralPoint.Size = new System.Drawing.Size(35, 13);
+            this.labelSecondCentralPoint.Size = new System.Drawing.Size(46, 17);
             this.labelSecondCentralPoint.TabIndex = 2;
             this.labelSecondCentralPoint.Text = "label3";
             // 
             // labelThirdCentralPoint
             // 
             this.labelThirdCentralPoint.AutoSize = true;
-            this.labelThirdCentralPoint.Location = new System.Drawing.Point(608, 245);
+            this.labelThirdCentralPoint.Location = new System.Drawing.Point(811, 302);
+            this.labelThirdCentralPoint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelThirdCentralPoint.Name = "labelThirdCentralPoint";
-            this.labelThirdCentralPoint.Size = new System.Drawing.Size(35, 13);
+            this.labelThirdCentralPoint.Size = new System.Drawing.Size(46, 17);
             this.labelThirdCentralPoint.TabIndex = 3;
             this.labelThirdCentralPoint.Text = "label4";
             // 
@@ -88,13 +94,14 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chart1Histogram.Legends.Add(legend1);
-            this.chart1Histogram.Location = new System.Drawing.Point(12, 12);
+            this.chart1Histogram.Location = new System.Drawing.Point(16, 15);
+            this.chart1Histogram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart1Histogram.Name = "chart1Histogram";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "histogramOne";
             this.chart1Histogram.Series.Add(series1);
-            this.chart1Histogram.Size = new System.Drawing.Size(590, 200);
+            this.chart1Histogram.Size = new System.Drawing.Size(787, 246);
             this.chart1Histogram.TabIndex = 4;
             this.chart1Histogram.Text = "Histogram1Chart";
             // 
@@ -105,30 +112,54 @@
             legend2.Enabled = false;
             legend2.Name = "Legend1";
             this.chart2Histogram.Legends.Add(legend2);
-            this.chart2Histogram.Location = new System.Drawing.Point(12, 223);
+            this.chart2Histogram.Location = new System.Drawing.Point(16, 274);
+            this.chart2Histogram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart2Histogram.Name = "chart2Histogram";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "histogramTwo";
             this.chart2Histogram.Series.Add(series2);
-            this.chart2Histogram.Size = new System.Drawing.Size(590, 200);
+            this.chart2Histogram.Size = new System.Drawing.Size(787, 246);
             this.chart2Histogram.TabIndex = 6;
             this.chart2Histogram.Text = "Histogram2Chart";
             // 
             // labelPearsonTest
             // 
             this.labelPearsonTest.AutoSize = true;
-            this.labelPearsonTest.Location = new System.Drawing.Point(608, 284);
+            this.labelPearsonTest.Location = new System.Drawing.Point(811, 350);
+            this.labelPearsonTest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPearsonTest.Name = "labelPearsonTest";
-            this.labelPearsonTest.Size = new System.Drawing.Size(35, 13);
+            this.labelPearsonTest.Size = new System.Drawing.Size(46, 17);
             this.labelPearsonTest.TabIndex = 7;
             this.labelPearsonTest.Text = "label4";
             // 
+            // labelKolmogorovTest
+            // 
+            this.labelKolmogorovTest.AutoSize = true;
+            this.labelKolmogorovTest.Location = new System.Drawing.Point(811, 382);
+            this.labelKolmogorovTest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelKolmogorovTest.Name = "labelKolmogorovTest";
+            this.labelKolmogorovTest.Size = new System.Drawing.Size(46, 17);
+            this.labelKolmogorovTest.TabIndex = 8;
+            this.labelKolmogorovTest.Text = "label4";
+            // 
+            // labelCollector
+            // 
+            this.labelCollector.AutoSize = true;
+            this.labelCollector.Location = new System.Drawing.Point(811, 414);
+            this.labelCollector.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCollector.Name = "labelCollector";
+            this.labelCollector.Size = new System.Drawing.Size(46, 17);
+            this.labelCollector.TabIndex = 9;
+            this.labelCollector.Text = "label4";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 450);
+            this.ClientSize = new System.Drawing.Size(1179, 554);
+            this.Controls.Add(this.labelCollector);
+            this.Controls.Add(this.labelKolmogorovTest);
             this.Controls.Add(this.labelPearsonTest);
             this.Controls.Add(this.chart2Histogram);
             this.Controls.Add(this.chart1Histogram);
@@ -136,6 +167,7 @@
             this.Controls.Add(this.labelSecondCentralPoint);
             this.Controls.Add(this.labelDispersion);
             this.Controls.Add(this.labelExpectedValue);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -155,6 +187,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1Histogram;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2Histogram;
         private System.Windows.Forms.Label labelPearsonTest;
+        private System.Windows.Forms.Label labelKolmogorovTest;
+        private System.Windows.Forms.Label labelCollector;
     }
 }
 

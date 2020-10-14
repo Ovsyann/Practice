@@ -29,8 +29,36 @@ namespace Lab1
             DrawFirstDiagram(randomVariables);
             DrawSecondDiagram(randomVariables);
             Lab2PearsonTest(randomVariables);
-
+            Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
+            Lab2CollectorTest(generationMethod.numberOfSubdivisions,generationMethod.sampleSize,randomVariables);
         }
+
+        private void Lab2CollectorTest(byte numberOfSubdivisions, int sampleSize, double[] randomVariables)
+        {
+            int[] sample = Lab2TestMethods.CollectorTest((int)numberOfSubdivisions, sampleSize, randomVariables);
+            double subdivisionStep = (double)1 / numberOfSubdivisions;
+            double[] hitCounts = new double[numberOfSubdivisions];
+            double[] hitProbabilities = new double[numberOfSubdivisions];
+            for (int i = 0; i < numberOfSubdivisions; i++)
+            {
+                hitCounts[i] = sample.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
+                hitProbabilities[i] = hitCounts[i] / sample.Length;
+            }
+            double Xi2;
+            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
+                        numberOfSubdivisions, sampleSize);
+            labelCollector.Text = "Хи^2 для коллекционера: " + Xi2;
+        }
+
+        private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
+        {
+            double[] sortedSamples;
+            double lambdaKolmogorov;
+            sortedSamples = Lab2TestMethods.SortSamples(randomVariables);
+            lambdaKolmogorov = Lab2TestMethods.KolmogorovTest(sortedSamples, ref sampleSize);
+            labelKolmogorovTest.Text = string.Format("Критерий Колмогорова = {0}", lambdaKolmogorov);
+        }
+
         void DisplayProcessingValues(double[] randomVariables)
         {
             labelExpectedValue.Text = "Математическое ожидание = " + ProcessingValues.GetExpectedValue(randomVariables);
@@ -82,7 +110,7 @@ namespace Lab1
             double Xi2;
             Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
                         generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
-            labelPearsonTest.Text = string.Format("Pearson test Xi2 = {0}",Xi2);
+            labelPearsonTest.Text = string.Format("Критерий Пирса Xi2 = {0}",Xi2);
         }
     }
 }
