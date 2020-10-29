@@ -29,8 +29,24 @@ namespace Lab1
             DrawFirstDiagram(randomVariables);
             DrawSecondDiagram(randomVariables);
             Lab2PearsonTest(randomVariables);
-
+            Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
+            Lab2CollectorTest(randomVariables, generationMethod.sampleSize, generationMethod.numberOfSubdivisions);
         }
+
+        private void Lab2CollectorTest(double[] randomVariables, int sampleSize, int subdivisionsAmount)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
+        {
+            double[] sortedSamples;
+            double lambdaKolmogorov;
+            sortedSamples = Lab2TestMethods.SortSamples(randomVariables);
+            lambdaKolmogorov = Lab2TestMethods.KolmogorovMethod(sortedSamples, ref sampleSize);
+            labelKolmogorovTest.Text = string.Format("Критерий Колмогорова = {0}", lambdaKolmogorov);
+        }
+
         void DisplayProcessingValues(double[] randomVariables)
         {
             labelExpectedValue.Text = "Математическое ожидание = " + ProcessingValues.GetExpectedValue(randomVariables);
