@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,19 +28,9 @@ namespace Lab1
             DisplayProcessingValues(randomVariables);
             DrawFirstDiagram(randomVariables);
             DrawSecondDiagram(randomVariables);
-            Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
+            Lab2PearsonTest(randomVariables);
 
         }
-
-        private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
-        {
-            double[] sortedSamples;
-            double lambdaKolmogorov;
-            sortedSamples = Lab2Tests.SortSamples(randomVariables);
-            lambdaKolmogorov = Lab2Tests.KolmogorovTest(sortedSamples,ref sampleSize);
-            labelKolmogorovTest.Text = string.Format("Критерий Колмогорова = {0}", lambdaKolmogorov);
-        }
-
         void DisplayProcessingValues(double[] randomVariables)
         {
             labelExpectedValue.Text = "Математическое ожидание = " + ProcessingValues.GetExpectedValue(randomVariables);
@@ -55,6 +46,7 @@ namespace Lab1
             {
                 listOfRepetitions.Add(randomVariables.Count(p => p >= i * histogramStep && p < (i + 1) * histogramStep));
             }
+
             return listOfRepetitions;
         }
         void DrawFirstDiagram(double[] randomVariables)
@@ -75,5 +67,22 @@ namespace Lab1
             }
         }
 
+        void Lab2PearsonTest(double[] randomVariables)
+        {
+            double subdivisionStep = (double)1 / generationMethod.numberOfSubdivisions;
+            double[] hitCounts = new double[generationMethod.numberOfSubdivisions];
+            double[] hitProbabilities = new double[generationMethod.numberOfSubdivisions];
+
+            for(int i=0;i< generationMethod.numberOfSubdivisions; i++)
+            {
+                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
+                hitProbabilities[i] = hitCounts[i] / randomVariables.Length;
+            }
+
+            double Xi2;
+            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
+                        generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
+            labelPearsonTest.Text = string.Format("Pearson test Xi2 = {0}",Xi2);
+        }
     }
 }
