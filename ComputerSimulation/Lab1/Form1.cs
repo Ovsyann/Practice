@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,34 +27,16 @@ namespace Lab1
             DisplayProcessingValues(randomVariables);
             DrawFirstDiagram(randomVariables);
             DrawSecondDiagram(randomVariables);
-            Lab2PearsonTest(randomVariables);
             Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
-            Lab2CollectorTest(generationMethod.numberOfSubdivisions,generationMethod.sampleSize,randomVariables);
-        }
 
-        private void Lab2CollectorTest(byte numberOfSubdivisions, int sampleSize, double[] randomVariables)
-        {
-            int[] sample = Lab2TestMethods.CollectorTest((int)numberOfSubdivisions, sampleSize, randomVariables);
-            double subdivisionStep = (double)1 / numberOfSubdivisions;
-            double[] hitCounts = new double[numberOfSubdivisions];
-            double[] hitProbabilities = new double[numberOfSubdivisions];
-            for (int i = 0; i < numberOfSubdivisions; i++)
-            {
-                hitCounts[i] = sample.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
-                hitProbabilities[i] = hitCounts[i] / sample.Length;
-            }
-            double Xi2;
-            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
-                        numberOfSubdivisions, sampleSize);
-            labelCollector.Text = "Хи^2 для коллекционера: " + Xi2;
         }
 
         private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
         {
             double[] sortedSamples;
             double lambdaKolmogorov;
-            sortedSamples = Lab2TestMethods.SortSamples(randomVariables);
-            lambdaKolmogorov = Lab2TestMethods.KolmogorovTest(sortedSamples, ref sampleSize);
+            sortedSamples = Lab2Tests.SortSamples(randomVariables);
+            lambdaKolmogorov = Lab2Tests.KolmogorovTest(sortedSamples,ref sampleSize);
             labelKolmogorovTest.Text = string.Format("Критерий Колмогорова = {0}", lambdaKolmogorov);
         }
 
@@ -74,7 +55,6 @@ namespace Lab1
             {
                 listOfRepetitions.Add(randomVariables.Count(p => p >= i * histogramStep && p < (i + 1) * histogramStep));
             }
-
             return listOfRepetitions;
         }
         void DrawFirstDiagram(double[] randomVariables)
@@ -95,22 +75,5 @@ namespace Lab1
             }
         }
 
-        void Lab2PearsonTest(double[] randomVariables)
-        {
-            double subdivisionStep = (double)1 / generationMethod.numberOfSubdivisions;
-            double[] hitCounts = new double[generationMethod.numberOfSubdivisions];
-            double[] hitProbabilities = new double[generationMethod.numberOfSubdivisions];
-
-            for(int i=0;i< generationMethod.numberOfSubdivisions; i++)
-            {
-                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
-                hitProbabilities[i] = hitCounts[i] / randomVariables.Length;
-            }
-
-            double Xi2;
-            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
-                        generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
-            labelPearsonTest.Text = string.Format("Критерий Пирса Xi2 = {0}",Xi2);
-        }
     }
 }

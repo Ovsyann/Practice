@@ -7,7 +7,7 @@ namespace Lab1
         //Это класс для получения случайного числа и массива этих чисел
 
         public int sampleSize = 6000;
-        public byte numberOfSubdivisions = 16;
+        public int numberOfSubdivisions = 16;
         private double[] _Rand;
         private int _R=6;
         public GenerationMethod()

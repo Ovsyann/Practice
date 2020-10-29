@@ -54,7 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerationMethod.cs" />
-    <Compile Include="Lab2TestMethods.cs" />
+    <Compile Include="Lab2Tests.cs" />
     <Compile Include="ProcessingValues.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

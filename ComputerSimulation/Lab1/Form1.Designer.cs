@@ -40,9 +40,7 @@
             this.labelThirdCentralPoint = new System.Windows.Forms.Label();
             this.chart1Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.labelPearsonTest = new System.Windows.Forms.Label();
             this.labelKolmogorovTest = new System.Windows.Forms.Label();
-            this.labelCollector = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2Histogram)).BeginInit();
             this.SuspendLayout();
@@ -123,44 +121,22 @@
             this.chart2Histogram.TabIndex = 6;
             this.chart2Histogram.Text = "Histogram2Chart";
             // 
-            // labelPearsonTest
-            // 
-            this.labelPearsonTest.AutoSize = true;
-            this.labelPearsonTest.Location = new System.Drawing.Point(811, 350);
-            this.labelPearsonTest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPearsonTest.Name = "labelPearsonTest";
-            this.labelPearsonTest.Size = new System.Drawing.Size(46, 17);
-            this.labelPearsonTest.TabIndex = 7;
-            this.labelPearsonTest.Text = "label4";
-            // 
             // labelKolmogorovTest
             // 
             this.labelKolmogorovTest.AutoSize = true;
-            this.labelKolmogorovTest.Location = new System.Drawing.Point(811, 382);
+            this.labelKolmogorovTest.Location = new System.Drawing.Point(811, 367);
             this.labelKolmogorovTest.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelKolmogorovTest.Name = "labelKolmogorovTest";
             this.labelKolmogorovTest.Size = new System.Drawing.Size(46, 17);
-            this.labelKolmogorovTest.TabIndex = 8;
+            this.labelKolmogorovTest.TabIndex = 7;
             this.labelKolmogorovTest.Text = "label4";
-            // 
-            // labelCollector
-            // 
-            this.labelCollector.AutoSize = true;
-            this.labelCollector.Location = new System.Drawing.Point(811, 414);
-            this.labelCollector.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelCollector.Name = "labelCollector";
-            this.labelCollector.Size = new System.Drawing.Size(46, 17);
-            this.labelCollector.TabIndex = 9;
-            this.labelCollector.Text = "label4";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 554);
-            this.Controls.Add(this.labelCollector);
             this.Controls.Add(this.labelKolmogorovTest);
-            this.Controls.Add(this.labelPearsonTest);
             this.Controls.Add(this.chart2Histogram);
             this.Controls.Add(this.chart1Histogram);
             this.Controls.Add(this.labelThirdCentralPoint);
@@ -186,9 +162,7 @@
         private System.Windows.Forms.Label labelThirdCentralPoint;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1Histogram;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2Histogram;
-        private System.Windows.Forms.Label labelPearsonTest;
         private System.Windows.Forms.Label labelKolmogorovTest;
-        private System.Windows.Forms.Label labelCollector;
     }
 }
 

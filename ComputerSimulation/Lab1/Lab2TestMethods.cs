@@ -46,30 +46,37 @@ namespace Lab1
             return sortedSamples;
         }
 
-        public static int[] CollectorTest(int subdivisionsAmount, int sampleSize, double[] randomVariables)
+        public static List<int> CollectorTest(int subdivisionsAmount, double[] randomVariables)
         {
-            int i;
+            List<int> amountR = new List<int>();
             int y;
-            int R = 0;
+            int R=0;
             int[] numN = new int[subdivisionsAmount];
-            for (i = 0; i < subdivisionsAmount; i++)
+            for (int i = 0; i < randomVariables.Length; i++)
             {
-                numN[i] = 0;
-            }
-            int m = 0;
-            while(m!=subdivisionsAmount && R < sampleSize)
-            {
-                y = (int)(randomVariables[R] * subdivisionsAmount);
-                if (numN[y] == 0)
+                for (int j = 0; j < subdivisionsAmount; j++)
                 {
-                    numN[y] = 1;
-                    m++;
+                    numN[j] = 0;
+                }
+                int m = 0;
+            
+                R = 0;
+                while (m != subdivisionsAmount && R < randomVariables.Length)
+                {
+                    y = (int)(randomVariables[R] * subdivisionsAmount);
+                    if (numN[y] == 0)
+                    {
+                        numN[y] = 1;
+                        m++;
+                    }
+
+                    R++;
                 }
 
-                R++;
+                amountR.Add(R);
             }
 
-            return numN;
+            return amountR;
         }
     }
 }
