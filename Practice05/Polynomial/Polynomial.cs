@@ -10,12 +10,12 @@ namespace PolynomialTask
 
         private Polynomial(int[] odds)
         {
-            Odds = odds;
+            Odds = (int[])odds.Clone();
         }
 
         private Polynomial(Polynomial polynomial)
         {
-            Odds = polynomial.Odds;
+            Odds = (int[])polynomial.Odds.Clone();
         }
 
         public static Polynomial TryCreate(int[] odds)
@@ -84,7 +84,7 @@ namespace PolynomialTask
             int hashCode = 0;
             for(int i = 0; i < Length; i++)
             {
-                hashCode += Odds[i] / 1000 % 100;
+                hashCode += Odds[i] * 1000 / 100;
             }
 
             return hashCode;
@@ -277,9 +277,11 @@ namespace PolynomialTask
         public override string ToString()
         {
             string stringRepresentation = "";
+
             for(int i = 0; i < Length; i++)
             {
-                stringRepresentation += string.Format("{0}X^{1}", this[i], i);
+                string formatString = i == 0 ? "{0:0; - 0}X^{1}" : "{0: + 0; - 0}X^{1}";
+                stringRepresentation += string.Format(formatString, this[i], i);
             }
 
             return stringRepresentation;
@@ -288,12 +290,21 @@ namespace PolynomialTask
         public string ToStringSignificant()
         {
             string stringRepresentation = "";
-            for (int i = 0; i < Length; i++)
+            string formatString = "";
+
+            for (int i = Length-1; i > 0; i--)
             {
-                if (this[i] != 0)
+                if (this[i] != 0 && i != 1)
                 {
-                    stringRepresentation += string.Format("{0}X^{1}", this[i], i);
+                    formatString = i == (Length - 1) ? "{0:0; - 0}X^{1}" : "{0: + 0; - 0}X^{1}";
+                    stringRepresentation += string.Format(formatString, this[i], i);
                 }
+                else if(this[i] != 0)
+                {
+                    formatString = i == (Length - 1) ? "{0:0; - 0}X" : "{0: + 0; - 0}X";
+                    stringRepresentation += string.Format(formatString, this[i]);
+                }
+                
             }
 
             return stringRepresentation;
