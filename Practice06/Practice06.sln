@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTranslatorTask", "CodeTranslatorTask\CodeTranslatorTask.csproj", "{36784F3C-F583-4B2F-849D-884C952DB971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTranslatorUI", "CodeTranslatorUI\CodeTranslatorUI.csproj", "{0552D4AE-55D7-4BC9-BDA3-FE1E9B7540C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36784F3C-F583-4B2F-849D-884C952DB971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36784F3C-F583-4B2F-849D-884C952DB971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36784F3C-F583-4B2F-849D-884C952DB971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36784F3C-F583-4B2F-849D-884C952DB971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0552D4AE-55D7-4BC9-BDA3-FE1E9B7540C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0552D4AE-55D7-4BC9-BDA3-FE1E9B7540C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0552D4AE-55D7-4BC9-BDA3-FE1E9B7540C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0552D4AE-55D7-4BC9-BDA3-FE1E9B7540C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16CBEAF2-CDFC-4529-B6D7-94B30756212D}
+	EndGlobalSection
+EndGlobal
