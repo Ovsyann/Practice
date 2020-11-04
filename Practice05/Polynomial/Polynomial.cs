@@ -5,41 +5,51 @@ namespace PolynomialTask
 {
     public class Polynomial : IEquatable<Polynomial>
     {
-        //private int degree;
-
-        public int[] Coefficients { get;/*!!!*/ private set; }
+        private readonly int[] coefficients;
 
         public Polynomial(int[] coefficients)
         {
-            Coefficients  = NewMethod(coefficients);
-        }
+            if (coefficients == null)
+            {
+                throw new ArgumentNullException("coefficients");
+            }
+            if (coefficients.Length == 0)
+            {
+                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
+            }
 
-        private static !!! NewMethod(int[] coefficients)
-        {
-            //!!!
-            return (int[])coefficients.Clone();
+            this.coefficients = coefficients.ToArray();
         }
 
         public Polynomial(Polynomial polynomial)
         {
-            Coefficients = (int[])polynomial.Coefficients.Clone(); //!!!
+            if (polynomial == null)
+            {
+                throw new ArgumentNullException(string.Format("Argument is null"));
+            }
+            if (polynomial.Length == 0)
+            {
+                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
+            }
+
+            coefficients = polynomial.coefficients.ToArray();
         }
 
-        //public static Polynomial TryCreate(int[] coefficients)
+        //private static int[] Initialize(int[] coefficients)
         //{
         //    if (coefficients == null)
         //    {
-        //        throw new ArgumentNullException(string.Format("Argument is null"));
+        //        throw new ArgumentNullException("coefficients");
         //    }
         //    if (coefficients.Length == 0)
         //    {
         //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
         //    }
 
-        //    return new Polynomial(coefficients);
+        //    return coefficients;
         //}
 
-        //public static Polynomial TryCreate(Polynomial polynomial)
+        //private static int[] Initialize(Polynomial polynomial)
         //{
         //    if (polynomial == null)
         //    {
@@ -50,16 +60,18 @@ namespace PolynomialTask
         //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
         //    }
 
-        //    return new Polynomial(polynomial);
+        //    return polynomial.Coefficients;
         //}
-
-        
 
         public int this[int i]
         {
             get
             {
-                return Coefficients[i];
+                return coefficients[i];
+            }
+            set
+            {
+                coefficients[i] = value;
             }
         }
 
@@ -67,15 +79,15 @@ namespace PolynomialTask
         {
             get
             {
-                for(int i = 0; i < Coefficients.Length; i++)
+                for(int i = coefficients.Length - 1; i > 0; i--)
                 {
                     if (this[i] != 0)
                     {
-                        degree += 1;
+                        return i;
                     }
                 }
 
-                return degree;
+                return 0;
             }
         }
 
@@ -83,7 +95,7 @@ namespace PolynomialTask
         {
             get
             {
-                return Coefficients.Length;
+                return coefficients.Length;
             }
         }
 
@@ -92,7 +104,7 @@ namespace PolynomialTask
             int hashCode = 0;
             for(int i = 0; i < Length; i++)
             {
-                hashCode += Coefficients[i];
+                hashCode += coefficients[i];
             }
 
             return hashCode;
@@ -120,24 +132,38 @@ namespace PolynomialTask
                 return false;
             }
 
-            //!!!
+            if(this.Degree != other.Degree)
+            {
+                return false;
+            }
 
-            //return Enumerable.SequenceEqual(this.Coefficients,other.Coefficients);
+            for(int i = 0; i < this.Length; i++)
+            {
+                for(int j = 0; j < other.Length; j++)
+                {
+                    if(i == j && this[i] != other[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         public static Polynomial operator +(Polynomial left, Polynomial right)
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", left)); //!!!
+                throw new ArgumentNullException("left");
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", right)); //!!!
+                throw new ArgumentNullException("right");
             }
 
             int[] coefficients;
-            if (left.Length > right.Length) //!!!
+            if (left.Length > right.Length) //!!!УПРОСТИТЬ В ПЕРЕГРУЖЕННЫХ ОПЕРАТОРАХ
             {
                 int i;
                 coefficients = new int[left.Length];

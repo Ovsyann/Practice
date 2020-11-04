@@ -1,33 +1,55 @@
 using System;
+using System.Reflection;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 using PolynomialTask;
+
 
 namespace PolynomialTests
 {
     public class PolynomialTests
     {
         [Test]
-        public void TestTryCreate_Array_Created()
+        public void TestConstructor_Incaps_Success()
         {
-            int[] array = { 1, default, 3, 4 };
-            Polynomial polynomial = Polynomial.TryCreate(array);
-            int expected = 4;
-            array[3] = 5;
+            int[] expected = { -4, 6, 9 };
+            Polynomial polynomial = new Polynomial(expected);
 
-            Assert.AreEqual(expected, polynomial[3]);
+
+            Polynomial actual = new Polynomial(polynomial);
+
+            Type typePolynomial = typeof(Polynomial);
+            FieldInfo coefficientsField =
+            typePolynomial.GetField("coefficients", BindingFlags.NonPublic | BindingFlags.Instance);
+            int[] coefficients = (int[])coefficientsField.GetValue(actual);
+
+            coefficients[0] = 5;
+            coefficients[1] = -20;
+            coefficients[2] = 4;
+
+
+            Assert.IsNotNull(actual);
+            Assert.AreNotEqual(expected, actual);
+        }
+        [Test]
+        public void TestConstructor_Array_Created()
+        {
+            int[] array = { 0, 1, 2, 3, 4 };
+            Polynomial polynomial = new Polynomial(array);
+            
+            array[0] = 12;
+            Assert.AreEqual(0, polynomial[0]);
         }
 
         [Test]
-        public void TestTryCreate_Polynomial_Created()
+        public void TestConstructor_Polynomial_Created()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
-            Polynomial polynomial2 = Polynomial.TryCreate(polynomial1);
+            Polynomial polynomial1 = new Polynomial(array);
+            Polynomial polynomial2 = new Polynomial(polynomial1);
             int expected = 1;
 
-            int[] b = polynomial1.Coefficients;
-            b[0] = 5;
+            polynomial2[0] = 10;
 
             Assert.AreEqual(expected, polynomial1[0]);
         }
@@ -37,7 +59,7 @@ namespace PolynomialTests
         public int TestLength_5elements_5(int[] values)
         {
             
-            Polynomial polynomial = Polynomial.TryCreate(values);
+            Polynomial polynomial = new Polynomial(values);
 
 
             return polynomial.Length;
@@ -52,7 +74,7 @@ namespace PolynomialTests
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 6)]
         public void TestLength_elements_calculated(int[] values, int expected)
         {
-            Polynomial polynomial = Polynomial.TryCreate(values);
+            Polynomial polynomial = new Polynomial(values);
 
             Assert.AreEqual(expected, polynomial.Length);
         }
@@ -61,7 +83,7 @@ namespace PolynomialTests
         public void TestGetHashCode_1and2and3_Calculated()
         {
             int[] array = {-9, -1, 0, 1, 9};
-            Polynomial polynomial = Polynomial.TryCreate(array);
+            Polynomial polynomial = new Polynomial(array);
             int expected = 0;
 
             int actual = polynomial.GetHashCode();
@@ -73,8 +95,8 @@ namespace PolynomialTests
         public void TestEquals_TwoSame_True()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
-            Polynomial polynomial2 = Polynomial.TryCreate(polynomial1);
+            Polynomial polynomial1 = new Polynomial(array);
+            Polynomial polynomial2 = new Polynomial(polynomial1);
 
             Assert.IsTrue(polynomial1.Equals(polynomial2));
         }
@@ -83,9 +105,9 @@ namespace PolynomialTests
         public void TestEquals_TwoDifferent_False()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             int[] array2 = { 1, 3, 5, 6 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array2);
+            Polynomial polynomial2 = new Polynomial(array2);
 
             Assert.IsFalse(polynomial1.Equals(polynomial2));
         }
@@ -94,9 +116,9 @@ namespace PolynomialTests
         public void TestOverridenEquality_TwoSame_True()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             int[] array2 = { 1, 2, 3, 4 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array2);
+            Polynomial polynomial2 = new Polynomial(array2);
 
             Assert.IsTrue(polynomial1 == polynomial2);
         }
@@ -105,9 +127,9 @@ namespace PolynomialTests
         public void TestOverridenEquality_TwoDifferent_False()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             int[] array2 = { 8, 2, 3, 4 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array2);
+            Polynomial polynomial2 = new Polynomial(array2);
 
             Assert.IsFalse(polynomial1 == polynomial2);
         }
@@ -116,9 +138,9 @@ namespace PolynomialTests
         public void TestOverridenNonEquality_TwoSame_False()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             int[] array2 = { 1, 2, 3, 4 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array2);
+            Polynomial polynomial2 = new Polynomial(array2);
 
             Assert.IsFalse(polynomial1 != polynomial2);
         }
@@ -127,9 +149,9 @@ namespace PolynomialTests
         public void TestOverridenNonEquality_TwoDifferent_True()
         {
             int[] array = { 1, 2, 3, 4 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             int[] array2 = { 8, 2, 3, 4 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array2);
+            Polynomial polynomial2 = new Polynomial(array2);
 
             Assert.IsTrue(polynomial1 != polynomial2);
         }
@@ -143,9 +165,9 @@ namespace PolynomialTests
         [TestCase(new int[] { 1, 2, 3, 5, 10 }, new int[] { 1, 2, 3, 4 }, new int[] { 2, 4, 6, 9, 10 })]
         public void TestOverridenSummary_TwoPolyninomials_Calculated(int[] valuesLeft, int[] valuesRight, int[] expected)
         {
-            Polynomial polynomial1 = Polynomial.TryCreate(valuesLeft);
-            Polynomial polynomial2 = Polynomial.TryCreate(valuesRight);
-            Polynomial polynomialExpected = Polynomial.TryCreate(expected);
+            Polynomial polynomial1 = new Polynomial(valuesLeft);
+            Polynomial polynomial2 = new Polynomial(valuesRight);
+            Polynomial polynomialExpected = new Polynomial(expected);
 
             Polynomial actual = polynomial1 + polynomial2;
 
@@ -157,7 +179,7 @@ namespace PolynomialTests
         {
             Polynomial polynomial1 = null;
             int[] array = { 0, 1, 2 };
-            Polynomial polynomial2 = Polynomial.TryCreate(array);
+            Polynomial polynomial2 = new Polynomial(array);
 
             void Calculate()
             {
@@ -171,7 +193,7 @@ namespace PolynomialTests
         public void TestOverridenSummary_SecondIsNull_Exception()
         { 
             int[] array = { 0, 1, 2 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             Polynomial polynomial2 = null;
 
             void Calculate()
@@ -186,7 +208,7 @@ namespace PolynomialTests
         public void TestToString_023_Success()
         {
             int[] array = { 0, 2, 3 };
-            Polynomial polynomial1 = Polynomial.TryCreate(array);
+            Polynomial polynomial1 = new Polynomial(array);
             string expected = "0X^0 + 2X^1 + 3X^2";
 
             string actual = polynomial1.ToString();
@@ -196,25 +218,23 @@ namespace PolynomialTests
 
         [Test]
         [TestCase(new int[] { 0, 2, 3 }, ExpectedResult ="3X^2 + 2X")]
-        [TestCase(new int[] { 0, 2, 3, 4 }, "4X^3 + 3X^2 + 2X")]
-        [TestCase(new int[] {-0 }, "0")]
-        [TestCase(new int[] {-0, 0 }, "0")]
-        [TestCase(new int[] { 0, 1 }, "X")]
-        [TestCase(new int[] { 0, -1 }, " - X")]
-        [TestCase(new int[] { -1, -1 }, " - X - 1")]
-        [TestCase(new int[] { -0, 1, -0 }, "X")]
-        [TestCase(new int[] { 0, -0, -0 }, "0")]
-        [TestCase(new int[] { 0, -0, -0, -10 }, " - 10X^3")]
-        [TestCase(new int[] { -15, 0, -0, -0 }, " - 15")]
-        [TestCase(new int[] { -11, 0, -0, -12 }, " - 12X^3 - 11")]
-        public !!! TestToStringSignificant_023_Success(int[] odds, string expectedRepresentation)
+        [TestCase(new int[] { 0, 2, 3, 4 }, ExpectedResult = "4X^3 + 3X^2 + 2X")]
+        [TestCase(new int[] {-0 }, ExpectedResult = "0")]
+        [TestCase(new int[] {-0, 0 }, ExpectedResult = "0")]
+        [TestCase(new int[] { 0, 1 }, ExpectedResult = "X")]
+        [TestCase(new int[] { 0, -1 }, ExpectedResult = " - X")]
+        [TestCase(new int[] { -1, -1 }, ExpectedResult = " - X - 1")]
+        [TestCase(new int[] { -0, 1, -0 }, ExpectedResult = "X")]
+        [TestCase(new int[] { 0, -0, -0 }, ExpectedResult = "0")]
+        [TestCase(new int[] { 0, -0, -0, -10 }, ExpectedResult = " - 10X^3")]
+        [TestCase(new int[] { -15, 0, -0, -0 }, ExpectedResult = " - 15")]
+        [TestCase(new int[] { -11, 0, -0, -12 }, ExpectedResult = " - 12X^3 - 11")]
+        public string TestToStringSignificant_023_Success(int[] odds)
         {
-            Polynomial polynomial1 = Polynomial.TryCreate(odds);
+            Polynomial polynomial1 = new Polynomial(odds);
         
 
-            string actual = polynomial1.ToStringSignificant();
-
-            Assert.AreEqual(expectedRepresentation, actual);
+            return polynomial1.ToStringSignificant();
         }
     }
 }
