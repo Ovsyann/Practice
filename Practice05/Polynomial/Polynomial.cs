@@ -1,81 +1,89 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace PolynomialTask
 {
     public class Polynomial : IEquatable<Polynomial>
     {
-        private int degree;
+        //private int degree;
 
-        private Polynomial(int[] odds)
+        public int[] Coefficients { get;/*!!!*/ private set; }
+
+        public Polynomial(int[] coefficients)
         {
-            Odds = (int[])odds.Clone();
+            Coefficients  = NewMethod(coefficients);
         }
 
-        private Polynomial(Polynomial polynomial)
+        private static !!! NewMethod(int[] coefficients)
         {
-            Odds = (int[])polynomial.Odds.Clone();
+            //!!!
+            return (int[])coefficients.Clone();
         }
 
-        public static Polynomial TryCreate(int[] odds)
+        public Polynomial(Polynomial polynomial)
         {
-            if (odds == null)
-            {
-                throw new ArgumentNullException(string.Format("Argument {0} is null", odds));
-            }
-            if (odds.Length == 0)
-            {
-                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", odds));
-            }
-
-            return new Polynomial(odds);
+            Coefficients = (int[])polynomial.Coefficients.Clone(); //!!!
         }
 
-        public static Polynomial TryCreate(Polynomial polynomial)
-        {
-            if (polynomial == null)
-            {
-                throw new ArgumentNullException(string.Format("Argument {0} is null", polynomial));
-            }
-            if (polynomial.Length == 0)
-            {
-                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
-            }
+        //public static Polynomial TryCreate(int[] coefficients)
+        //{
+        //    if (coefficients == null)
+        //    {
+        //        throw new ArgumentNullException(string.Format("Argument is null"));
+        //    }
+        //    if (coefficients.Length == 0)
+        //    {
+        //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
+        //    }
 
-            return new Polynomial(polynomial);
-        }
+        //    return new Polynomial(coefficients);
+        //}
 
-        public int[] Odds { get; private set; }
+        //public static Polynomial TryCreate(Polynomial polynomial)
+        //{
+        //    if (polynomial == null)
+        //    {
+        //        throw new ArgumentNullException(string.Format("Argument is null"));
+        //    }
+        //    if (polynomial.Length == 0)
+        //    {
+        //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
+        //    }
+
+        //    return new Polynomial(polynomial);
+        //}
+
+        
 
         public int this[int i]
         {
             get
             {
-                return Odds[i];
+                return Coefficients[i];
             }
-            
         }
+
         public int Degree
         {
             get
             {
-                for(int i = 0; i < Odds.Length; i++)
+                for(int i = 0; i < Coefficients.Length; i++)
                 {
-                    if (i != 0)
+                    if (this[i] != 0)
                     {
-                        degree = i;
+                        degree += 1;
                     }
                 }
 
                 return degree;
             }
         }
+
         public int Length
         {
             get
             {
-                return Odds.Length;
+                return Coefficients.Length;
             }
         }
 
@@ -84,7 +92,7 @@ namespace PolynomialTask
             int hashCode = 0;
             for(int i = 0; i < Length; i++)
             {
-                hashCode += Odds[i] * 1000 / 100;
+                hashCode += Coefficients[i];
             }
 
             return hashCode;
@@ -97,12 +105,12 @@ namespace PolynomialTask
 
         public bool Equals(Polynomial other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, other))
+            if (object.ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -112,49 +120,51 @@ namespace PolynomialTask
                 return false;
             }
 
-            return Enumerable.SequenceEqual(this.Odds,other.Odds);
+            //!!!
+
+            //return Enumerable.SequenceEqual(this.Coefficients,other.Coefficients);
         }
 
         public static Polynomial operator +(Polynomial left, Polynomial right)
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", left));
+                throw new ArgumentNullException(string.Format("Polynomial {0} is null", left)); //!!!
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", right));
+                throw new ArgumentNullException(string.Format("Polynomial {0} is null", right)); //!!!
             }
 
-            int[] odds;
-            if (left.Length > right.Length)
+            int[] coefficients;
+            if (left.Length > right.Length) //!!!
             {
                 int i;
-                odds = new int[left.Length];
+                coefficients = new int[left.Length];
                 for(i = 0; i < right.Length; i++)
                 {
-                    odds[i] = right[i] + left[i];
+                    coefficients[i] = right[i] + left[i];
                 }
                 for(int j = i; j < left.Length; j++)
                 {
-                    odds[j] = left[j];
+                    coefficients[j] = left[j];
                 }
             }
             else
             {
                 int i;
-                odds = new int[right.Length];
+                coefficients = new int[right.Length];
                 for (i = 0; i < left.Length; i++)
                 {
-                    odds[i] = right[i] + left[i];
+                    coefficients[i] = right[i] + left[i];
                 }
                 for (int j = i; j < right.Length; j++)
                 {
-                    odds[j] = right[j];
+                    coefficients[j] = right[j];
                 }
             }
 
-            return new Polynomial(odds);
+            return new Polynomial(coefficients);
         }
 
         public static Polynomial operator -(Polynomial left, Polynomial right)
@@ -168,35 +178,35 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", right));
             }
 
-            int[] odds;
+            int[] coefficients;
             if (left.Length > right.Length)
             {
                 int i;
-                odds = new int[left.Length];
+                coefficients = new int[left.Length];
                 for (i = 0; i < right.Length; i++)
                 {
-                    odds[i] = left[i]-right[i];
+                    coefficients[i] = left[i]-right[i];
                 }
                 for (int j = i; j < left.Length; j++)
                 {
-                    odds[j] = -left[j];
+                    coefficients[j] = -left[j];
                 }
             }
             else
             {
                 int i;
-                odds = new int[right.Length];
+                coefficients = new int[right.Length];
                 for (i = 0; i < left.Length; i++)
                 {
-                    odds[i] = right[i] - left[i];
+                    coefficients[i] = right[i] - left[i];
                 }
                 for (int j = i; j < right.Length; j++)
                 {
-                    odds[j] = -right[j];
+                    coefficients[j] = -right[j];
                 }
             }
 
-            return new Polynomial(odds);
+            return new Polynomial(coefficients);
         }
 
         public static Polynomial operator *(Polynomial left, Polynomial right)
@@ -210,18 +220,18 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", right));
             }
 
-            int[] odds = new int[left.Length*right.Length];
+            int[] coefficients = new int[left.Length*right.Length];
             int k = 0;
             for(int i = 0; i < left.Length; i++)
             {
                 for(int j = 0; j < right.Length; j++)
                 {
-                    odds[k] = left[i] * right[j];
+                    coefficients[k] = left[i] * right[j];
                     k++;
                 }
             }
 
-            return new Polynomial(odds);
+            return new Polynomial(coefficients);
         }
 
         public static Polynomial operator *(Polynomial polynomial, int value)
@@ -231,13 +241,13 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", polynomial));
             }
 
-            int[] odds = new int[polynomial.Length];
+            int[] coefficients = new int[polynomial.Length];
             for(int i = 0; i < polynomial.Length; i++)
             {
-                odds[i] = polynomial[i] * value;
+                coefficients[i] = polynomial[i] * value;
             }
 
-            return new Polynomial(odds);
+            return new Polynomial(coefficients);
         }
 
         public static Polynomial operator *(int value, Polynomial polynomial)
@@ -247,13 +257,13 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", polynomial));
             }
 
-            int[] odds = new int[polynomial.Length];
+            int[] coefficients = new int[polynomial.Length /*!!!*/];
             for (int i = 0; i < polynomial.Length; i++)
             {
-                odds[i] = polynomial[i] * value;
+                coefficients[i] = polynomial[i] * value;
             }
 
-            return new Polynomial(odds);
+            return new Polynomial(coefficients);
         }
 
         public static bool operator ==(Polynomial left, Polynomial right)
@@ -291,20 +301,47 @@ namespace PolynomialTask
         {
             string stringRepresentation = "";
             string formatString = "";
+            int counter = 0;
 
-            for (int i = Length-1; i > 0; i--)
+            for(int i = 0; i < Length; i++)
             {
-                if (this[i] != 0 && i != 1)
+                if (this[i] != 0)
+                {
+                    counter++;
+                }
+            }
+            if (counter == 0)
+            {
+                return "0";
+            }
+
+            for (int i = Length-1; i >= 0; i--)
+            {
+                if (this[i] != 0 && i != 1 && this[i] != 1 && this[i] != -1 && i != 0)
                 {
                     formatString = i == (Length - 1) ? "{0:0; - 0}X^{1}" : "{0: + 0; - 0}X^{1}";
                     stringRepresentation += string.Format(formatString, this[i], i);
                 }
-                else if(this[i] != 0)
+                else if (this[i] != 0 && this[i] != 1 && this[i] != -1 && i != 0)
                 {
                     formatString = i == (Length - 1) ? "{0:0; - 0}X" : "{0: + 0; - 0}X";
                     stringRepresentation += string.Format(formatString, this[i]);
                 }
-                
+                else if (this[i] != 0 && i == 0)
+                {
+                    formatString = "{0: + 0; - 0}";
+                    stringRepresentation += string.Format(formatString, this[i]);
+                }
+                else if ((this[i] == 1 || this[i] == -1) && (i == 1))
+                {
+                    formatString = i == (Length - 1) ? "{0:; - }X" : "{0:; - }X";
+                    stringRepresentation += string.Format(formatString, this[i]);
+                }
+                else if ((this[i] == 1 || this[i] == -1) && i != 0)
+                {
+                    formatString = i == (Length - 1) ? "{0:; - }X" : "{0: + ; - }X";
+                    stringRepresentation += string.Format(formatString, this[i]);
+                }
             }
 
             return stringRepresentation;

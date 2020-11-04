@@ -220,12 +220,12 @@ namespace VectorTests
         {
             Vector vector = null;
 
-            void Toline()
+            void ToLine()
             {
                 string actual = vector.ToString();
             }
 
-            Assert.Throws<NullReferenceException>(Toline);
+            Assert.Throws<NullReferenceException>(ToLine);
         }
     }
 }
