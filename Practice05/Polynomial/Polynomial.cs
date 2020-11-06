@@ -9,6 +9,36 @@ namespace PolynomialTask
 
         public Polynomial(int[] coefficients)
         {
+            this.coefficients = InicializePolynom(coefficients);
+        }
+
+        public Polynomial(Polynomial polynomial)
+        {
+            this.coefficients = InicializePolynom(polynomial);
+        }
+
+        private static int[] InicializePolynom(Polynomial polynomial)
+        {
+            if (polynomial == null)
+            {
+                throw new ArgumentNullException("polynomial");
+            }
+            if (polynomial.Length == 0)
+            {
+                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
+            }
+
+            int[] internalCoefficients = new int[polynomial.Length];
+            for (int i = 0; i < polynomial.Length; i++)
+            {
+                internalCoefficients[i] = polynomial[i];
+            }
+
+            return internalCoefficients;
+        }
+
+        private static int[] InicializePolynom(int[] coefficients)
+        {
             if (coefficients == null)
             {
                 throw new ArgumentNullException("coefficients");
@@ -18,50 +48,14 @@ namespace PolynomialTask
                 throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
             }
 
-            this.coefficients = coefficients.ToArray();
-        }
-
-        public Polynomial(Polynomial polynomial)
-        {
-            if (polynomial == null)
+            int[] internalCoefficients = new int[coefficients.Length];
+            for(int i = 0; i < coefficients.Length; i++)
             {
-                throw new ArgumentNullException(string.Format("Argument is null"));
-            }
-            if (polynomial.Length == 0)
-            {
-                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
+                internalCoefficients[i] = coefficients[i];
             }
 
-            coefficients = polynomial.coefficients.ToArray();
+            return internalCoefficients;
         }
-
-        //private static int[] Initialize(int[] coefficients)
-        //{
-        //    if (coefficients == null)
-        //    {
-        //        throw new ArgumentNullException("coefficients");
-        //    }
-        //    if (coefficients.Length == 0)
-        //    {
-        //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
-        //    }
-
-        //    return coefficients;
-        //}
-
-        //private static int[] Initialize(Polynomial polynomial)
-        //{
-        //    if (polynomial == null)
-        //    {
-        //        throw new ArgumentNullException(string.Format("Argument is null"));
-        //    }
-        //    if (polynomial.Length == 0)
-        //    {
-        //        throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
-        //    }
-
-        //    return polynomial.Coefficients;
-        //}
 
         public int this[int i]
         {
@@ -104,7 +98,7 @@ namespace PolynomialTask
             int hashCode = 0;
             for(int i = 0; i < Length; i++)
             {
-                hashCode += coefficients[i];
+                hashCode = 33 * hashCode + coefficients[i];
             }
 
             return hashCode;
@@ -162,32 +156,12 @@ namespace PolynomialTask
                 throw new ArgumentNullException("right");
             }
 
-            int[] coefficients;
-            if (left.Length > right.Length) //!!!УПРОСТИТЬ В ПЕРЕГРУЖЕННЫХ ОПЕРАТОРАХ
+            int[] coefficients = new int[Math.Max(left.Length, right.Length)];
+            for(int i = 0; i < coefficients.Length; i++)
             {
-                int i;
-                coefficients = new int[left.Length];
-                for(i = 0; i < right.Length; i++)
-                {
-                    coefficients[i] = right[i] + left[i];
-                }
-                for(int j = i; j < left.Length; j++)
-                {
-                    coefficients[j] = left[j];
-                }
-            }
-            else
-            {
-                int i;
-                coefficients = new int[right.Length];
-                for (i = 0; i < left.Length; i++)
-                {
-                    coefficients[i] = right[i] + left[i];
-                }
-                for (int j = i; j < right.Length; j++)
-                {
-                    coefficients[j] = right[j];
-                }
+                int leftValue = i < left.Length ? left[i] : 0;
+                int rightValue = i < right.Length ? right[i] : 0;
+                coefficients[i] = leftValue + rightValue;
             }
 
             return new Polynomial(coefficients);
@@ -197,39 +171,19 @@ namespace PolynomialTask
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", left));
+                throw new ArgumentNullException("left");
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Polynomial {0} is null", right));
+                throw new ArgumentNullException("right");
             }
 
-            int[] coefficients;
-            if (left.Length > right.Length)
+            int[] coefficients = new int[Math.Max(left.Length, right.Length)];
+            for (int i = 0; i < coefficients.Length; i++)
             {
-                int i;
-                coefficients = new int[left.Length];
-                for (i = 0; i < right.Length; i++)
-                {
-                    coefficients[i] = left[i]-right[i];
-                }
-                for (int j = i; j < left.Length; j++)
-                {
-                    coefficients[j] = -left[j];
-                }
-            }
-            else
-            {
-                int i;
-                coefficients = new int[right.Length];
-                for (i = 0; i < left.Length; i++)
-                {
-                    coefficients[i] = right[i] - left[i];
-                }
-                for (int j = i; j < right.Length; j++)
-                {
-                    coefficients[j] = -right[j];
-                }
+                int leftValue = i < left.Length ? left[i] : 0;
+                int rightValue = i < right.Length ? right[i] : 0;
+                coefficients[i] = leftValue - rightValue;
             }
 
             return new Polynomial(coefficients);
@@ -246,14 +200,14 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", right));
             }
 
-            int[] coefficients = new int[left.Length*right.Length];
-            int k = 0;
+            int[] coefficients = new int[left.Length * right.Length];
+            int k;
             for(int i = 0; i < left.Length; i++)
             {
                 for(int j = 0; j < right.Length; j++)
                 {
-                    coefficients[k] = left[i] * right[j];
-                    k++;
+                    k = i + j;
+                    coefficients[k] += left[i] * right[j];
                 }
             }
 
@@ -283,7 +237,7 @@ namespace PolynomialTask
                 throw new ArgumentNullException(string.Format("Polynomial {0} is null", polynomial));
             }
 
-            int[] coefficients = new int[polynomial.Length /*!!!*/];
+            int[] coefficients = new int[polynomial.Length];
             for (int i = 0; i < polynomial.Length; i++)
             {
                 coefficients[i] = polynomial[i] * value;

@@ -36,9 +36,21 @@ namespace PolynomialTests
         {
             int[] array = { 0, 1, 2, 3, 4 };
             Polynomial polynomial = new Polynomial(array);
-            
+
             array[0] = 12;
             Assert.AreEqual(0, polynomial[0]);
+        }
+
+        [Test]
+        [TestCase(new int[] {-9 },ExpectedResult = -9)]
+        [TestCase(new int[] { -1 }, ExpectedResult = -1)]
+        [TestCase(new int[] { 0 }, ExpectedResult = 0)]
+        [TestCase(new int[] { 1 }, ExpectedResult = 1)]
+        [TestCase(new int[] { 9 }, ExpectedResult = 9)]
+        public int TestGetHashCode_Polynomial_HeshCode(int[] array)
+        {
+            Polynomial polynomial = new Polynomial(array);
+            return polynomial.GetHashCode();
         }
 
         [Test]
@@ -77,18 +89,6 @@ namespace PolynomialTests
             Polynomial polynomial = new Polynomial(values);
 
             Assert.AreEqual(expected, polynomial.Length);
-        }
-
-        [Test]
-        public void TestGetHashCode_1and2and3_Calculated()
-        {
-            int[] array = {-9, -1, 0, 1, 9};
-            Polynomial polynomial = new Polynomial(array);
-            int expected = 0;
-
-            int actual = polynomial.GetHashCode();
-
-            Assert.AreEqual(expected, actual);
         }
 
         [Test]
