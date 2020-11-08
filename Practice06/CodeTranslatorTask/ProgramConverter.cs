@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CodeTranslatorTask
+namespace CodeTranslator
 {
     public class ProgramConverter : IConvertible
     {

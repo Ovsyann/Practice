@@ -1,6 +1,6 @@
 ﻿using System;
-using CodeTranslatorTask;
-using IConvertible = CodeTranslatorTask.IConvertible;
+using CodeTranslator;
+using IConvertible = CodeTranslator.IConvertible;
 
 namespace CodeTranslatorUI
 {
@@ -8,13 +8,46 @@ namespace CodeTranslatorUI
     {
         static void Main(string[] args)
         {
-            IConvertible convertible1 = new ProgramConverter();
-            IConvertible convertible2 = new ProgramHelper();
-            IConvertible[] convertibles = { convertible1, convertible2 };
-            string toCSharp = convertible2.ConvertToCsharp("VB");
-            string toVB = convertible2.ConvertToVB("C#");
+            IConvertible[] convertibles = CreateArray();
 
+            CodeConversion(convertibles);
 
+        }
+
+        private static void CodeConversion(IConvertible[] convertibles)
+        {
+            string code = "ANY_CODE";
+            for (int i = 0; i < convertibles.Length; i++)
+            {
+                if (convertibles[i].GetType().Name == "ProgramConverter")
+                {
+                    Console.WriteLine(convertibles[i].ConvertToCsharp(code));
+                    Console.WriteLine(convertibles[i].ConvertToVB(code));
+                }
+                else if (convertibles[i].GetType().Name == "ProgramHelper")
+                {
+                    Console.WriteLine(((ProgramHelper)convertibles[i]).ConvertToCsharp(code));
+                    Console.WriteLine(((ProgramHelper)convertibles[i]).CheckCodeSyntax(code, "C#"));
+                }
+            }
+        }
+
+        private static IConvertible[] CreateArray()
+        {
+            IConvertible[] convertibles = new IConvertible[8];
+            for(int i = 0; i < convertibles.Length; i++)
+            {
+                if (i < 4)
+                {
+                    convertibles[i] = new ProgramConverter();
+                }
+                else
+                {
+                    convertibles[i] = new ProgramHelper();
+                }
+            }
+
+            return convertibles;
         }
     }
 }

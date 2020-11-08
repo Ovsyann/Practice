@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeTranslatorTask\CodeTranslator.csproj" />
+    <ProjectReference Include="..\AbstractFactoryTask\AbstractFactory.csproj" />
   </ItemGroup>
 
 </Project>
