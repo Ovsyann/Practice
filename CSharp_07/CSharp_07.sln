@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixTask", "Matrix\MatrixTask.csproj", "{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTests", "MatrixTests\MatrixTests.csproj", "{15945A7F-1151-4603-9A90-682F54311BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixTests", "MatrixTests\MatrixTests.csproj", "{15945A7F-1151-4603-9A90-682F54311BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixUI", "MatrixUI\MatrixUI.csproj", "{A099018B-E33C-4B73-956A-764EC0059F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixUI", "MatrixUI\MatrixUI.csproj", "{A099018B-E33C-4B73-956A-764EC0059F75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
