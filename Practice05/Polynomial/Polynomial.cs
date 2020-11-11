@@ -9,15 +9,19 @@ namespace PolynomialTask
 
         public Polynomial(int[] coefficients)
         {
-            this.coefficients = InicializePolynom(coefficients);
+            if (coefficients == null)
+            {
+                throw new ArgumentNullException(nameof(coefficients));
+            }
+            if (coefficients.Length == 0)
+            {
+                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
+            }
+
+            this.coefficients = Clone(coefficients);
         }
 
         public Polynomial(Polynomial polynomial)
-        {
-            this.coefficients = InicializePolynom(polynomial);
-        }
-
-        private static int[] InicializePolynom(Polynomial polynomial)
         {
             if (polynomial == null)
             {
@@ -25,36 +29,32 @@ namespace PolynomialTask
             }
             if (polynomial.Length == 0)
             {
-                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", polynomial));
+                throw new InvalidOperationException(string.Format("Argument {0} length = 0", polynomial));
             }
 
-            int[] internalCoefficients = new int[polynomial.Length];
-            for (int i = 0; i < polynomial.Length; i++)
-            {
-                internalCoefficients[i] = polynomial[i];
-            }
-
-            return internalCoefficients;
+            this.coefficients = Clone(polynomial);
         }
 
-        private static int[] InicializePolynom(int[] coefficients)
+        private static int[] Clone(Polynomial polynomial)
         {
-            if (coefficients == null)
+            int[] numbers = new int[polynomial.Length];
+            for (int i = 0; i < polynomial.Length; i++)
             {
-                throw new ArgumentNullException("coefficients");
-            }
-            if (coefficients.Length == 0)
-            {
-                throw new InvalidOperationException(string.Format("Argument {0} ltngth = 0", coefficients));
+                numbers[i] = polynomial[i];
             }
 
-            int[] internalCoefficients = new int[coefficients.Length];
+            return numbers;
+        }
+
+        private static int[] Clone(int[] coefficients)
+        {
+            int[] numbers = new int[coefficients.Length];
             for(int i = 0; i < coefficients.Length; i++)
             {
-                internalCoefficients[i] = coefficients[i];
+                numbers[i] = coefficients[i];
             }
 
-            return internalCoefficients;
+            return numbers;
         }
 
         public int this[int i]
@@ -149,19 +149,25 @@ namespace PolynomialTask
         {
             if (left == null)
             {
-                throw new ArgumentNullException("left");
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException("right");
+                throw new ArgumentNullException(nameof(right));
             }
 
-            int[] coefficients = new int[Math.Max(left.Length, right.Length)];
+            int newLength = Math.Max(left.Length, right.Length);
+            int[] coefficients = new int[newLength];
             for(int i = 0; i < coefficients.Length; i++)
             {
-                int leftValue = i < left.Length ? left[i] : 0;
-                int rightValue = i < right.Length ? right[i] : 0;
-                coefficients[i] = leftValue + rightValue;
+                if (i < left.Length)
+                {
+                    coefficients[i] += left[i];
+                }
+                if (i < right.Length)
+                {
+                    coefficients[i] += right[i];
+                }
             }
 
             return new Polynomial(coefficients);
@@ -181,8 +187,18 @@ namespace PolynomialTask
             int[] coefficients = new int[Math.Max(left.Length, right.Length)];
             for (int i = 0; i < coefficients.Length; i++)
             {
-                int leftValue = i < left.Length ? left[i] : 0;
-                int rightValue = i < right.Length ? right[i] : 0;
+                int leftValue = 0;
+                int rightValue = 0;
+
+                if (i < left.Length)
+                {
+                    leftValue = left[i];
+                }
+                if (i < right.Length)
+                {
+                    rightValue = right[i];
+                }
+
                 coefficients[i] = leftValue - rightValue;
             }
 
@@ -277,7 +293,7 @@ namespace PolynomialTask
             return stringRepresentation;
         }
 
-        public string ToStringSignificant()
+        public string ToStringSignificantOnly()
         {
             string stringRepresentation = "";
             string formatString = "";
@@ -297,6 +313,7 @@ namespace PolynomialTask
 
             for (int i = Length-1; i >= 0; i--)
             {
+                //!!! = this[i];
                 if (this[i] != 0 && i != 1 && this[i] != 1 && this[i] != -1 && i != 0)
                 {
                     formatString = i == (Length - 1) ? "{0:0; - 0}X^{1}" : "{0: + 0; - 0}X^{1}";

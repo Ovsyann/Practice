@@ -4,21 +4,16 @@ namespace VectorTask
 {
     public class Vector : IEquatable<Vector>
     {
-        private Vector(int x, int y, int z)
+        public Vector(int x, int y, int z)
         {
+            //if (x == 0 && y == 0 && z == 0)
+            //{
+            //    throw new InvalidOperationException(string.Format("Vector with parameters {0}, {1}, {2} does not exists", x, y, z));
+            //}
+
             X = x;
             Y = y;
             Z = z;
-        }
-
-        public static Vector TryCreate(int x, int y, int z)
-        {
-            if (x == 0 && y == 0 && z == 0)
-            {
-                throw new InvalidOperationException(string.Format("Vector with parameters {0}, {1}, {2} does not exists", x, y, z));
-            }
-
-            return new Vector(x, y, z);
         }
 
         public int X { get; private set; }
@@ -27,13 +22,13 @@ namespace VectorTask
 
         public static Vector operator +(Vector left, Vector right)
         {
-            if(left==null)
+            if(left == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", left));
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", right));
+                throw new ArgumentNullException(nameof(right));
             }
 
             int x = left.X + right.X;
@@ -47,11 +42,11 @@ namespace VectorTask
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", left));
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", right));
+                throw new ArgumentNullException(nameof(right));
             }
 
             int x = left.X - right.X;
@@ -65,11 +60,11 @@ namespace VectorTask
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", left));
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", right));
+                throw new ArgumentNullException(nameof(right));
             }
 
             int x = left.X * right.X;
@@ -83,11 +78,11 @@ namespace VectorTask
         {
             if (left == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", left));
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException(string.Format("Vector {0} is null", right));
+                throw new ArgumentNullException(nameof(right));
             }
 
             int x = left.Y * right.Z - left.Z * right.Y;
@@ -104,12 +99,12 @@ namespace VectorTask
 
         public bool Equals(Vector vector)
         {
-            if (Object.ReferenceEquals(vector, null))
+            if (object.ReferenceEquals(vector, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, vector))
+            if (object.ReferenceEquals(this, vector))
             {
                 return true;
             }
@@ -124,14 +119,21 @@ namespace VectorTask
 
         public override int GetHashCode()
         {
-            return (X * 0x100000) + (Y * 0x1000) + Z;
+            int hashCode = 0;
+            int[] coordinates = { this.X, this.Y, this.Z };
+            for (int i = 0; i < coordinates.Length; i++)
+            {
+                hashCode = 33 * hashCode + coordinates[i];
+            }
+
+            return hashCode;
         }
 
         public static bool operator ==(Vector left,Vector right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (object.ReferenceEquals(left, null))
             {
-                if (Object.ReferenceEquals(right, null))
+                if (object.ReferenceEquals(right, null))
                 {
                     return true;
                 }
