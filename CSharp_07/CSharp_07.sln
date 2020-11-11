@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixTests", "MatrixTests\MatrixTests.csproj", "{15945A7F-1151-4603-9A90-682F54311BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixUI", "MatrixUI\MatrixUI.csproj", "{A099018B-E33C-4B73-956A-764EC0059F75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9227B19E-E448-45A3-BF2A-4D9EEE7B187F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15945A7F-1151-4603-9A90-682F54311BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15945A7F-1151-4603-9A90-682F54311BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15945A7F-1151-4603-9A90-682F54311BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15945A7F-1151-4603-9A90-682F54311BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A099018B-E33C-4B73-956A-764EC0059F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A099018B-E33C-4B73-956A-764EC0059F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A099018B-E33C-4B73-956A-764EC0059F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A099018B-E33C-4B73-956A-764EC0059F75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F77E80C-770F-40DA-A243-C0915396D483}
+	EndGlobalSection
+EndGlobal
