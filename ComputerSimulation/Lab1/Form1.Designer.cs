@@ -42,6 +42,7 @@
             this.chart2Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelPearsonTest = new System.Windows.Forms.Label();
             this.labelKolmogorovTest = new System.Windows.Forms.Label();
+            this.labelCollectorTest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2Histogram)).BeginInit();
             this.SuspendLayout();
@@ -134,11 +135,21 @@
             this.labelKolmogorovTest.TabIndex = 8;
             this.labelKolmogorovTest.Text = "label1";
             // 
+            // labelCollectorTest
+            // 
+            this.labelCollectorTest.AutoSize = true;
+            this.labelCollectorTest.Location = new System.Drawing.Point(608, 343);
+            this.labelCollectorTest.Name = "labelCollectorTest";
+            this.labelCollectorTest.Size = new System.Drawing.Size(91, 13);
+            this.labelCollectorTest.TabIndex = 9;
+            this.labelCollectorTest.Text = "labelCollectorTest";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 450);
+            this.Controls.Add(this.labelCollectorTest);
             this.Controls.Add(this.labelKolmogorovTest);
             this.Controls.Add(this.labelPearsonTest);
             this.Controls.Add(this.chart2Histogram);
@@ -167,6 +178,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2Histogram;
         private System.Windows.Forms.Label labelPearsonTest;
         private System.Windows.Forms.Label labelKolmogorovTest;
+        private System.Windows.Forms.Label labelCollectorTest;
     }
 }
 

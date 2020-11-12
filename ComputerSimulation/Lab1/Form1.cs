@@ -35,7 +35,8 @@ namespace Lab1
 
         private void Lab2CollectorTest(double[] randomVariables, int sampleSize, int subdivisionsAmount)
         {
-            throw new NotImplementedException();
+            List<int> listOfR = Lab2TestMethods.CollectorMethod(randomVariables, sampleSize, subdivisionsAmount);
+            Lab2PearsonTest(listOfR);
         }
 
         private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
@@ -99,6 +100,24 @@ namespace Lab1
             Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
                         generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
             labelPearsonTest.Text = string.Format("Pearson test Xi2 = {0}",Xi2);
+        }
+
+        void Lab2PearsonTest(List<int> randomVariables)
+        {
+            double subdivisionStep = (double)1 / generationMethod.numberOfSubdivisions;
+            double[] hitCounts = new double[generationMethod.numberOfSubdivisions];
+            double[] hitProbabilities = new double[generationMethod.numberOfSubdivisions];
+
+            for (int i = 0; i < generationMethod.numberOfSubdivisions; i++)
+            {
+                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
+                hitProbabilities[i] = hitCounts[i] / randomVariables.Count;
+            }
+
+            double Xi2;
+            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
+                        generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
+            labelCollectorTest.Text = string.Format("Collector test Xi2 = {0}", Xi2);
         }
     }
 }
