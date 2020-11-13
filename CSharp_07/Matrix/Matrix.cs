@@ -37,30 +37,30 @@ namespace MatrixTask
             elements = new int[rowsCount, columnsCount];
         }
 
-        public Matrix(int[,] elements)
+        public Matrix(int[,] newElements)
         {
-            if (elements == null)
+            if (newElements == null)
             {
-                throw new ArgumentNullException(nameof(elements));
+                throw new ArgumentNullException(nameof(newElements));
             }
-            if (elements.GetLength(0) < 2)
+            if (newElements.GetLength(0) < 2)
             {
                 throw new InvalidOperationException("Rows count must be greater than 1");
             }
-            if (elements.GetLength(1) < 2)
+            if (newElements.GetLength(1) < 2)
             {
                 throw new InvalidOperationException("Columns count must be greater than 1");
             }
 
-            int newRowsCount = elements.GetLength(0);
-            int newColumnsCount = elements.GetLength(1);
+            int newRowsCount = newElements.GetLength(0);
+            int newColumnsCount = newElements.GetLength(1);
 
-            int[,] newElements = new int[newRowsCount, newColumnsCount];
+            elements = new int[newRowsCount, newColumnsCount];
             for(int i = 0; i < newRowsCount; i++)
             {
                 for(int j = 0; j < newColumnsCount; j++)
                 {
-                    newElements[i, j] = elements[i, j];
+                    elements[i, j] = newElements[i, j];
                 }
             }
         }
