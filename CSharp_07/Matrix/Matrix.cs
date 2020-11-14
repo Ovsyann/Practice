@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MatrixTask
 {
@@ -169,7 +170,7 @@ namespace MatrixTask
             if (left.RowsCount != right.RowsCount || 
                 left.ColumnsCount != right.ColumnsCount)
             {
-                throw new InvalidOperationException("Matrices must be of the same dimensions");
+                throw new InvalidMatrixException(left, right, "Matrices must be of the same dimensions");
             }
 
             Matrix newMatrix = new Matrix(left.RowsCount, left.ColumnsCount);
@@ -197,7 +198,7 @@ namespace MatrixTask
             if (left.RowsCount != right.RowsCount ||
                 left.ColumnsCount != right.ColumnsCount)
             {
-                throw new InvalidOperationException("Matrices must be of the same dimensions");
+                throw new InvalidMatrixException(left, right, "Matrices must be of the same dimensions");
             }
 
             Matrix newMatrix = new Matrix(left.RowsCount, left.ColumnsCount);
@@ -224,8 +225,7 @@ namespace MatrixTask
             }
             if (left.ColumnsCount != right.RowsCount)
             {
-                throw new InvalidOperationException(string.Format("{0} must be equal to {1}",
-                    nameof(left.ColumnsCount),nameof(right.RowsCount)));
+                throw new InvalidMatrixException(left, right, "Matrices must be of the same dimensions");
             }
 
             Matrix newMatrix = new Matrix(left.RowsCount, right.ColumnsCount);

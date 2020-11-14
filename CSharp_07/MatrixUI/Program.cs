@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using MatrixTask;
 
 namespace MatrixUI
@@ -9,13 +12,75 @@ namespace MatrixUI
         {
             Matrix matrixLeft = InputMatrix("Input first matrix");
             Matrix matrixRight = InputMatrix("Input second matrix");
-            Matrix matrixSum = matrixLeft + matrixRight;
-            ShowResult(matrixSum, "Addition result");
-            Matrix matrixDifference = matrixLeft - matrixRight;
-            ShowResult(matrixDifference, "Subtraction result");
-            Matrix matrixMultiplication = matrixLeft * matrixRight;
-            ShowResult(matrixMultiplication, "Multiplication result");
+            AddAndShow(matrixLeft, matrixRight);
+            SubtractAndShow(matrixLeft, matrixRight);
+            MultiplyAndShow(matrixLeft, matrixRight);
 
+        }
+
+        private static void MultiplyAndShow(Matrix matrixLeft, Matrix matrixRight)
+        {
+            try
+            {
+                Matrix matrixMultiplication = matrixLeft * matrixRight;
+                ShowResult(matrixMultiplication, "Multiplication result");
+            }
+            catch (InvalidMatrixException ex)
+            {
+                ProcessException(ex);
+                return;
+            }
+        }
+
+        private static void SubtractAndShow(Matrix matrixLeft, Matrix matrixRight)
+        {
+            try
+            {
+                Matrix matrixDifference = matrixLeft - matrixRight;
+                ShowResult(matrixDifference, "Subtraction result");
+            }
+            catch (InvalidMatrixException ex)
+            {
+                ProcessException(ex);
+                return;
+            }
+        }
+
+        private static void AddAndShow(Matrix matrixLeft, Matrix matrixRight)
+        {
+            try
+            {
+                Matrix matrixSum = matrixLeft + matrixRight;
+                ShowResult(matrixSum, "Addition result");
+            }
+            catch (InvalidMatrixException ex)
+            {
+                ProcessException(ex);
+                return;
+            }
+        }
+
+        private static void ProcessException(InvalidMatrixException ex)
+        {
+            using (FileStream fileStream = new FileStream("MatrixInfo.dat", FileMode.OpenOrCreate))
+            {
+                BinaryFormatter formatter = new BinaryFormatter(null,
+                    new StreamingContext(StreamingContextStates.File));
+
+                formatter.Serialize(fileStream, ex);
+
+                fileStream.Position = 0;
+                InvalidMatrixException invalidMatrix =
+                    (InvalidMatrixException)formatter.Deserialize(fileStream);
+
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Left value: Matrix[{0},{1}]",
+                    invalidMatrix.LeftRowsCount, invalidMatrix.LeftColumnsCount);
+                Console.WriteLine("Right value: Matrix[{0},{1}]",
+                    invalidMatrix.RightRowsCount, invalidMatrix.RightColumnsCount);
+
+                throw invalidMatrix;
+            }
         }
 
         private static void ShowResult(Matrix matrix, string message)
