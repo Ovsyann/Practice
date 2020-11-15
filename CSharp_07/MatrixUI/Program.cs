@@ -101,7 +101,7 @@ namespace MatrixUI
         {
             Console.WriteLine(inputMessage);
             string failMessage = "Input number at least 2";
-            int minValue = 2;
+            int minValue = 1;
 
             int rowsCount = InputInteger("Input matrix rows count", failMessage, minValue);
             int columnsCount = InputInteger("Input matrix columns count", failMessage, minValue);

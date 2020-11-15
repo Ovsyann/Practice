@@ -26,13 +26,13 @@ namespace MatrixTask
 
         public Matrix(int rowsCount, int columnsCount)
         {
-            if (rowsCount < 2)
+            if (rowsCount < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(rowsCount), "must be greater than 1");
+                throw new ArgumentOutOfRangeException(nameof(rowsCount), "must be greater than 0");
             }
-            if (columnsCount < 2)
+            if (columnsCount < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(columnsCount), "must be greater than 1");
+                throw new ArgumentOutOfRangeException(nameof(columnsCount), "must be greater than 0");
             }
 
             elements = new int[rowsCount, columnsCount];
@@ -44,13 +44,13 @@ namespace MatrixTask
             {
                 throw new ArgumentNullException(nameof(newElements));
             }
-            if (newElements.GetLength(0) < 2)
+            if (newElements.GetLength(0) < 1)
             {
-                throw new InvalidOperationException("Rows count must be greater than 1");
+                throw new InvalidOperationException("Rows count must be greater than 0");
             }
-            if (newElements.GetLength(1) < 2)
+            if (newElements.GetLength(1) < 1)
             {
-                throw new InvalidOperationException("Columns count must be greater than 1");
+                throw new InvalidOperationException("Columns count must be greater than 0");
             }
 
             int newRowsCount = newElements.GetLength(0);
@@ -127,7 +127,7 @@ namespace MatrixTask
             {
                 for(int j = 0; j < this.ColumnsCount; j++)
                 {
-                    hashCode = hashCode * 33 + this[i, j] - base.GetHashCode();
+                    hashCode = hashCode * 33 + this[i, j];
                 }
             }
 
