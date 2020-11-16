@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileArrayTask", "FileArrayTask\FileArrayTask.csproj", "{DA5B0092-75FD-4DD7-8A82-D98370955AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileArrayUI", "FileArrayUI\FileArrayUI.csproj", "{27182C17-A895-4843-81C8-F6AA12F378A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA5B0092-75FD-4DD7-8A82-D98370955AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5B0092-75FD-4DD7-8A82-D98370955AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5B0092-75FD-4DD7-8A82-D98370955AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5B0092-75FD-4DD7-8A82-D98370955AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27182C17-A895-4843-81C8-F6AA12F378A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27182C17-A895-4843-81C8-F6AA12F378A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27182C17-A895-4843-81C8-F6AA12F378A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27182C17-A895-4843-81C8-F6AA12F378A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F412532C-C2FC-4CE0-83FA-9541CCE7D1AA}
+	EndGlobalSection
+EndGlobal
