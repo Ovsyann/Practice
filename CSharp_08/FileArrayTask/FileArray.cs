@@ -6,44 +6,91 @@ namespace FileArrayTask
 {
     public class FileArray : IDisposable
     {
+        public static FileArray Create(string path, int length)
+        {
+            return new FileArray(path, length);
+        }
+
+        public static FileArray Read(string path)
+        {
+            return new FileArray(path);
+        }
+
         private FileArray(string path, int length)
         {
-            this.length = length;
+            charBuffer = new char[length];
 
             for(int i = 0; i < length; i++)
             {
-                fileData += " ";
+                charBuffer[i] = ' ';
             }
-
+            
             stream = new FileStream(path, FileMode.Create);
-            byteBuffer = Encoding.ASCII.GetBytes(fileData);
-            stream.Write(byteBuffer, 0, byteBuffer.Length);
-
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
+
+            writer.WriteLine(charBuffer);
         }
 
-        byte[] byteBuffer;
+        private FileArray(string path)
+        {
+            stream = new FileStream(path, FileMode.Open);
+            writer = new StreamWriter(stream);
+            reader = new StreamReader(stream);
+
+            int symbolCount = 0;
+            while (reader.Peek() > -1)
+            {
+                symbolCount++;
+            }
+
+            charBuffer = new char[symbolCount];
+        }
+
         char[] charBuffer;
-        private Stream stream;
+        private FileStream stream;
         private TextWriter writer;
         private TextReader reader;
-        private string fileData;
-        private int length;
 
-        public FileArray this[int index]
+        public int Length
+        {
+            get
+            {
+                return charBuffer.Length;
+            }
+        }
+
+        public char this[int index]
         {
             get
             {
                 reader.Read(charBuffer, index, 1);
-                byteBuffer[index] = byte.Parse(charBuffer[index].ToString());
-                return BitConverter.ToString(byteBuffer).Replace("-", "");
+                return charBuffer[index];
+            }
+            set
+            {
+                charBuffer[index] = value;
+                writer.Write(charBuffer, index, 1);
             }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (stream != null)
+            {
+                stream.Flush();
+                stream.Close();
+                stream = null;
+            }
+            if(reader != null)
+            {
+                reader.Close();
+                reader = null;
+            }
+            if(writer != null)
+            {
+                writer = null;
+            }
         }
     }
 }

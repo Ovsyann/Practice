@@ -1,4 +1,5 @@
 ﻿using System;
+using FileArrayTask;
 
 namespace FileArrayUI
 {
@@ -6,7 +7,25 @@ namespace FileArrayUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            SaveToFile("[01]Привет мир!");
+        }
+
+        private static void SaveToFile(string greeting)
+        {
+            FileArray file = null;
+
+            try
+            {
+                file = FileArray.Create("file.txt", greeting.Length);
+                for (int i = 0; i < file.Length; i++)
+                {
+                    file[i] = greeting[i];
+                }
+            }
+            finally
+            {
+                file.Dispose();
+            }
         }
     }
 }
