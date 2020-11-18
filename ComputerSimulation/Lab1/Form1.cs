@@ -29,13 +29,13 @@ namespace Lab1
             DrawFirstDiagram(randomVariables);
             DrawSecondDiagram(randomVariables);
             Lab2PearsonTest(randomVariables);
-            Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
             Lab2CollectorTest(randomVariables, generationMethod.sampleSize, generationMethod.numberOfSubdivisions);
+            Lab2KolmogorovTest(randomVariables, generationMethod.sampleSize);
         }
 
         private void Lab2CollectorTest(double[] randomVariables, int sampleSize, int subdivisionsAmount)
         {
-            List<int> listOfR = Lab2TestMethods.CollectorMethod(randomVariables, sampleSize, subdivisionsAmount);
+            List<int> listOfR = Lab2TestMethods.GetCollectionerCriterion(generationMethod.numberOfSubdivisions, generationMethod.sampleSize, randomVariables);
             Lab2PearsonTest(listOfR);
         }
 
@@ -110,8 +110,8 @@ namespace Lab1
 
             for (int i = 0; i < generationMethod.numberOfSubdivisions; i++)
             {
-                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
-                hitProbabilities[i] = hitCounts[i] / randomVariables.Count;
+                hitCounts[i] = ((double)randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep))*generationMethod.numberOfSubdivisions / generationMethod.sampleSize;
+                hitProbabilities[i] = (double)1 / generationMethod.numberOfSubdivisions;
             }
 
             double Xi2;

@@ -47,39 +47,34 @@ namespace Lab1
             return sortedSamples;
         }
 
-        public static List<int> CollectorMethod(double[] randomVariables, int sampleSize, int subdivisionsAmount)
+        public static List<int> GetCollectionerCriterion(int K, int N, double[] x)
         {
-            List<int> listOfR = new List<int>();
-            int j = 0;
-            while (j < sampleSize)
+            int i, y;
+            int R = 0;
+            List<int> R_Array = new List<int>();
+            int[] numN = new int[K];
+            while (R < N - K)
             {
-                int i;
-                int y;
-                int R = 0;
-                int[] numN = new int[subdivisionsAmount];
-                for (i = 0; i < subdivisionsAmount; i++)
+                for (i = 0; i < K; i++)
                 {
                     numN[i] = 0;
                 }
-
                 int M = 0;
-                while ((M != subdivisionsAmount) && (j < sampleSize))
+                while ((M != K) && (R < N))
                 {
-                    y = (int)(randomVariables[j] * subdivisionsAmount);
+                    y = (int)(x[R] * K);
                     if (numN[y] == 0)
                     {
                         numN[y] = 1;
                         M++;
-                    }
-
-                    j++;
+                    };
                     R++;
                 }
-
-                listOfR.Add(R);
+                int totalR = R_Array.Sum();
+                R_Array.Add(R- totalR);
             }
 
-            return listOfR;
+            return R_Array;
         }
         //public static List<double> Calculate(double[] x, int n, int K)
         //{
