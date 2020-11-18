@@ -18,18 +18,19 @@ namespace FileArrayTask
 
         private FileArray(string path, int length)
         {
-            charBuffer = new char[length];
+            char[] charBuffer = new char[length];
 
             for(int i = 0; i < length; i++)
             {
                 charBuffer[i] = ' ';
             }
             
-            stream = new FileStream(path, FileMode.Create);
-            writer = new StreamWriter(stream);
-            reader = new StreamReader(stream);
+            stream = File.Open(path,FileMode.Create,FileAccess.ReadWrite);
+            writer = new StreamWriter(stream, Encoding.GetEncoding(1251));
+            reader = new StreamReader(stream, Encoding.GetEncoding(1251));
+            fileInfo = new FileInfo(path);
 
-            writer.WriteLine(charBuffer);
+            writer.Write(charBuffer, 0, length - 1);
         }
 
         private FileArray(string path)
@@ -37,26 +38,19 @@ namespace FileArrayTask
             stream = new FileStream(path, FileMode.Open);
             writer = new StreamWriter(stream);
             reader = new StreamReader(stream);
-
-            int symbolCount = 0;
-            while (reader.Peek() > -1)
-            {
-                symbolCount++;
-            }
-
-            charBuffer = new char[symbolCount];
+            fileInfo = new FileInfo(path);
         }
 
-        char[] charBuffer;
+        private FileInfo fileInfo;
         private FileStream stream;
-        private TextWriter writer;
-        private TextReader reader;
+        private StreamWriter writer;
+        private StreamReader reader;
 
-        public int Length
+        public long Length
         {
             get
             {
-                return charBuffer.Length;
+                return fileInfo.Length;
             }
         }
 
@@ -64,11 +58,13 @@ namespace FileArrayTask
         {
             get
             {
+                char[] charBuffer = new char[Length];
                 reader.Read(charBuffer, index, 1);
                 return charBuffer[index];
             }
             set
             {
+                char[] charBuffer = new char[Length];
                 charBuffer[index] = value;
                 writer.Write(charBuffer, index, 1);
             }

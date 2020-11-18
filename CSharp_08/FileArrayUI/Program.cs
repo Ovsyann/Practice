@@ -17,10 +17,10 @@ namespace FileArrayUI
             try
             {
                 file = FileArray.Create("file.txt", greeting.Length);
-                for (int i = 0; i < file.Length; i++)
-                {
-                    file[i] = greeting[i];
-                }
+                //for (int i = 0; i < file.Length; i++)
+                //{
+                //    file[i] = greeting[i];
+                //}
             }
             finally
             {
