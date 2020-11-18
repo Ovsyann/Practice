@@ -20,37 +20,40 @@ namespace FileArrayTask
         {
             char[] charBuffer = new char[length];
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 charBuffer[i] = ' ';
             }
-            
-            stream = File.Open(path,FileMode.Create,FileAccess.ReadWrite);
-            writer = new StreamWriter(stream, Encoding.GetEncoding(1251));
-            reader = new StreamReader(stream, Encoding.GetEncoding(1251));
-            fileInfo = new FileInfo(path);
 
-            writer.Write(charBuffer, 0, length - 1);
+            OpenOrCreate(path, FileMode.Create);
+
+            writer.Write(charBuffer);
         }
 
         private FileArray(string path)
         {
-            stream = new FileStream(path, FileMode.Open);
-            writer = new StreamWriter(stream);
-            reader = new StreamReader(stream);
-            fileInfo = new FileInfo(path);
+            OpenOrCreate(path, FileMode.Open);
         }
 
-        private FileInfo fileInfo;
+        private FileInfo FileInfo;
         private FileStream stream;
         private StreamWriter writer;
         private StreamReader reader;
+
+        private void OpenOrCreate(string path, FileMode OpenOrCreate)
+        {
+            stream = new FileStream(path, OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            writer = new StreamWriter(stream, Encoding.Default);
+            writer.AutoFlush = true;
+            reader = new StreamReader(stream, Encoding.Default);
+            FileInfo = new FileInfo(path);
+        }
 
         public long Length
         {
             get
             {
-                return fileInfo.Length;
+                return FileInfo.Length;
             }
         }
 
@@ -58,34 +61,24 @@ namespace FileArrayTask
         {
             get
             {
-                char[] charBuffer = new char[Length];
-                reader.Read(charBuffer, index, 1);
-                return charBuffer[index];
+                stream.Position = index;
+                return (char)reader.Read();
             }
             set
             {
-                char[] charBuffer = new char[Length];
-                charBuffer[index] = value;
-                writer.Write(charBuffer, index, 1);
+                stream.Position = index;
+                writer.Write(value);
             }
         }
 
         public void Dispose()
         {
-            if (stream != null)
+            if(stream != null)
             {
-                stream.Flush();
-                stream.Close();
-                stream = null;
-            }
-            if(reader != null)
-            {
-                reader.Close();
-                reader = null;
-            }
-            if(writer != null)
-            {
+                writer.Close();
                 writer = null;
+                reader = null;
+                stream = null;
             }
         }
     }
