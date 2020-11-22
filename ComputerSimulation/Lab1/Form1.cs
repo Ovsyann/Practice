@@ -35,7 +35,7 @@ namespace Lab1
 
         private void Lab2CollectorTest(double[] randomVariables, int sampleSize, int subdivisionsAmount)
         {
-            List<int> listOfR = Lab2TestMethods.GetCollectionerCriterion(generationMethod.numberOfSubdivisions, generationMethod.sampleSize, randomVariables);
+            List<double> listOfR = Lab2TestMethods.GetCollectionerCriterion(subdivisionsAmount, sampleSize, randomVariables);
             Lab2PearsonTest(listOfR);
         }
 
@@ -55,10 +55,10 @@ namespace Lab1
             labelSecondCentralPoint.Text = "Второй центральный момент = " + ProcessingValues.GetSecondCenterPoint(randomVariables);
             labelThirdCentralPoint.Text = "Третий центральный момент = " + ProcessingValues.GetThirdCenterPoint(randomVariables);
         }
-        List<int> DrawingPreparation(double[] randomVariables)
+        List<double> DrawingPreparation(double[] randomVariables)
         {
             double histogramStep = (double)1 / generationMethod.numberOfSubdivisions;
-            List<int> listOfRepetitions = new List<int>(generationMethod.numberOfSubdivisions);
+            List<double> listOfRepetitions = new List<double>(generationMethod.numberOfSubdivisions);
             for(int i = 0; i < generationMethod.numberOfSubdivisions; i++)
             {
                 listOfRepetitions.Add(randomVariables.Count(p => p >= i * histogramStep && p < (i + 1) * histogramStep));
@@ -68,19 +68,19 @@ namespace Lab1
         }
         void DrawFirstDiagram(double[] randomVariables)
         {
-            chart1Histogram.ChartAreas[0].AxisY.Maximum=800;
-            List<int> listOfRepetitions = DrawingPreparation(randomVariables);
+           // chart1Histogram.ChartAreas[0].AxisY.Maximum=800;
+            List<double> listOfRepetitions = DrawingPreparation(randomVariables);
             for(int i = 0; i < listOfRepetitions.Count; i++)
             {
-                chart1Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions[i]);
+                chart1Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions[i]/1000);
             }
         }
         void DrawSecondDiagram(double[] randomVariables)
         {
-            List<int> listOfRepetitions = DrawingPreparation(randomVariables);
+            List<double> listOfRepetitions = DrawingPreparation(randomVariables);
             for (int i = 0; i < listOfRepetitions.Count; i++)
             {
-                chart2Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions.Take(i+1).Sum());
+                chart2Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions.Take(i+1).Sum()/1000);
             }
         }
 
@@ -102,22 +102,36 @@ namespace Lab1
             labelPearsonTest.Text = string.Format("Pearson test Xi2 = {0}",Xi2);
         }
 
-        void Lab2PearsonTest(List<int> randomVariables)
+        void Lab2PearsonTest(List<double> randomVariables)
         {
             double subdivisionStep = (double)1 / generationMethod.numberOfSubdivisions;
             double[] hitCounts = new double[generationMethod.numberOfSubdivisions];
             double[] hitProbabilities = new double[generationMethod.numberOfSubdivisions];
 
+            ToScale(randomVariables, 1, 0);
+
             for (int i = 0; i < generationMethod.numberOfSubdivisions; i++)
             {
-                hitCounts[i] = ((double)randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep))*generationMethod.numberOfSubdivisions / generationMethod.sampleSize;
+                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
                 hitProbabilities[i] = (double)1 / generationMethod.numberOfSubdivisions;
             }
 
             double Xi2;
             Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
-                        generationMethod.numberOfSubdivisions, generationMethod.sampleSize);
+                        generationMethod.numberOfSubdivisions, randomVariables.Count);
             labelCollectorTest.Text = string.Format("Collector test Xi2 = {0}", Xi2);
+        }
+
+        private void ToScale(List<double> randomVariables, double newMax, double newMin)
+        {
+            double oldMin = randomVariables.Min();
+            double oldMax = randomVariables.Max();
+            for(int i = 0; i < randomVariables.Count; i++)
+            {
+                double oldRange = oldMax - oldMin;
+                double newRange = newMax - newMin;
+                randomVariables[i] = ((randomVariables[i] - oldMin) * newRange / oldRange) + newMin;
+            }
         }
     }
 }

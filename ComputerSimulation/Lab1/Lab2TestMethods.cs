@@ -47,11 +47,11 @@ namespace Lab1
             return sortedSamples;
         }
 
-        public static List<int> GetCollectionerCriterion(int K, int N, double[] x)
+        public static List<double> GetCollectionerCriterion(int K, int N, double[] x)
         {
             int i, y;
             int R = 0;
-            List<int> R_Array = new List<int>();
+            List<double> R_Array = new List<double>();
             int[] numN = new int[K];
             while (R < N - K)
             {
@@ -70,7 +70,7 @@ namespace Lab1
                     };
                     R++;
                 }
-                int totalR = R_Array.Sum();
+                double totalR = R_Array.Sum();
                 R_Array.Add(R- totalR);
             }
 
