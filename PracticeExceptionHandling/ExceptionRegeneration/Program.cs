@@ -7,11 +7,20 @@ namespace ExceptionRegeneration
     {
         static void Main(string[] args)
         {
-            RethrowOriginal();
-            UseThrow();
-            PassOrigial();
-            CreateCustom();
-            TryBlindCatch();
+            try
+            {   
+                PassOrigial();
+                RethrowOriginal();
+                UseThrow();
+                CreateCustom();
+                TryBlindCatch();
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("rethrowed", DateTime.Now);
+                ShowInfo(ex);
+            }
+            
         }
 
         private static void RethrowOriginal()
@@ -75,13 +84,26 @@ namespace ExceptionRegeneration
             {
                 double.Parse("Booom!!!");
             }
-            catch
+            catch(Exception ex)
             {
+                ex.Data.Add("Rethrowed", DateTime.Now);
                 throw;
             }
         }
 
-        private void ShowInfo(Exception exception)
+        private static void ShowInfo(Exception exception)
+        {
+            Console.WriteLine("---------------- Exception ---------------");
+
+            ShowExceptionInfo(exception);
+            if(exception.InnerException != null)
+            {
+                Console.WriteLine("---------------- Inner exception ---------------");
+                ShowExceptionInfo(exception.InnerException);
+            }
+        }
+
+        private static void ShowExceptionInfo(Exception exception)
         {
             Console.WriteLine("Exception type: {0}", exception.GetType());
             Console.WriteLine("Message: {0}", exception.Message);
@@ -91,10 +113,16 @@ namespace ExceptionRegeneration
             if (exception as BaseException != null)
             {
                 Type type = exception.GetType();
-                PropertyInfo propertyInfo = type.GetProperty("NetVersion", BindingFlags.Public | BindingFlags.Instance);
-                Console.WriteLine("GUID: {0}", type.GetProperty("Guid", BindingFlags.Public | BindingFlags.Instance));
-                Console.WriteLine("Net version: {0}", type.GetProperty("NetVersion", BindingFlags.Public | BindingFlags.Instance));
-                Console.WriteLine("Constructor name: {0}", type.GetProperty("ConstructorName", BindingFlags.Public | BindingFlags.Instance));
+                PropertyInfo GuidInfo =
+                    type.GetProperty("Guid", BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo NetVersionInfo =
+                    type.GetProperty("NetVersion", BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo ConstructorNameInfo =
+                    type.GetProperty("ConstructorName", BindingFlags.Public | BindingFlags.Instance);
+
+                Console.WriteLine("GUID: {0}", GuidInfo.GetValue(exception));
+                Console.WriteLine("Net version: {0}", NetVersionInfo.GetValue(exception));
+                Console.WriteLine("Constructor name: {0}", ConstructorNameInfo.GetValue(exception));
             }
 
             foreach (object key in exception.Data.Keys)
