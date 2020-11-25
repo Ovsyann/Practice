@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Reflection;
 
 namespace ExceptionRegeneration
@@ -62,7 +61,7 @@ namespace ExceptionRegeneration
             {
                 double.Parse("Booom!!!");
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 BaseException exception = new BaseException();
                 exception.Data.Add("Rethrowed", DateTime.Now);
@@ -89,7 +88,7 @@ namespace ExceptionRegeneration
             Console.WriteLine("Source: {0}", exception.Source);
             Console.WriteLine("TargetSite: {0}", exception.TargetSite);
             Console.WriteLine("HResult: {0}", exception.HResult);
-            if(exception as BaseException != null)
+            if (exception as BaseException != null)
             {
                 Type type = exception.GetType();
                 PropertyInfo propertyInfo = type.GetProperty("NetVersion", BindingFlags.Public | BindingFlags.Instance);
@@ -98,7 +97,7 @@ namespace ExceptionRegeneration
                 Console.WriteLine("Constructor name: {0}", type.GetProperty("ConstructorName", BindingFlags.Public | BindingFlags.Instance));
             }
 
-            foreach(object key in exception.Data.Keys)
+            foreach (object key in exception.Data.Keys)
             {
                 Console.WriteLine("Data {0}: {1}", key, exception.Data[key]);
             }
