@@ -1,0 +1,29 @@
+Input selector
+ExceptionRegeneration.BaseException: BaseException thrown
+ ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Double.Parse(String s)
+   at ExceptionRegeneration.Program.PassOrigial() in D:\Hlam\PRACTICE\Practice\PracticeExceptionHandling\ExceptionRegeneration\Program.cs:line 72
+   --- End of inner exception stack trace ---
+   at ExceptionRegeneration.Program.PassOrigial() in D:\Hlam\PRACTICE\Practice\PracticeExceptionHandling\ExceptionRegeneration\Program.cs:line 79
+   at ExceptionRegeneration.Program.Main(String[] args) in D:\Hlam\PRACTICE\Practice\PracticeExceptionHandling\ExceptionRegeneration\Program.cs:line 23
+---------------- Exception ---------------
+Exception type: ExceptionRegeneration.BaseException
+Message: BaseException thrown
+Source: ExceptionRegeneration
+TargetSite: Void PassOrigial()
+HResult: -2146232832
+GUID: 936da01f-9abd-4d9d-80c7-02af85c822a8
+Net version: 0.0
+Constructor name: .ctor
+Data Created: 25.11.2020 18:09:19
+Data rethrowed: 25.11.2020 18:09:19
+Data Rethrowed: 25.11.2020 18:09:19
+---------------- Inner exception ---------------
+Exception type: System.FormatException
+Message: Input string was not in a correct format.
+Source: System.Private.CoreLib
+TargetSite: Void ThrowOverflowOrFormatException(ParsingStatus, System.TypeCode)
+HResult: -2146233033
+Data rethrowed: 25.11.2020 18:09:19
+

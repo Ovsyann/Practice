@@ -8,17 +8,33 @@ namespace ExceptionRegeneration
         static void Main(string[] args)
         {
             try
-            {   
-                PassOrigial();
-                RethrowOriginal();
-                UseThrow();
-                CreateCustom();
-                TryBlindCatch();
+            {
+                int selector = InputInteger("Input selector","input integral value");
+                
+                switch (selector)
+                {
+                    case 0:
+                        TryBlindCatch();
+                        break;
+                    case 1:
+                        CreateCustom();
+                        break;
+                    case 2:
+                        PassOrigial();
+                        break;
+                    case 3:
+                        UseThrowExpression();
+                        break;
+                    case 4:
+                        RethrowOriginal();
+                        break;
+                }
             }
             catch(Exception ex)
             {
-                ex.Data.Add("rethrowed", DateTime.Now);
+                ex.Data.Add("Rethrowed", DateTime.Now);
                 ShowInfo(ex);
+                Console.ReadKey();
             }
             
         }
@@ -36,17 +52,16 @@ namespace ExceptionRegeneration
             }
         }
 
-        private static void UseThrow()
+        private static void UseThrowExpression()
         {
             try
             {
                 double.Parse("Booom!!!");
             }
-            catch (FormatException)
+            catch (FormatException exception)
             {
-                BaseException baseException = new BaseException();
-                baseException.Data.Add("Rethrowed", DateTime.Now);
-                throw baseException;
+                exception.Data.Add("rethrowed", DateTime.Now);
+                throw new BaseException();
             }
         }
 
@@ -58,8 +73,9 @@ namespace ExceptionRegeneration
             }
             catch (FormatException ex)
             {
+                ex.Data.Add("rethrowed", DateTime.Now);
                 BaseException exception = new BaseException("BaseException thrown", ex);
-                exception.Data.Add("Rethrowed", DateTime.Now);
+                exception.Data.Add("rethrowed", DateTime.Now);
                 throw exception;
             }
         }
@@ -73,7 +89,7 @@ namespace ExceptionRegeneration
             catch (FormatException)
             {
                 BaseException exception = new BaseException();
-                exception.Data.Add("Rethrowed", DateTime.Now);
+                exception.Data.Add("rethrowed", DateTime.Now);
                 throw exception;
             }
         }
@@ -86,13 +102,15 @@ namespace ExceptionRegeneration
             }
             catch(Exception ex)
             {
-                ex.Data.Add("Rethrowed", DateTime.Now);
+                ex.Data.Add("rethrowed", DateTime.Now);
                 throw;
             }
         }
 
         private static void ShowInfo(Exception exception)
         {
+            Console.WriteLine(exception.ToString());
+
             Console.WriteLine("---------------- Exception ---------------");
 
             ShowExceptionInfo(exception);
@@ -129,6 +147,18 @@ namespace ExceptionRegeneration
             {
                 Console.WriteLine("Data {0}: {1}", key, exception.Data[key]);
             }
+        }
+
+        private static int InputInteger(string inputMessage, string failMessage, int? min = null)
+        {
+            Console.WriteLine(inputMessage);
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number) || (min.HasValue && number < min))
+            {
+                Console.WriteLine(failMessage);
+            }
+
+            return number;
         }
     }
 }
