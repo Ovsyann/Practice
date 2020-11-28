@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerTask", "TimerTask\TimerTask.csproj", "{C98CD8D1-44AD-44A9-A12B-17D1C1B6B3E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerUI", "TimerUI\TimerUI.csproj", "{DD7BA0F9-950C-4DEC-B3A1-0CAE93CFF5DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C98CD8D1-44AD-44A9-A12B-17D1C1B6B3E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98CD8D1-44AD-44A9-A12B-17D1C1B6B3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98CD8D1-44AD-44A9-A12B-17D1C1B6B3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98CD8D1-44AD-44A9-A12B-17D1C1B6B3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD7BA0F9-950C-4DEC-B3A1-0CAE93CFF5DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD7BA0F9-950C-4DEC-B3A1-0CAE93CFF5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD7BA0F9-950C-4DEC-B3A1-0CAE93CFF5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD7BA0F9-950C-4DEC-B3A1-0CAE93CFF5DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26B7CCB4-70DC-4506-9F43-8FA05F9C6107}
+	EndGlobalSection
+EndGlobal
