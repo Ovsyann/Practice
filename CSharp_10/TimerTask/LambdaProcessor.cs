@@ -6,26 +6,55 @@ using System.Threading.Tasks;
 
 namespace TimerTask
 {
-    class LambdaProcessor :ICountDownNotifier
+    public class LambdaProcessor :ICountDownNotifier
     {
-        public LambdaProcessor(Timer timer, TaskTimeStarted taskTimeStarted, Action<string, int> timeEnd)
+        public LambdaProcessor(TimerEventArgs timer, TaskTimeStarted taskTimeStarted, Action<string> taskTimeEnded)
         {
+            Timer = timer;
+            TaskTimeStarted = taskTimeStarted;
+            TaskTimeEnded = taskTimeEnded;
 
+            TimerStarted = (object sender, TimerEventArgs e) => 
+            { 
+                TaskTimeStarted(e.Name, e.SecondsAmount); 
+            };
+
+            TimerChanged = (object sender, TimerEventArgs e) =>
+            {
+                int realSeconds = DateTime.Now.Second;
+                Console.WriteLine("[{0}]:Timer: {1}: {2} seconds remaining", realSeconds, e.Name, e.SecondsAmount);
+            };
+
+            TimerEnded = (object sender, TimerEventArgs e) =>
+            {
+                TaskTimeEnded(e.Name);
+            };
         }
+
+        TimerEventArgs Timer { get; set; }
+        TaskTimeStarted TaskTimeStarted { get; set; }
+        Action<string> TaskTimeEnded { get; set; }
+        EventHandler<TimerEventArgs> TimerChanged { get; set; }
+        EventHandler<TimerEventArgs> TimerStarted { get; set; }
+        EventHandler<TimerEventArgs> TimerEnded { get; set; }
 
         void ICountDownNotifier.Init()
         {
-            throw new NotImplementedException();
+            Timer.Start += TimerStarted;
+            Timer.Tick += TimerChanged;
+            Timer.End += TimerEnded;
         }
 
         void ICountDownNotifier.Run()
         {
-            throw new NotImplementedException();
+            Timer.OnStart();
         }
 
         void ICountDownNotifier.Unsubscribe()
         {
-            throw new NotImplementedException();
+            Timer.Start -= TimerStarted;
+            Timer.Tick -= TimerChanged;
+            Timer.End -= TimerEnded;
         }
     }
 }

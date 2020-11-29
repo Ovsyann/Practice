@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TimerTask
 {
-    interface ICountDownNotifier
+    public interface ICountDownNotifier
     {
-        void Init();
+       public void Init();
 
-        void Run();
+       public void Run();
 
-        void Unsubscribe();
+       public void Unsubscribe();
     }
 }
