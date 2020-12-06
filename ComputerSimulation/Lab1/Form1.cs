@@ -35,8 +35,8 @@ namespace Lab1
 
         private void Lab2CollectorTest(double[] randomVariables, int sampleSize, int subdivisionsAmount)
         {
-            List<double> listOfR = Lab2TestMethods.GetCollectionerCriterion(subdivisionsAmount, sampleSize, randomVariables);
-            Lab2PearsonTest(listOfR);
+            double Xi2 = Lab2TestMethods.GetCollector(subdivisionsAmount, sampleSize, randomVariables);
+            labelCollectorTest.Text = string.Format("Collector test Xi2 = {0}", Xi2);
         }
 
         private void Lab2KolmogorovTest(double[] randomVariables, int sampleSize)
@@ -68,8 +68,8 @@ namespace Lab1
         }
         void DrawFirstDiagram(double[] randomVariables)
         {
-           // chart1Histogram.ChartAreas[0].AxisY.Maximum=800;
             List<double> listOfRepetitions = DrawingPreparation(randomVariables);
+            listOfRepetitions[5] = 0;
             for(int i = 0; i < listOfRepetitions.Count; i++)
             {
                 chart1Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions[i]/1000);
@@ -93,7 +93,7 @@ namespace Lab1
             for(int i=0;i< generationMethod.numberOfSubdivisions; i++)
             {
                 hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
-                hitProbabilities[i] = hitCounts[i] / randomVariables.Length;
+                hitProbabilities[i] = subdivisionStep;
             }
 
             double Xi2;
@@ -102,25 +102,7 @@ namespace Lab1
             labelPearsonTest.Text = string.Format("Pearson test Xi2 = {0}",Xi2);
         }
 
-        void Lab2PearsonTest(List<double> randomVariables)
-        {
-            double subdivisionStep = (double)1 / generationMethod.numberOfSubdivisions;
-            double[] hitCounts = new double[generationMethod.numberOfSubdivisions];
-            double[] hitProbabilities = new double[generationMethod.numberOfSubdivisions];
-
-            ToScale(randomVariables, 1, 0);
-
-            for (int i = 0; i < generationMethod.numberOfSubdivisions; i++)
-            {
-                hitCounts[i] = randomVariables.Count(p => p >= i * subdivisionStep && p < (i + 1) * subdivisionStep);
-                hitProbabilities[i] = (double)1 / generationMethod.numberOfSubdivisions;
-            }
-
-            double Xi2;
-            Xi2 = Lab2TestMethods.PearsonMethod(hitCounts, hitProbabilities,
-                        generationMethod.numberOfSubdivisions, randomVariables.Count);
-            labelCollectorTest.Text = string.Format("Collector test Xi2 = {0}", Xi2);
-        }
+       
 
         private void ToScale(List<double> randomVariables, double newMax, double newMin)
         {
