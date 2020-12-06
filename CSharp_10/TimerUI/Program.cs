@@ -7,8 +7,8 @@ namespace TimerUI
 
     class Program
     {
-        string timerName;
-
+        private const string startMessageFormat = "[{0}]:Timer: {1} has started for {2} seconds";
+        private const string finiishMessageFormat = "[{0}]:Timer: {1} has finished";
 
         static void Main(string[] args)
         {
@@ -17,15 +17,29 @@ namespace TimerUI
             TimerEventArgs timerC = SetupTimer();
 
             ICountDownNotifier[] notifiers = GetNotifiers(timerA, timerB, timerC);
-            
-            foreach(ICountDownNotifier notifier in notifiers)
+
+            foreach (ICountDownNotifier notifier in notifiers)
             {
                 notifier.Init();
             }
 
-            ICountDownNotifier methodProcessor = Array.Find(notifiers, p => p as MethodProcessor != null);
-            methodProcessor.Run();
-            // Метод массива, который принимает делегат??
+            NotifyTicks<MethodProcessor>(notifiers);
+            NotifyTicks<DelegateProcessor>(notifiers);
+            NotifyTicks<LambdaProcessor>(notifiers);
+        }
+
+        private static void NotifyTicks<T>(ICountDownNotifier[] notifiers) where T: class
+        {
+            Array.Find(notifiers, p => (p as T) != null).Run();
+            Type methodProcessor = typeof(T);
+            Array.Find(notifiers, p => FindType(p, methodProcessor)).Unsubscribe();
+        }
+
+        private static bool FindType(ICountDownNotifier notifier , Type type)
+        {
+            Type a = notifier.GetType();
+
+            return a.Equals(type);
         }
 
         private static ICountDownNotifier[] GetNotifiers(
@@ -39,16 +53,21 @@ namespace TimerUI
 
         private static TimerEventArgs SetupTimer()
         {
+            Console.WriteLine("Input timer name");
             string timerName = Console.ReadLine();
-            int secondsAmount = InputInteger("input seconds amount for timer", "input positive integral number!", 0);
+
+            int min = 0;
+            int secondsAmount = InputInteger("input seconds amount for timer", "input positive integral number!", min);
+
             TimerEventArgs timer = new TimerEventArgs(timerName, secondsAmount);
+
             return timer;
         }
 
         private static void SayEnd(string taskName)
         {
             int realSeconds = DateTime.Now.Second;
-            Console.WriteLine("[{0}]:Timer: {1} has finished", realSeconds, taskName);
+            Console.WriteLine(finiishMessageFormat, realSeconds, taskName);
         }
 
         delegate void Starting(string name, int seconds);
@@ -56,7 +75,7 @@ namespace TimerUI
         public static void SayStart(string taskName, int secondsAmount)
         {
             int realSeconds = DateTime.Now.Second;
-            Console.WriteLine("[{0}]:Timer: {1} has started for {2} seconds", realSeconds, taskName, secondsAmount);
+            Console.WriteLine(startMessageFormat, realSeconds, taskName, secondsAmount);
         }
 
         private static int InputInteger(string inputMessage, string failMessage, int? min = null)
