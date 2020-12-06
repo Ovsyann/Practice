@@ -17,15 +17,20 @@ namespace TimerUI
             TimerEventArgs timerC = SetupTimer();
 
             ICountDownNotifier[] notifiers = GetNotifiers(timerA, timerB, timerC);
-            
-            foreach(ICountDownNotifier notifier in notifiers)
+
+            foreach (ICountDownNotifier notifier in notifiers)
             {
                 notifier.Init();
             }
 
+            Process(notifiers);
+        }
+
+        private static void Process(ICountDownNotifier[] notifiers)
+        {
             ICountDownNotifier methodProcessor = Array.Find(notifiers, p => p as MethodProcessor != null);
             methodProcessor.Run();
-            // Метод массива, который принимает делегат??
+            methodProcessor.Unsubscribe();
         }
 
         private static ICountDownNotifier[] GetNotifiers(

@@ -69,6 +69,7 @@ namespace Lab1
         void DrawFirstDiagram(double[] randomVariables)
         {
             List<double> listOfRepetitions = DrawingPreparation(randomVariables);
+            listOfRepetitions[5] = 0;
             for(int i = 0; i < listOfRepetitions.Count; i++)
             {
                 chart1Histogram.Series[0].Points.AddXY(i + 1, listOfRepetitions[i]/1000);
