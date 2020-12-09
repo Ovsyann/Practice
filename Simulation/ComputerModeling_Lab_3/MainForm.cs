@@ -96,14 +96,14 @@ namespace Lab3
 
             for(int i = 0; i < listOfRepetitions.Count; i++)
             {
-                scaledRepetitions[i] = (double)listOfRepetitions[i] / SampleSize * IntervalsCount;
+                scaledRepetitions[i] = (double)listOfRepetitions[i] / SampleSize / 10 * IntervalsCount;
             }
 
             for (int i = 0; i < scaledRepetitions.Length; i++)
             {
                 double asix = intervalValue + step / 2;
                 chart1Histogram.Series[0].Points.AddXY(asix, scaledRepetitions[i]);
-                chart1Histogram.Series[1].Points.AddXY(asix, Distribution.GetDistributionDensity(asix)*10);
+                chart1Histogram.Series[1].Points.AddXY(asix, Distribution.GetDistributionDensity(asix));
                 intervalValue += step;
             }
         }
@@ -112,14 +112,21 @@ namespace Lab3
             List<int> listOfRepetitions = DrawingPreparation(randomVariables);
             double[] scaledRepetitions = new double[listOfRepetitions.Count];
 
+            double step = randomVariables.Max() / IntervalsCount;
+            double intervalValue = 0;
+
             for (int i = 0; i < listOfRepetitions.Count; i++)
             {
-                scaledRepetitions[i] = (double)listOfRepetitions[i] / SampleSize * IntervalsCount;
+                scaledRepetitions[i] = (double)listOfRepetitions[i] / SampleSize;
             }
 
+            double sum = 0;
             for (int i = 0; i < scaledRepetitions.Length; i++)
             {
+                double asix = intervalValue + step / 2;
+                
                 chart2Histogram.Series[0].Points.AddXY(i + 1, scaledRepetitions.Take(i + 1).Sum());
+                intervalValue += step;
             }
         }
     }
