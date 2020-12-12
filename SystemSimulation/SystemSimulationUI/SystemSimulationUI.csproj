@@ -80,5 +80,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceSimulation\DeviceSimulation.csproj">
+      <Project>{fe0ee252-3562-4ca7-ab4b-fe8441a3a3b0}</Project>
+      <Name>DeviceSimulation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

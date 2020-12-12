@@ -30,18 +30,19 @@ namespace SystemSimulationUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartElementsLife = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelAverageResurrectTime = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.labelDeviceState = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartElementsLife)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,49 +50,54 @@ namespace SystemSimulationUI
             // 
             this.chartElementsLife.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            chartArea3.Name = "ChartArea1";
-            this.chartElementsLife.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartElementsLife.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartElementsLife.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartElementsLife.Legends.Add(legend1);
             this.chartElementsLife.Location = new System.Drawing.Point(9, 9);
             this.chartElementsLife.Margin = new System.Windows.Forms.Padding(0);
             this.chartElementsLife.Name = "chartElementsLife";
             this.chartElementsLife.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series11.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            series11.Legend = "Legend1";
-            series11.LegendText = "Элемент1";
-            series11.Name = "Series1";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series12.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            series12.Legend = "Legend1";
-            series12.LegendText = "Элемент2";
-            series12.Name = "Series2";
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series13.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series13.Legend = "Legend1";
-            series13.LegendText = "Элемент3";
-            series13.Name = "Series3";
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series14.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series14.Legend = "Legend1";
-            series14.LegendText = "Элемент4";
-            series14.Name = "Series4";
-            series15.ChartArea = "ChartArea1";
-            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series15.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            series15.Legend = "Legend1";
-            series15.LegendText = "Элемент5";
-            series15.Name = "Series5";
-            this.chartElementsLife.Series.Add(series11);
-            this.chartElementsLife.Series.Add(series12);
-            this.chartElementsLife.Series.Add(series13);
-            this.chartElementsLife.Series.Add(series14);
-            this.chartElementsLife.Series.Add(series15);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Legend = "Legend1";
+            series1.LegendText = "Элемент1";
+            series1.Name = "Series1";
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series2.Legend = "Legend1";
+            series2.LegendText = "Элемент2";
+            series2.Name = "Series2";
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series3.Legend = "Legend1";
+            series3.LegendText = "Элемент3";
+            series3.Name = "Series3";
+            series4.BorderWidth = 3;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series4.Legend = "Legend1";
+            series4.LegendText = "Элемент4";
+            series4.Name = "Series4";
+            series5.BorderWidth = 3;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            series5.Legend = "Legend1";
+            series5.LegendText = "Элемент5";
+            series5.Name = "Series5";
+            this.chartElementsLife.Series.Add(series1);
+            this.chartElementsLife.Series.Add(series2);
+            this.chartElementsLife.Series.Add(series3);
+            this.chartElementsLife.Series.Add(series4);
+            this.chartElementsLife.Series.Add(series5);
             this.chartElementsLife.Size = new System.Drawing.Size(668, 426);
             this.chartElementsLife.TabIndex = 0;
             this.chartElementsLife.Text = "chart1";
@@ -129,11 +135,21 @@ namespace SystemSimulationUI
             // 
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
+            // labelDeviceState
+            // 
+            this.labelDeviceState.AutoSize = true;
+            this.labelDeviceState.Location = new System.Drawing.Point(686, 143);
+            this.labelDeviceState.Name = "labelDeviceState";
+            this.labelDeviceState.Size = new System.Drawing.Size(60, 13);
+            this.labelDeviceState.TabIndex = 4;
+            this.labelDeviceState.Text = "состояние";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 450);
+            this.Controls.Add(this.labelDeviceState);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.labelAverageResurrectTime);
@@ -154,6 +170,7 @@ namespace SystemSimulationUI
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label labelDeviceState;
     }
 }
 
