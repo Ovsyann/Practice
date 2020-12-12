@@ -36,7 +36,7 @@ namespace SystemSimulationUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer.Interval = 500;
+            timer.Interval = 1000;
             ConfigureChart();
         }
 
@@ -53,7 +53,7 @@ namespace SystemSimulationUI
         //обновляет график
         private void UpdateChart()
         {
-            positionX += 0.5;
+            positionX += 1;
 
             ElementState[] elementStates = device.ElementStates;
             for (int i = 0; i < elementStates.Length; i++)
