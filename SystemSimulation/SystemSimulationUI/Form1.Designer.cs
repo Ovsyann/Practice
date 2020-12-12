@@ -37,6 +37,7 @@ namespace SystemSimulationUI
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartElementsLife = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelAverageResurrectTime = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
@@ -93,11 +94,19 @@ namespace SystemSimulationUI
             series5.Legend = "Legend1";
             series5.LegendText = "Элемент5";
             series5.Name = "Series5";
+            series6.BorderWidth = 4;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series6.Legend = "Legend1";
+            series6.LegendText = "Устройство";
+            series6.Name = "Series6";
+            series6.ShadowColor = System.Drawing.Color.Blue;
             this.chartElementsLife.Series.Add(series1);
             this.chartElementsLife.Series.Add(series2);
             this.chartElementsLife.Series.Add(series3);
             this.chartElementsLife.Series.Add(series4);
             this.chartElementsLife.Series.Add(series5);
+            this.chartElementsLife.Series.Add(series6);
             this.chartElementsLife.Size = new System.Drawing.Size(668, 426);
             this.chartElementsLife.TabIndex = 0;
             this.chartElementsLife.Text = "chart1";

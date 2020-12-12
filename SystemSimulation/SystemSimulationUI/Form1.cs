@@ -61,8 +61,11 @@ namespace SystemSimulationUI
                 //рисовать графики в зависимсти от состояния элемента
                 double positionY = elementStates[i] == ElementState.Works ? (i + 1) * 2 : (i + 1) * 2 - 1;
                 UpdateSeries(i, positionX, positionY);//добавить точки графиков
-                
             }
+
+            Series series = chartElementsLife.Series[5];
+            double deviceY = device.IsTheDeviceWorking ? 12 : 11;
+            series.Points.AddXY(positionX, deviceY);
 
             if (positionX > 20)
             {
