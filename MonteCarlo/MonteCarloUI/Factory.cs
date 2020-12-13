@@ -14,17 +14,20 @@ namespace MonteCarloUI
         const double thirdP = 0.9;
         const double qcdP = 0.95;
 
-        static Random random = new Random();
         public static double probabilityA;
         public static double probabilityB;
         public static double probabilityC;
-        static double findAmount = 0;
+        public static double confidenceIntervalA;
+        public static double confidenceIntervalB;
+        public static double confidenceIntervalC;
+        static double findAmount;
         static int workshopFindAmount = 0;
         static int qcpFindAmount = 0;
+        static Random random = new Random();
 
-        static public void ControlQuality(int exparimentsAmount)
+        static public void ControlQuality(int detailssAmount)
         {
-            for(int i = 0; i < exparimentsAmount; i++)
+            for(int i = 0; i < detailssAmount; i++)
             {
                 double p = random.NextDouble();
 
@@ -44,7 +47,7 @@ namespace MonteCarloUI
                 }
             }
 
-            FindProbabilities(exparimentsAmount);
+            FindProbabilities(detailssAmount);
         }
 
         static private void ControlByController(double controllerP)
@@ -70,11 +73,13 @@ namespace MonteCarloUI
             }
         }
 
-        static private void FindProbabilities(int exparimentsAmount)
+        static private void FindProbabilities(int detailsAmount)
         {
-            probabilityB = (double)workshopFindAmount / exparimentsAmount;
-            probabilityC = (double)qcpFindAmount / exparimentsAmount;
+            probabilityB = (double)workshopFindAmount / detailsAmount;
+            probabilityC = (double)qcpFindAmount / detailsAmount;
             probabilityA = probabilityB + probabilityC;
+            workshopFindAmount = 0;
+            qcpFindAmount = 0;
         }
     }
 }
