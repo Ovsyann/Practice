@@ -14,7 +14,7 @@ namespace OneDimRandomWalk
     {
         double leftXBorder;
         double rightXBorder;
-        double intervalsCount = 80;
+        double intervalsCount = 16;
 
         public Form1()
         {
@@ -65,7 +65,7 @@ namespace OneDimRandomWalk
 
             for (int i = 0; i < listOfRepetitions.Count; i++)
             {
-                scaledRepetitions[i] = (double)listOfRepetitions[i] / randomValues.Length / 10 * intervalsCount;
+                scaledRepetitions[i] = (double)listOfRepetitions[i] / randomValues.Length * intervalsCount;
             }
 
             for (int i = 0; i < scaledRepetitions.Length; i++)

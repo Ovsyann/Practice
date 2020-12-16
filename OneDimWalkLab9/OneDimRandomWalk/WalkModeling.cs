@@ -13,7 +13,7 @@ namespace OneDimRandomWalk
         static int stepsCount = 10;
         
         static Random random = new Random();
-        private static int circlesCount = 3000;
+        private static int circlesCount = 570;
 
         public static double[] Calculate()
         {

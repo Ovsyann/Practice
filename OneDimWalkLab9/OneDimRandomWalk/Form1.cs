@@ -14,8 +14,10 @@ namespace OneDimRandomWalk
     {
         double leftXBorder;
         double rightXBorder;
-        double intervalsCount = 80;
-        int ExperimentsCount = 500;
+        double intervalsCount = 16;
+        //int ExperimentsCount = 500;
+        double d = 0.001;
+        double tb = 1.96;
 
         public Form1()
         {
@@ -31,10 +33,9 @@ namespace OneDimRandomWalk
 
             double mx = StatisticData.CalculateMathExpectation(randomValues);
             double dx = StatisticData.CalculateDispersoin(randomValues, mx);
-            double N = 1.96 * dx / 0.001;
-            label3.Text = "Mx = " + mx;
-            label4.Text = "dx = " + dx;
-            label5.Text = "N = " + N;
+            double N = tb * tb * dx * dx / (d * d);
+
+            label5.Text = $"Оптимальный объем выборки = {N}";
             // GetAverageDistances();
 
             ConstructFrequencyHistogram(randomValues);
@@ -65,18 +66,18 @@ namespace OneDimRandomWalk
         //    label5.Text = "N = " + N;
         //}
 
-        private double ShowSquaredDispersion(double[] averageDistances, double expectation)
-        {
-            double dispersion = StatisticData.CalculateDispersoin(averageDistances, expectation);
-            double squareDispersion = dispersion / Math.Sqrt(ExperimentsCount);
-            return squareDispersion;
-        }
+        //private double ShowSquaredDispersion(double[] averageDistances, double expectation)
+        //{
+        //    double dispersion = StatisticData.CalculateDispersoin(averageDistances, expectation);
+        //    double squareDispersion = dispersion / Math.Sqrt(ExperimentsCount);
+        //    return squareDispersion;
+        //}
 
-        private double ShowMathExpectation(double[] averageDistances)
-        {
-            double mx = StatisticData.CalculateMathExpectation(averageDistances);
-            return mx;
-        }
+        //private double ShowMathExpectation(double[] averageDistances)
+        //{
+        //    double mx = StatisticData.CalculateMathExpectation(averageDistances);
+        //    return mx;
+        //}
 
         List<int> DrawingPreparation(double[] randomVariables)
         {
@@ -103,7 +104,7 @@ namespace OneDimRandomWalk
 
             for (int i = 0; i < listOfRepetitions.Count; i++)
             {
-                scaledRepetitions[i] = (double)listOfRepetitions[i] / randomValues.Length / 10 * intervalsCount;
+                scaledRepetitions[i] = (double)listOfRepetitions[i] * intervalsCount / randomValues.Length;
             }
 
             for (int i = 0; i < scaledRepetitions.Length; i++)
