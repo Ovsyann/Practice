@@ -14,9 +14,9 @@ namespace OneDimRandomWalk
     {
         double leftXBorder;
         double rightXBorder;
-        double intervalsCount = 16;
+        double intervalsCount = 30;
         //int ExperimentsCount = 500;
-        double d = 0.001;
+        double d = 0.01;
         double tb = 1.96;
 
         public Form1()
@@ -33,7 +33,7 @@ namespace OneDimRandomWalk
 
             double mx = StatisticData.CalculateMathExpectation(randomValues);
             double dx = StatisticData.CalculateDispersoin(randomValues, mx);
-            double N = tb * tb * dx * dx / (d * d);
+            double N = tb * tb * dx  / (d * d);
 
             label5.Text = $"Оптимальный объем выборки = {N}";
             // GetAverageDistances();
@@ -45,8 +45,8 @@ namespace OneDimRandomWalk
             double kolmogorovCriterionLambdaValue = KolmogorovCriterion.GetLambda(randomValues);
             double kolmogorovCriterionValue = KolmogorovCriterion.Calculate(randomValues, randomValues.Length);
             label1.Text = "средняя дистанция = " + averageDistance;
-            label2.Text = $"Лямбда по критерию Колмогорова равна {Math.Round(kolmogorovCriterionLambdaValue, 3)}; \nОценка генератора " +
-                $"случайных чисел равна {kolmogorovCriterionValue}";
+            //label2.Text = $"Лямбда по критерию Колмогорова равна {Math.Round(kolmogorovCriterionLambdaValue, 3)}; \nОценка генератора " +
+            //    $"случайных чисел равна {kolmogorovCriterionValue}";
         }
 
         //private void GetAverageDistances()

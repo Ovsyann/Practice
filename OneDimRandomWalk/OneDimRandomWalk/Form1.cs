@@ -36,8 +36,8 @@ namespace OneDimRandomWalk
             //вычисление критерия Колмагорова
             double kolmogorovCriterionLambdaValue = KolmogorovCriterion.GetLambda(randomValues);
             double kolmogorovCriterionValue = KolmogorovCriterion.Calculate(randomValues, randomValues.Length);
-            label2.Text = $"Лямбда по критерию Колмогорова равна {Math.Round(kolmogorovCriterionLambdaValue, 3)}; \nОценка генератора " +
-                $"случайных чисел равна {kolmogorovCriterionValue}";
+            //label2.Text = $"Лямбда по критерию Колмогорова равна {Math.Round(kolmogorovCriterionLambdaValue, 3)}; \nОценка генератора " +
+            //    $"случайных чисел равна {kolmogorovCriterionValue}";
         }
 
         List<int> DrawingPreparation(double[] randomVariables)

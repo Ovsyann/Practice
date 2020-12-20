@@ -60,29 +60,38 @@ namespace OneDimRandomWalk
 
         private static double DoStep(Random random, double x, bool direction)
         {
+            double a = 0;
+            for(int j = 0; j < 100; j++)
+            {
+                a += Math.Exp(-j);
+            }
+
+            int i = 0;
+            double p = 0;
             double r = random.NextDouble();
-            double r1 = random.NextDouble();
             if (direction)
             {
-                if (r < Math.Exp(r1))
+                while (r > p)
                 {
-                    x += r1;
+                    i++;
+                    double tmp = Math.Exp(-i);
+                    double tmp2 = 2 * a * tmp;
+                    p += tmp2;
                 }
-                else
-                {
-                    x++;
-                }
+
+                x += i;
             }
             else
             {
-                if (r < Math.Exp(r1))
+                while (r > p)
                 {
-                    x -= r1;
+                    i++;
+                    double tmp = Math.Exp(-i);
+                    double tmp2 = 2 * a * tmp;
+                    p += tmp2;
                 }
-                else
-                {
-                    x--;
-                }
+
+                x += -i;
             }
 
             return x;

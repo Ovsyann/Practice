@@ -13,7 +13,7 @@ namespace OneDimRandomWalk
         static int stepsCount = 10;
         
         static Random random = new Random();
-        private static int circlesCount = 570;
+        private static int circlesCount = 100;
 
         public static double[] Calculate()
         {
@@ -60,30 +60,38 @@ namespace OneDimRandomWalk
 
         private static double DoStep(Random random, double x, bool direction)
         {
+            int i = 0;
+            double p = 0;
+            double a = 0;
+            for(int j = 0; j < 10; j++)
+            {
+                a += Math.Exp(-j);
+            }
+
             double r = random.NextDouble();
-            double r1 = random.NextDouble();
             if (direction)
             {
-                if (r < Math.Exp(r1))
+                i = 0;
+                while (r > p)
                 {
-                    x += r1;
+                    i++;
+                    p += 1/a * Math.Exp(-i);
                 }
-                else
-                {
-                    x++;
-                }
+
+                x += i;
             }
             else
             {
-                if (r < Math.Exp(r1))
+                i = 0;
+                while (r > p)
                 {
-                    x -= r1;
+                    i++;
+                    p += 1/a * Math.Exp(-i);
                 }
-                else
-                {
-                    x--;
-                }
+
+                x += -i;
             }
+
 
             return x;
         }
