@@ -1,7 +1,7 @@
 ﻿
 namespace StudentTestResultsBrowser
 {
-    partial class Form1
+    partial class FormStudentTestsBrowser
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@ namespace StudentTestResultsBrowser
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStudentTestsBrowser));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.itemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemOpenTestResults = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,7 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelFilterConditions = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonApplyFilter = new System.Windows.Forms.Button();
             this.buttonAddToFiltersList = new System.Windows.Forms.Button();
             this.buttonAddCondition = new System.Windows.Forms.Button();
@@ -64,15 +64,15 @@ namespace StudentTestResultsBrowser
             this.labelThenBy = new System.Windows.Forms.Label();
             this.labelOrderBy = new System.Windows.Forms.Label();
             this.groupBoxLimit = new System.Windows.Forms.GroupBox();
+            this.labelItems = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBoxOnlyTake = new System.Windows.Forms.CheckBox();
             this.groupBoxFiltersList = new System.Windows.Forms.GroupBox();
-            this.listBoxFilters = new System.Windows.Forms.ListBox();
-            this.btnClearList = new System.Windows.Forms.Button();
-            this.btnOpenFilters = new System.Windows.Forms.Button();
-            this.btnApplyFilters = new System.Windows.Forms.Button();
             this.btnSaveFilters = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.labelItems = new System.Windows.Forms.Label();
+            this.btnApplyFilters = new System.Windows.Forms.Button();
+            this.btnOpenFilters = new System.Windows.Forms.Button();
+            this.btnClearList = new System.Windows.Forms.Button();
+            this.listBoxFilters = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,8 +83,8 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBoxSort.SuspendLayout();
             this.groupBoxLimit.SuspendLayout();
-            this.groupBoxFiltersList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBoxFiltersList.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -97,7 +97,7 @@ namespace StudentTestResultsBrowser
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(869, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(943, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -117,27 +117,28 @@ namespace StudentTestResultsBrowser
             this.itemOpenTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemOpenTestResults.Image")));
             this.itemOpenTestResults.Name = "itemOpenTestResults";
             this.itemOpenTestResults.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.itemOpenTestResults.Size = new System.Drawing.Size(205, 22);
+            this.itemOpenTestResults.Size = new System.Drawing.Size(209, 26);
             this.itemOpenTestResults.Text = "Open test results";
             // 
             // itemSaveTestResults
             // 
             this.itemSaveTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemSaveTestResults.Image")));
             this.itemSaveTestResults.Name = "itemSaveTestResults";
-            this.itemSaveTestResults.Size = new System.Drawing.Size(205, 22);
+            this.itemSaveTestResults.Size = new System.Drawing.Size(209, 26);
             this.itemSaveTestResults.Text = "Save test results";
             // 
             // itemClearTestReaults
             // 
             this.itemClearTestReaults.Name = "itemClearTestReaults";
-            this.itemClearTestReaults.Size = new System.Drawing.Size(205, 22);
+            this.itemClearTestReaults.Size = new System.Drawing.Size(209, 26);
             this.itemClearTestReaults.Text = "Clear test results";
             // 
             // itemExit
             // 
             this.itemExit.Name = "itemExit";
-            this.itemExit.Size = new System.Drawing.Size(205, 22);
+            this.itemExit.Size = new System.Drawing.Size(209, 26);
             this.itemExit.Text = "Exit";
+            this.itemExit.Click += new System.EventHandler(this.itemExit_Click);
             // 
             // itemEdit
             // 
@@ -199,7 +200,7 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.61925F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.38075F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(869, 465);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(943, 465);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // dataGridView1
@@ -211,44 +212,44 @@ namespace StudentTestResultsBrowser
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(602, 315);
+            this.dataGridView1.Size = new System.Drawing.Size(654, 315);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBoxFilter
             // 
             this.groupBoxFilter.AutoSize = true;
-            this.groupBoxFilter.Controls.Add(this.flowLayoutPanel1);
+            this.groupBoxFilter.Controls.Add(this.flowLayoutPanelFilterConditions);
             this.groupBoxFilter.Controls.Add(this.buttonApplyFilter);
             this.groupBoxFilter.Controls.Add(this.buttonAddToFiltersList);
             this.groupBoxFilter.Controls.Add(this.buttonAddCondition);
             this.groupBoxFilter.Controls.Add(this.buttonClearConditions);
             this.groupBoxFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxFilter.Location = new System.Drawing.Point(611, 2);
+            this.groupBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxFilter.Location = new System.Drawing.Point(663, 2);
             this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxFilter.MinimumSize = new System.Drawing.Size(191, 315);
             this.groupBoxFilter.Name = "groupBoxFilter";
             this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFilter.Size = new System.Drawing.Size(255, 315);
+            this.groupBoxFilter.Size = new System.Drawing.Size(277, 315);
             this.groupBoxFilter.TabIndex = 1;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filter";
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelFilterConditions
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flowLayoutPanelFilterConditions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 45);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(253, 207);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanelFilterConditions.Location = new System.Drawing.Point(2, 45);
+            this.flowLayoutPanelFilterConditions.Name = "flowLayoutPanelFilterConditions";
+            this.flowLayoutPanelFilterConditions.Size = new System.Drawing.Size(275, 207);
+            this.flowLayoutPanelFilterConditions.TabIndex = 4;
             // 
             // buttonApplyFilter
             // 
             this.buttonApplyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonApplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonApplyFilter.Location = new System.Drawing.Point(159, 257);
+            this.buttonApplyFilter.Location = new System.Drawing.Point(181, 257);
             this.buttonApplyFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonApplyFilter.Name = "buttonApplyFilter";
             this.buttonApplyFilter.Size = new System.Drawing.Size(92, 22);
@@ -272,7 +273,7 @@ namespace StudentTestResultsBrowser
             // 
             this.buttonAddCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonAddCondition.Location = new System.Drawing.Point(159, 18);
+            this.buttonAddCondition.Location = new System.Drawing.Point(181, 18);
             this.buttonAddCondition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAddCondition.Name = "buttonAddCondition";
             this.buttonAddCondition.Size = new System.Drawing.Size(92, 22);
@@ -295,12 +296,12 @@ namespace StudentTestResultsBrowser
             // 
             this.groupBoxFilterConditions.Controls.Add(this.dataGridView2);
             this.groupBoxFilterConditions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxFilterConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxFilterConditions.Location = new System.Drawing.Point(611, 321);
+            this.groupBoxFilterConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxFilterConditions.Location = new System.Drawing.Point(663, 321);
             this.groupBoxFilterConditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxFilterConditions.Name = "groupBoxFilterConditions";
             this.groupBoxFilterConditions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFilterConditions.Size = new System.Drawing.Size(255, 142);
+            this.groupBoxFilterConditions.Size = new System.Drawing.Size(277, 142);
             this.groupBoxFilterConditions.TabIndex = 2;
             this.groupBoxFilterConditions.TabStop = false;
             this.groupBoxFilterConditions.Text = "Filter conditions";
@@ -309,10 +310,10 @@ namespace StudentTestResultsBrowser
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 13);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 15);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(249, 127);
+            this.dataGridView2.Size = new System.Drawing.Size(271, 125);
             this.dataGridView2.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -329,7 +330,7 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(602, 142);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(654, 142);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -359,7 +360,7 @@ namespace StudentTestResultsBrowser
             this.groupBoxSort.Controls.Add(this.labelThenBy);
             this.groupBoxSort.Controls.Add(this.labelOrderBy);
             this.groupBoxSort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxSort.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBoxSort.Location = new System.Drawing.Point(3, 2);
             this.groupBoxSort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxSort.MinimumSize = new System.Drawing.Size(243, 80);
@@ -428,7 +429,7 @@ namespace StudentTestResultsBrowser
             this.comboBox2.Location = new System.Drawing.Point(133, 33);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(105, 20);
+            this.comboBox2.Size = new System.Drawing.Size(105, 21);
             this.comboBox2.TabIndex = 3;
             // 
             // comboBox1
@@ -437,7 +438,7 @@ namespace StudentTestResultsBrowser
             this.comboBox1.Location = new System.Drawing.Point(2, 33);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(105, 20);
+            this.comboBox1.Size = new System.Drawing.Size(105, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // labelThenBy
@@ -466,7 +467,7 @@ namespace StudentTestResultsBrowser
             this.groupBoxLimit.Controls.Add(this.numericUpDown1);
             this.groupBoxLimit.Controls.Add(this.checkBoxOnlyTake);
             this.groupBoxLimit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBoxLimit.Location = new System.Drawing.Point(3, 98);
             this.groupBoxLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxLimit.MinimumSize = new System.Drawing.Size(243, 33);
@@ -476,6 +477,25 @@ namespace StudentTestResultsBrowser
             this.groupBoxLimit.TabIndex = 1;
             this.groupBoxLimit.TabStop = false;
             this.groupBoxLimit.Text = "Limit";
+            // 
+            // labelItems
+            // 
+            this.labelItems.AutoSize = true;
+            this.labelItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelItems.Location = new System.Drawing.Point(130, 17);
+            this.labelItems.Name = "labelItems";
+            this.labelItems.Size = new System.Drawing.Size(31, 13);
+            this.labelItems.TabIndex = 2;
+            this.labelItems.Text = "items";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.AutoSize = true;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown1.Location = new System.Drawing.Point(83, 13);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown1.TabIndex = 1;
             // 
             // checkBoxOnlyTake
             // 
@@ -497,37 +517,38 @@ namespace StudentTestResultsBrowser
             this.groupBoxFiltersList.Controls.Add(this.btnClearList);
             this.groupBoxFiltersList.Controls.Add(this.listBoxFilters);
             this.groupBoxFiltersList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxFiltersList.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxFiltersList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBoxFiltersList.Location = new System.Drawing.Point(258, 2);
             this.groupBoxFiltersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxFiltersList.MinimumSize = new System.Drawing.Size(190, 138);
             this.groupBoxFiltersList.Name = "groupBoxFiltersList";
             this.groupBoxFiltersList.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFiltersList.Size = new System.Drawing.Size(341, 138);
+            this.groupBoxFiltersList.Size = new System.Drawing.Size(393, 138);
             this.groupBoxFiltersList.TabIndex = 1;
             this.groupBoxFiltersList.TabStop = false;
             this.groupBoxFiltersList.Text = "Filters list";
             // 
-            // listBoxFilters
+            // btnSaveFilters
             // 
-            this.listBoxFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listBoxFilters.FormattingEnabled = true;
-            this.listBoxFilters.ItemHeight = 12;
-            this.listBoxFilters.Location = new System.Drawing.Point(3, 14);
-            this.listBoxFilters.Name = "listBoxFilters";
-            this.listBoxFilters.Size = new System.Drawing.Size(335, 64);
-            this.listBoxFilters.TabIndex = 0;
+            this.btnSaveFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveFilters.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSaveFilters.Location = new System.Drawing.Point(315, 109);
+            this.btnSaveFilters.Name = "btnSaveFilters";
+            this.btnSaveFilters.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveFilters.TabIndex = 4;
+            this.btnSaveFilters.Text = "Save filters";
+            this.btnSaveFilters.UseVisualStyleBackColor = true;
             // 
-            // btnClearList
+            // btnApplyFilters
             // 
-            this.btnClearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClearList.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClearList.Location = new System.Drawing.Point(3, 83);
-            this.btnClearList.Name = "btnClearList";
-            this.btnClearList.Size = new System.Drawing.Size(75, 23);
-            this.btnClearList.TabIndex = 1;
-            this.btnClearList.Text = "Clear list";
-            this.btnClearList.UseVisualStyleBackColor = true;
+            this.btnApplyFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyFilters.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnApplyFilters.Location = new System.Drawing.Point(315, 83);
+            this.btnApplyFilters.Name = "btnApplyFilters";
+            this.btnApplyFilters.Size = new System.Drawing.Size(75, 23);
+            this.btnApplyFilters.TabIndex = 3;
+            this.btnApplyFilters.Text = "Apply";
+            this.btnApplyFilters.UseVisualStyleBackColor = true;
             // 
             // btnOpenFilters
             // 
@@ -540,58 +561,37 @@ namespace StudentTestResultsBrowser
             this.btnOpenFilters.Text = "Open filters";
             this.btnOpenFilters.UseVisualStyleBackColor = true;
             // 
-            // btnApplyFilters
+            // btnClearList
             // 
-            this.btnApplyFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApplyFilters.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnApplyFilters.Location = new System.Drawing.Point(263, 83);
-            this.btnApplyFilters.Name = "btnApplyFilters";
-            this.btnApplyFilters.Size = new System.Drawing.Size(75, 23);
-            this.btnApplyFilters.TabIndex = 3;
-            this.btnApplyFilters.Text = "Apply";
-            this.btnApplyFilters.UseVisualStyleBackColor = true;
+            this.btnClearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClearList.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClearList.Location = new System.Drawing.Point(3, 83);
+            this.btnClearList.Name = "btnClearList";
+            this.btnClearList.Size = new System.Drawing.Size(75, 23);
+            this.btnClearList.TabIndex = 1;
+            this.btnClearList.Text = "Clear list";
+            this.btnClearList.UseVisualStyleBackColor = true;
             // 
-            // btnSaveFilters
+            // listBoxFilters
             // 
-            this.btnSaveFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveFilters.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSaveFilters.Location = new System.Drawing.Point(263, 109);
-            this.btnSaveFilters.Name = "btnSaveFilters";
-            this.btnSaveFilters.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveFilters.TabIndex = 4;
-            this.btnSaveFilters.Text = "Save filters";
-            this.btnSaveFilters.UseVisualStyleBackColor = true;
+            this.listBoxFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxFilters.FormattingEnabled = true;
+            this.listBoxFilters.Location = new System.Drawing.Point(3, 15);
+            this.listBoxFilters.Name = "listBoxFilters";
+            this.listBoxFilters.Size = new System.Drawing.Size(387, 69);
+            this.listBoxFilters.TabIndex = 0;
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.AutoSize = true;
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown1.Location = new System.Drawing.Point(83, 13);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDown1.TabIndex = 1;
-            // 
-            // labelItems
-            // 
-            this.labelItems.AutoSize = true;
-            this.labelItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelItems.Location = new System.Drawing.Point(130, 17);
-            this.labelItems.Name = "labelItems";
-            this.labelItems.Size = new System.Drawing.Size(31, 13);
-            this.labelItems.TabIndex = 2;
-            this.labelItems.Text = "items";
-            // 
-            // Form1
+            // FormStudentTestsBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 489);
+            this.ClientSize = new System.Drawing.Size(943, 489);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormStudentTestsBrowser";
+            this.Text = "Students tests browser";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -606,8 +606,8 @@ namespace StudentTestResultsBrowser
             this.groupBoxSort.PerformLayout();
             this.groupBoxLimit.ResumeLayout(false);
             this.groupBoxLimit.PerformLayout();
-            this.groupBoxFiltersList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBoxFiltersList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -648,7 +648,7 @@ namespace StudentTestResultsBrowser
         private System.Windows.Forms.GroupBox groupBoxLimit;
         private System.Windows.Forms.CheckBox checkBoxOnlyTake;
         private System.Windows.Forms.GroupBox groupBoxFiltersList;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFilterConditions;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label labelItems;
         private System.Windows.Forms.NumericUpDown numericUpDown1;

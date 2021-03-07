@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace StudentTestResultsBrowser
 {
-    public partial class Form1 : Form
+    public partial class FormStudentTestsBrowser : Form
     {
-        public Form1()
+        public FormStudentTestsBrowser()
         {
             InitializeComponent();
         }
 
-
+        private void itemExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
