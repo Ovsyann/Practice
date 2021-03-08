@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CSharp12D\DynamicLinqExpressions\DynamicLinqExpressions.csproj" />
-    <ProjectReference Include="..\..\..\LINQ_PartA\BinarySearchTreeTask\BinarySearchTreeTask.csproj" />
+    <ProjectReference Include="..\BinarySearchTreeTask\BinarySearchTreeTask.csproj" />
+    <ProjectReference Include="..\DynamicLinqExpressions\DynamicLinqExpressions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
