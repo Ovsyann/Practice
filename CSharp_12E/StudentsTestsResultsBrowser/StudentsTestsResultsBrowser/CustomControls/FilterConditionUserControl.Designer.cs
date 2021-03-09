@@ -1,0 +1,165 @@
+﻿
+namespace StudentsTestsResultsBrowser.CustomControls
+{
+    partial class FilterConditionUserControl
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.labelProperty = new System.Windows.Forms.Label();
+            this.labelOperations = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.labelValueA = new System.Windows.Forms.Label();
+            this.labelValueB = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // labelProperty
+            // 
+            this.labelProperty.AutoSize = true;
+            this.labelProperty.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelProperty.Location = new System.Drawing.Point(3, 11);
+            this.labelProperty.Name = "labelProperty";
+            this.labelProperty.Size = new System.Drawing.Size(100, 13);
+            this.labelProperty.TabIndex = 0;
+            this.labelProperty.Text = "Property";
+            // 
+            // labelOperations
+            // 
+            this.labelOperations.AutoSize = true;
+            this.labelOperations.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelOperations.Location = new System.Drawing.Point(109, 11);
+            this.labelOperations.Name = "labelOperations";
+            this.labelOperations.Size = new System.Drawing.Size(101, 13);
+            this.labelOperations.TabIndex = 1;
+            this.labelOperations.Text = "Operations";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(3, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(109, 27);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(101, 21);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(3, 75);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(110, 75);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 5;
+            // 
+            // labelValueA
+            // 
+            this.labelValueA.AutoSize = true;
+            this.labelValueA.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelValueA.Location = new System.Drawing.Point(3, 59);
+            this.labelValueA.Name = "labelValueA";
+            this.labelValueA.Size = new System.Drawing.Size(100, 13);
+            this.labelValueA.TabIndex = 6;
+            this.labelValueA.Text = "Value A";
+            // 
+            // labelValueB
+            // 
+            this.labelValueB.AutoSize = true;
+            this.labelValueB.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelValueB.Location = new System.Drawing.Point(109, 59);
+            this.labelValueB.Name = "labelValueB";
+            this.labelValueB.Size = new System.Drawing.Size(101, 13);
+            this.labelValueB.TabIndex = 7;
+            this.labelValueB.Text = "Value B";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.labelProperty, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.labelValueA, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.labelValueB, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labelOperations, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox2, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(213, 98);
+            this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // FilterConditionUserControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "FilterConditionUserControl";
+            this.Size = new System.Drawing.Size(213, 98);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label labelProperty;
+        private System.Windows.Forms.Label labelOperations;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label labelValueA;
+        private System.Windows.Forms.Label labelValueB;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+    }
+}
