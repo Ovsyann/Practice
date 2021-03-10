@@ -34,22 +34,19 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 224);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 182);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // FilterConditionsListUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FilterConditionsListUserControl";
-            this.Size = new System.Drawing.Size(320, 224);
+            this.Size = new System.Drawing.Size(240, 182);
             this.ResumeLayout(false);
 
         }

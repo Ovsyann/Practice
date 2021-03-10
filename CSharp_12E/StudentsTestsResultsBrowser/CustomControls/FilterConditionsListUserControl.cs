@@ -16,13 +16,5 @@ namespace StudentsTestsResultsBrowser.CustomControls
         {
             InitializeComponent();
         }
-
-        public Control LayoutPanel
-        {
-            get
-            {
-                return flowLayoutPanel1;
-            }
-        }
     }
 }

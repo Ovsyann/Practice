@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace StudentsTestsResultsBrowser.CustomControls
 {
-    public partial class FilterConditionsListUserControl : UserControl
+    public partial class FilterConditionUserControl : UserControl
     {
-        public FilterConditionsListUserControl()
+        public FilterConditionUserControl()
         {
             InitializeComponent();
-        }
-
-        public Control LayoutPanel
-        {
-            get
-            {
-                return flowLayoutPanel1;
-            }
         }
     }
 }

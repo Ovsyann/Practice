@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StudentsTestsResultsBrowser.CustomControls;
+using BinarySearchTreeTask;
+using DynamicLinqExpressions;
 
 namespace StudentTestResultsBrowser
 {
     public partial class FormStudentTestsBrowser : Form
     {
+        Filter<StudentTestResult> filter = new Filter<StudentTestResult>();
+
         public FormStudentTestsBrowser()
         {
             InitializeComponent();
@@ -25,10 +30,24 @@ namespace StudentTestResultsBrowser
 
         private void FormStudentTestsBrowser_Load(object sender, EventArgs e)
         {
-            filterConditionUserControl1.Parent = filterConditionsListUserControl1;
             groupBoxFilterConditions.Parent = tableLayoutPanel2;
             groupBoxFilterConditions.Parent = tableLayoutPanel1;
             dataGridViewFilterConditions.Parent = groupBoxFilterConditions;
+        }
+
+        private void buttonAddCondition_Click(object sender, EventArgs e)
+        {
+            filterConditionsListUserControl1.LayoutPanel.Controls.Add(new FilterConditionUserControl());
+        }
+
+        private void filterConditionsListUserControl1_ControlAdded(object sender, ControlEventArgs e)
+        {
+        }
+
+        private void buttonClearConditions_Click(object sender, EventArgs e)
+        {
+            filter.RemoveAllFilters();
+            filterConditionsListUserControl1.LayoutPanel.Controls.Clear();
         }
     }
 }
