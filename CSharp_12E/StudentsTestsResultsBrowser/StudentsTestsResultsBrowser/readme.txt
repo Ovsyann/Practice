@@ -1,0 +1,1 @@
+﻿забиндить свойства с полями ввода у FilterConditionUserControl

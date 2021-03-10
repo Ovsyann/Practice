@@ -29,33 +29,32 @@ namespace StudentsTestsResultsBrowser.CustomControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutPanelControl = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // layoutPanelControl
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 224);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.layoutPanelControl.AutoScroll = true;
+            this.layoutPanelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutPanelControl.Location = new System.Drawing.Point(0, 0);
+            this.layoutPanelControl.Name = "layoutPanelControl";
+            this.layoutPanelControl.Size = new System.Drawing.Size(240, 182);
+            this.layoutPanelControl.TabIndex = 0;
+            this.layoutPanelControl.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.layoutPanelControl_ControlAdded);
             // 
             // FilterConditionsListUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.layoutPanelControl);
             this.Name = "FilterConditionsListUserControl";
-            this.Size = new System.Drawing.Size(320, 224);
+            this.Size = new System.Drawing.Size(240, 182);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel layoutPanelControl;
     }
 }

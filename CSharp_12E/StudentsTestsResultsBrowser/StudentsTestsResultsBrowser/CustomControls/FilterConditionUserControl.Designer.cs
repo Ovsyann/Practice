@@ -29,6 +29,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterConditionUserControl));
             this.labelProperty = new System.Windows.Forms.Label();
             this.labelOperations = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -38,6 +39,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.labelValueA = new System.Windows.Forms.Label();
             this.labelValueB = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonRemoveCondition = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,10 +47,9 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelProperty.AutoSize = true;
             this.labelProperty.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelProperty.Location = new System.Drawing.Point(4, 15);
-            this.labelProperty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelProperty.Location = new System.Drawing.Point(3, 11);
             this.labelProperty.Name = "labelProperty";
-            this.labelProperty.Size = new System.Drawing.Size(133, 17);
+            this.labelProperty.Size = new System.Drawing.Size(100, 13);
             this.labelProperty.TabIndex = 0;
             this.labelProperty.Text = "Property";
             // 
@@ -56,57 +57,51 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelOperations.AutoSize = true;
             this.labelOperations.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelOperations.Location = new System.Drawing.Point(145, 15);
-            this.labelOperations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOperations.Location = new System.Drawing.Point(109, 11);
             this.labelOperations.Name = "labelOperations";
-            this.labelOperations.Size = new System.Drawing.Size(133, 17);
+            this.labelOperations.Size = new System.Drawing.Size(100, 13);
             this.labelOperations.TabIndex = 1;
             this.labelOperations.Text = "Operations";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(4, 36);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Location = new System.Drawing.Point(3, 27);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 24);
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // comboBox2
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(145, 36);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Location = new System.Drawing.Point(109, 27);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(133, 24);
+            this.comboBox2.Size = new System.Drawing.Size(100, 21);
             this.comboBox2.TabIndex = 3;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 100);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(3, 75);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 22);
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(146, 100);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(109, 75);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 22);
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 5;
             // 
             // labelValueA
             // 
             this.labelValueA.AutoSize = true;
             this.labelValueA.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelValueA.Location = new System.Drawing.Point(4, 79);
-            this.labelValueA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelValueA.Location = new System.Drawing.Point(3, 59);
             this.labelValueA.Name = "labelValueA";
-            this.labelValueA.Size = new System.Drawing.Size(133, 17);
+            this.labelValueA.Size = new System.Drawing.Size(100, 13);
             this.labelValueA.TabIndex = 6;
             this.labelValueA.Text = "Value A";
             // 
@@ -114,10 +109,9 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelValueB.AutoSize = true;
             this.labelValueB.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelValueB.Location = new System.Drawing.Point(145, 79);
-            this.labelValueB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelValueB.Location = new System.Drawing.Point(109, 59);
             this.labelValueB.Name = "labelValueB";
-            this.labelValueB.Size = new System.Drawing.Size(133, 17);
+            this.labelValueB.Size = new System.Drawing.Size(100, 13);
             this.labelValueB.TabIndex = 7;
             this.labelValueB.Text = "Value B";
             // 
@@ -132,29 +126,39 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.tableLayoutPanel1.Controls.Add(this.labelValueB, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelOperations, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBox2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labelOperations, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(282, 131);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(212, 99);
             this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // buttonRemoveCondition
+            // 
+            this.buttonRemoveCondition.Image = ((System.Drawing.Image)(resources.GetObject("buttonRemoveCondition.Image")));
+            this.buttonRemoveCondition.Location = new System.Drawing.Point(195, 0);
+            this.buttonRemoveCondition.Name = "buttonRemoveCondition";
+            this.buttonRemoveCondition.Size = new System.Drawing.Size(15, 15);
+            this.buttonRemoveCondition.TabIndex = 8;
+            this.buttonRemoveCondition.UseVisualStyleBackColor = true;
+            this.buttonRemoveCondition.Click += new System.EventHandler(this.buttonRemoveCondition_Click);
             // 
             // FilterConditionUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.buttonRemoveCondition);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FilterConditionUserControl";
-            this.Size = new System.Drawing.Size(282, 131);
+            this.Size = new System.Drawing.Size(212, 99);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -172,5 +176,6 @@ namespace StudentsTestsResultsBrowser.CustomControls
         private System.Windows.Forms.Label labelValueA;
         private System.Windows.Forms.Label labelValueB;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button buttonRemoveCondition;
     }
 }

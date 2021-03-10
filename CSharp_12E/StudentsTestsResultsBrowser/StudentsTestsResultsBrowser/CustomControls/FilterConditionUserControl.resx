@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonRemoveCondition.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1
+        AAAAX0lEQVQYV12OQQrAIAwEcyktpf3/p4J48S8iGDuykEMXXZIdhbW11pwTT0UEbmOM47zcXSkDK+H+
+        oQXPgXCDZJxaq5I/0HO0QWtNkbCY9d7v59WCSikwihlX/VK0j4gPSceSs0Ra8EsAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
