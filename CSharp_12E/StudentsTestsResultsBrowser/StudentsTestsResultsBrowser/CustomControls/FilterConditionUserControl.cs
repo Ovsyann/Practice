@@ -44,7 +44,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             {
                 return operation;
             } 
-            private set
+            set
             {
                 operation = value;
                 NotifyPropertyChanged(nameof(Operation));
@@ -57,7 +57,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             {
                 return property;
             }
-            private set
+            set
             {
                 property = value;
                 NotifyPropertyChanged(nameof(Property));
@@ -70,7 +70,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             {
                 return valueA;
             }
-            private set
+            set
             {
                 valueA = value;
                 NotifyPropertyChanged(nameof(ValueA));
@@ -83,7 +83,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             {
                 return valueB;
             }
-            private set
+            set
             {
                 valueB = value;
                 NotifyPropertyChanged(nameof(ValueB));
@@ -92,7 +92,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
 
         private void AddBinding(Control control, string controlPropertyName, string memberName)
         {
-            Binding binding = new Binding(controlPropertyName, this, memberName);
+            Binding binding = new Binding(controlPropertyName, this, memberName,true,DataSourceUpdateMode.OnPropertyChanged);
             control.DataBindings.Add(binding);
         }
 
