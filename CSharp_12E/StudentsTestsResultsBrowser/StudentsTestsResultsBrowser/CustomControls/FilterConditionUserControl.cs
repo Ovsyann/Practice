@@ -20,16 +20,13 @@ namespace StudentsTestsResultsBrowser.CustomControls
         public FilterConditionUserControl()
         {
             InitializeComponent();
-            //ЗАБИНДИТЬ СВОЙСТВА И ПОЛЯ ВВОДА
+
+            comboBoxOperations.DataSource = Enum.GetValues(typeof(Operations));
+            Binding operationBinding = new Binding(nameof(comboBoxOperations.Text), comboBoxOperations, nameof(Operation));
+            comboBoxOperations.DataBindings.Add(operationBinding);
         }
 
-        //public Operations Operation
-        //{
-        //    //get
-        //    //{
-                
-        //    //}
-        //}
+        public string Operation { get; set; }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {

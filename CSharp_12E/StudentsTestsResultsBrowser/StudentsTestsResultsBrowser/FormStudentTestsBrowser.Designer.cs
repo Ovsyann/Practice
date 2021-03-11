@@ -45,6 +45,7 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
+            this.filterConditionsListUserControl1 = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
             this.buttonApplyFilter = new System.Windows.Forms.Button();
             this.buttonAddToFiltersList = new System.Windows.Forms.Button();
             this.buttonAddCondition = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@ namespace StudentTestResultsBrowser
             this.checkBoxOnlyTake = new System.Windows.Forms.CheckBox();
             this.groupBoxFiltersList = new System.Windows.Forms.GroupBox();
             this.listBoxFiltersList = new System.Windows.Forms.ListBox();
-            this.filterConditionsListUserControl1 = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -92,8 +92,8 @@ namespace StudentTestResultsBrowser
             this.itemFilter});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(802, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1135, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -105,7 +105,7 @@ namespace StudentTestResultsBrowser
             this.itemClearTestReaults,
             this.itemExit});
             this.itemFile.Name = "itemFile";
-            this.itemFile.Size = new System.Drawing.Size(37, 20);
+            this.itemFile.Size = new System.Drawing.Size(46, 24);
             this.itemFile.Text = "File";
             // 
             // itemOpenTestResults
@@ -113,26 +113,26 @@ namespace StudentTestResultsBrowser
             this.itemOpenTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemOpenTestResults.Image")));
             this.itemOpenTestResults.Name = "itemOpenTestResults";
             this.itemOpenTestResults.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.itemOpenTestResults.Size = new System.Drawing.Size(205, 22);
+            this.itemOpenTestResults.Size = new System.Drawing.Size(255, 26);
             this.itemOpenTestResults.Text = "Open test results";
             // 
             // itemSaveTestResults
             // 
             this.itemSaveTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemSaveTestResults.Image")));
             this.itemSaveTestResults.Name = "itemSaveTestResults";
-            this.itemSaveTestResults.Size = new System.Drawing.Size(205, 22);
+            this.itemSaveTestResults.Size = new System.Drawing.Size(255, 26);
             this.itemSaveTestResults.Text = "Save test results";
             // 
             // itemClearTestReaults
             // 
             this.itemClearTestReaults.Name = "itemClearTestReaults";
-            this.itemClearTestReaults.Size = new System.Drawing.Size(205, 22);
+            this.itemClearTestReaults.Size = new System.Drawing.Size(255, 26);
             this.itemClearTestReaults.Text = "Clear test results";
             // 
             // itemExit
             // 
             this.itemExit.Name = "itemExit";
-            this.itemExit.Size = new System.Drawing.Size(205, 22);
+            this.itemExit.Size = new System.Drawing.Size(255, 26);
             this.itemExit.Text = "Exit";
             // 
             // itemEdit
@@ -140,13 +140,13 @@ namespace StudentTestResultsBrowser
             this.itemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemAddStudentTestResult});
             this.itemEdit.Name = "itemEdit";
-            this.itemEdit.Size = new System.Drawing.Size(39, 20);
+            this.itemEdit.Size = new System.Drawing.Size(49, 24);
             this.itemEdit.Text = "Edit";
             // 
             // itemAddStudentTestResult
             // 
             this.itemAddStudentTestResult.Name = "itemAddStudentTestResult";
-            this.itemAddStudentTestResult.Size = new System.Drawing.Size(202, 22);
+            this.itemAddStudentTestResult.Size = new System.Drawing.Size(250, 26);
             this.itemAddStudentTestResult.Text = "Add student test result...";
             // 
             // itemFilter
@@ -156,56 +156,56 @@ namespace StudentTestResultsBrowser
             this.itemSaveFiltersAs,
             this.itemClearFilters});
             this.itemFilter.Name = "itemFilter";
-            this.itemFilter.Size = new System.Drawing.Size(45, 20);
+            this.itemFilter.Size = new System.Drawing.Size(56, 24);
             this.itemFilter.Text = "Filter";
             // 
             // itemOpenFilters
             // 
             this.itemOpenFilters.Name = "itemOpenFilters";
-            this.itemOpenFilters.Size = new System.Drawing.Size(153, 22);
+            this.itemOpenFilters.Size = new System.Drawing.Size(191, 26);
             this.itemOpenFilters.Text = "Open filters...";
             // 
             // itemSaveFiltersAs
             // 
             this.itemSaveFiltersAs.Name = "itemSaveFiltersAs";
-            this.itemSaveFiltersAs.Size = new System.Drawing.Size(153, 22);
+            this.itemSaveFiltersAs.Size = new System.Drawing.Size(191, 26);
             this.itemSaveFiltersAs.Text = "Save filters as...";
             // 
             // itemClearFilters
             // 
             this.itemClearFilters.Name = "itemClearFilters";
-            this.itemClearFilters.Size = new System.Drawing.Size(153, 22);
+            this.itemClearFilters.Size = new System.Drawing.Size(191, 26);
             this.itemClearFilters.Text = "Clear filters";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 333F));
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBoxFilter, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBoxFilterConditions, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 387);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1135, 478);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 2);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(546, 248);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 308);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBoxFilter
@@ -217,23 +217,35 @@ namespace StudentTestResultsBrowser
             this.groupBoxFilter.Controls.Add(this.buttonClearConditions);
             this.groupBoxFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxFilter.Location = new System.Drawing.Point(555, 2);
-            this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxFilter.Location = new System.Drawing.Point(806, 2);
+            this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFilter.Size = new System.Drawing.Size(244, 248);
+            this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxFilter.Size = new System.Drawing.Size(325, 308);
             this.groupBoxFilter.TabIndex = 1;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filter";
+            // 
+            // filterConditionsListUserControl1
+            // 
+            this.filterConditionsListUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterConditionsListUserControl1.Location = new System.Drawing.Point(0, 49);
+            this.filterConditionsListUserControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.filterConditionsListUserControl1.Name = "filterConditionsListUserControl1";
+            this.filterConditionsListUserControl1.Size = new System.Drawing.Size(325, 216);
+            this.filterConditionsListUserControl1.TabIndex = 4;
+            this.filterConditionsListUserControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.filterConditionsListUserControl1_ControlAdded);
             // 
             // buttonApplyFilter
             // 
             this.buttonApplyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonApplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonApplyFilter.Location = new System.Drawing.Point(159, 218);
-            this.buttonApplyFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonApplyFilter.Location = new System.Drawing.Point(212, 271);
+            this.buttonApplyFilter.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.buttonApplyFilter.Name = "buttonApplyFilter";
-            this.buttonApplyFilter.Size = new System.Drawing.Size(79, 19);
+            this.buttonApplyFilter.Size = new System.Drawing.Size(105, 23);
             this.buttonApplyFilter.TabIndex = 3;
             this.buttonApplyFilter.Text = "Apply";
             this.buttonApplyFilter.UseVisualStyleBackColor = true;
@@ -242,10 +254,10 @@ namespace StudentTestResultsBrowser
             // 
             this.buttonAddToFiltersList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAddToFiltersList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddToFiltersList.Location = new System.Drawing.Point(2, 218);
-            this.buttonAddToFiltersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddToFiltersList.Location = new System.Drawing.Point(3, 271);
+            this.buttonAddToFiltersList.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.buttonAddToFiltersList.Name = "buttonAddToFiltersList";
-            this.buttonAddToFiltersList.Size = new System.Drawing.Size(79, 19);
+            this.buttonAddToFiltersList.Size = new System.Drawing.Size(105, 23);
             this.buttonAddToFiltersList.TabIndex = 2;
             this.buttonAddToFiltersList.Text = "Add to filters list";
             this.buttonAddToFiltersList.UseVisualStyleBackColor = true;
@@ -254,10 +266,10 @@ namespace StudentTestResultsBrowser
             // 
             this.buttonAddCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddCondition.Location = new System.Drawing.Point(162, 16);
-            this.buttonAddCondition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddCondition.Location = new System.Drawing.Point(216, 20);
+            this.buttonAddCondition.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.buttonAddCondition.Name = "buttonAddCondition";
-            this.buttonAddCondition.Size = new System.Drawing.Size(79, 19);
+            this.buttonAddCondition.Size = new System.Drawing.Size(105, 23);
             this.buttonAddCondition.TabIndex = 1;
             this.buttonAddCondition.Text = "Add conditions";
             this.buttonAddCondition.UseVisualStyleBackColor = true;
@@ -266,10 +278,10 @@ namespace StudentTestResultsBrowser
             // buttonClearConditions
             // 
             this.buttonClearConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClearConditions.Location = new System.Drawing.Point(2, 16);
-            this.buttonClearConditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonClearConditions.Location = new System.Drawing.Point(3, 20);
+            this.buttonClearConditions.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.buttonClearConditions.Name = "buttonClearConditions";
-            this.buttonClearConditions.Size = new System.Drawing.Size(79, 19);
+            this.buttonClearConditions.Size = new System.Drawing.Size(105, 23);
             this.buttonClearConditions.TabIndex = 0;
             this.buttonClearConditions.Text = "Clear conditions";
             this.buttonClearConditions.UseVisualStyleBackColor = true;
@@ -280,11 +292,11 @@ namespace StudentTestResultsBrowser
             this.groupBoxFilterConditions.Controls.Add(this.dataGridViewFilterConditions);
             this.groupBoxFilterConditions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFilterConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxFilterConditions.Location = new System.Drawing.Point(555, 254);
-            this.groupBoxFilterConditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxFilterConditions.Location = new System.Drawing.Point(806, 314);
+            this.groupBoxFilterConditions.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.groupBoxFilterConditions.Name = "groupBoxFilterConditions";
-            this.groupBoxFilterConditions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFilterConditions.Size = new System.Drawing.Size(244, 131);
+            this.groupBoxFilterConditions.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxFilterConditions.Size = new System.Drawing.Size(325, 162);
             this.groupBoxFilterConditions.TabIndex = 2;
             this.groupBoxFilterConditions.TabStop = false;
             this.groupBoxFilterConditions.Text = "Filter conditions";
@@ -293,29 +305,29 @@ namespace StudentTestResultsBrowser
             // 
             this.dataGridViewFilterConditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFilterConditions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewFilterConditions.Location = new System.Drawing.Point(3, 15);
-            this.dataGridViewFilterConditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridViewFilterConditions.Location = new System.Drawing.Point(4, 18);
+            this.dataGridViewFilterConditions.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dataGridViewFilterConditions.Name = "dataGridViewFilterConditions";
             this.dataGridViewFilterConditions.RowHeadersWidth = 51;
             this.dataGridViewFilterConditions.RowTemplate.Height = 29;
-            this.dataGridViewFilterConditions.Size = new System.Drawing.Size(238, 114);
+            this.dataGridViewFilterConditions.Size = new System.Drawing.Size(317, 142);
             this.dataGridViewFilterConditions.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 208F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.groupBoxFiltersList, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 254);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 314);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(546, 131);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 162);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -325,15 +337,15 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel3.Controls.Add(this.groupBoxSort, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBoxLimit, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 2);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel3.MaximumSize = new System.Drawing.Size(207, 128);
-            this.tableLayoutPanel3.MinimumSize = new System.Drawing.Size(189, 107);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tableLayoutPanel3.MaximumSize = new System.Drawing.Size(276, 158);
+            this.tableLayoutPanel3.MinimumSize = new System.Drawing.Size(252, 132);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.93865F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.06135F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(202, 127);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(269, 158);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // groupBoxSort
@@ -348,12 +360,12 @@ namespace StudentTestResultsBrowser
             this.groupBoxSort.Controls.Add(this.labelOrderBy);
             this.groupBoxSort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxSort.Location = new System.Drawing.Point(3, 2);
-            this.groupBoxSort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSort.MinimumSize = new System.Drawing.Size(183, 71);
+            this.groupBoxSort.Location = new System.Drawing.Point(4, 2);
+            this.groupBoxSort.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxSort.MinimumSize = new System.Drawing.Size(244, 87);
             this.groupBoxSort.Name = "groupBoxSort";
-            this.groupBoxSort.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSort.Size = new System.Drawing.Size(196, 84);
+            this.groupBoxSort.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxSort.Size = new System.Drawing.Size(261, 106);
             this.groupBoxSort.TabIndex = 0;
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Asc";
@@ -363,10 +375,10 @@ namespace StudentTestResultsBrowser
             this.rBThenByDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rBThenByDesc.AutoSize = true;
             this.rBThenByDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rBThenByDesc.Location = new System.Drawing.Point(140, 55);
-            this.rBThenByDesc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rBThenByDesc.Location = new System.Drawing.Point(192, 68);
+            this.rBThenByDesc.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rBThenByDesc.Name = "rBThenByDesc";
-            this.rBThenByDesc.Size = new System.Drawing.Size(50, 17);
+            this.rBThenByDesc.Size = new System.Drawing.Size(61, 21);
             this.rBThenByDesc.TabIndex = 7;
             this.rBThenByDesc.TabStop = true;
             this.rBThenByDesc.Text = "Desc";
@@ -377,10 +389,10 @@ namespace StudentTestResultsBrowser
             this.rBThenByAsc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rBThenByAsc.AutoSize = true;
             this.rBThenByAsc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rBThenByAsc.Location = new System.Drawing.Point(99, 55);
-            this.rBThenByAsc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rBThenByAsc.Location = new System.Drawing.Point(137, 68);
+            this.rBThenByAsc.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rBThenByAsc.Name = "rBThenByAsc";
-            this.rBThenByAsc.Size = new System.Drawing.Size(43, 17);
+            this.rBThenByAsc.Size = new System.Drawing.Size(52, 21);
             this.rBThenByAsc.TabIndex = 6;
             this.rBThenByAsc.TabStop = true;
             this.rBThenByAsc.Text = "Asc";
@@ -390,10 +402,10 @@ namespace StudentTestResultsBrowser
             // 
             this.rBOrderByDesc.AutoSize = true;
             this.rBOrderByDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rBOrderByDesc.Location = new System.Drawing.Point(43, 55);
-            this.rBOrderByDesc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rBOrderByDesc.Location = new System.Drawing.Point(57, 68);
+            this.rBOrderByDesc.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rBOrderByDesc.Name = "rBOrderByDesc";
-            this.rBOrderByDesc.Size = new System.Drawing.Size(50, 17);
+            this.rBOrderByDesc.Size = new System.Drawing.Size(61, 21);
             this.rBOrderByDesc.TabIndex = 5;
             this.rBOrderByDesc.TabStop = true;
             this.rBOrderByDesc.Text = "Desc";
@@ -403,10 +415,10 @@ namespace StudentTestResultsBrowser
             // 
             this.rBOrderByAsc.AutoSize = true;
             this.rBOrderByAsc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rBOrderByAsc.Location = new System.Drawing.Point(2, 55);
-            this.rBOrderByAsc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rBOrderByAsc.Location = new System.Drawing.Point(3, 68);
+            this.rBOrderByAsc.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.rBOrderByAsc.Name = "rBOrderByAsc";
-            this.rBOrderByAsc.Size = new System.Drawing.Size(43, 17);
+            this.rBOrderByAsc.Size = new System.Drawing.Size(52, 21);
             this.rBOrderByAsc.TabIndex = 4;
             this.rBOrderByAsc.TabStop = true;
             this.rBOrderByAsc.Text = "Asc";
@@ -417,20 +429,20 @@ namespace StudentTestResultsBrowser
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(99, 30);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox2.Location = new System.Drawing.Point(132, 37);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(91, 21);
+            this.comboBox2.Size = new System.Drawing.Size(120, 25);
             this.comboBox2.TabIndex = 3;
             // 
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(2, 30);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Location = new System.Drawing.Point(3, 37);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
+            this.comboBox1.Size = new System.Drawing.Size(124, 25);
             this.comboBox1.TabIndex = 2;
             // 
             // labelThenBy
@@ -438,9 +450,10 @@ namespace StudentTestResultsBrowser
             this.labelThenBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelThenBy.AutoSize = true;
             this.labelThenBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelThenBy.Location = new System.Drawing.Point(136, 15);
+            this.labelThenBy.Location = new System.Drawing.Point(181, 18);
+            this.labelThenBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelThenBy.Name = "labelThenBy";
-            this.labelThenBy.Size = new System.Drawing.Size(46, 13);
+            this.labelThenBy.Size = new System.Drawing.Size(60, 17);
             this.labelThenBy.TabIndex = 1;
             this.labelThenBy.Text = "Then by";
             // 
@@ -448,9 +461,10 @@ namespace StudentTestResultsBrowser
             // 
             this.labelOrderBy.AutoSize = true;
             this.labelOrderBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelOrderBy.Location = new System.Drawing.Point(2, 15);
+            this.labelOrderBy.Location = new System.Drawing.Point(3, 18);
+            this.labelOrderBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrderBy.Name = "labelOrderBy";
-            this.labelOrderBy.Size = new System.Drawing.Size(47, 13);
+            this.labelOrderBy.Size = new System.Drawing.Size(64, 17);
             this.labelOrderBy.TabIndex = 0;
             this.labelOrderBy.Text = "Order by";
             // 
@@ -461,12 +475,12 @@ namespace StudentTestResultsBrowser
             this.groupBoxLimit.Controls.Add(this.checkBoxOnlyTake);
             this.groupBoxLimit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxLimit.Location = new System.Drawing.Point(3, 90);
-            this.groupBoxLimit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxLimit.MinimumSize = new System.Drawing.Size(183, 29);
+            this.groupBoxLimit.Location = new System.Drawing.Point(4, 112);
+            this.groupBoxLimit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxLimit.MinimumSize = new System.Drawing.Size(244, 36);
             this.groupBoxLimit.Name = "groupBoxLimit";
-            this.groupBoxLimit.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxLimit.Size = new System.Drawing.Size(196, 35);
+            this.groupBoxLimit.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxLimit.Size = new System.Drawing.Size(261, 44);
             this.groupBoxLimit.TabIndex = 1;
             this.groupBoxLimit.TabStop = false;
             this.groupBoxLimit.Text = "Limit";
@@ -474,28 +488,30 @@ namespace StudentTestResultsBrowser
             // labelItems
             // 
             this.labelItems.AutoSize = true;
-            this.labelItems.Location = new System.Drawing.Point(126, 15);
+            this.labelItems.Location = new System.Drawing.Point(168, 18);
+            this.labelItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelItems.Name = "labelItems";
-            this.labelItems.Size = new System.Drawing.Size(31, 13);
+            this.labelItems.Size = new System.Drawing.Size(41, 17);
             this.labelItems.TabIndex = 2;
             this.labelItems.Text = "items";
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.AutoSize = true;
-            this.numericUpDown1.Location = new System.Drawing.Point(79, 11);
+            this.numericUpDown1.Location = new System.Drawing.Point(105, 14);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(69, 23);
             this.numericUpDown1.TabIndex = 1;
             // 
             // checkBoxOnlyTake
             // 
             this.checkBoxOnlyTake.AutoSize = true;
             this.checkBoxOnlyTake.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxOnlyTake.Location = new System.Drawing.Point(2, 14);
-            this.checkBoxOnlyTake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBoxOnlyTake.Location = new System.Drawing.Point(3, 17);
+            this.checkBoxOnlyTake.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.checkBoxOnlyTake.Name = "checkBoxOnlyTake";
-            this.checkBoxOnlyTake.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxOnlyTake.Size = new System.Drawing.Size(90, 21);
             this.checkBoxOnlyTake.TabIndex = 0;
             this.checkBoxOnlyTake.Text = "Only take";
             this.checkBoxOnlyTake.UseVisualStyleBackColor = true;
@@ -505,11 +521,11 @@ namespace StudentTestResultsBrowser
             this.groupBoxFiltersList.Controls.Add(this.listBoxFiltersList);
             this.groupBoxFiltersList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFiltersList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxFiltersList.Location = new System.Drawing.Point(211, 2);
-            this.groupBoxFiltersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxFiltersList.Location = new System.Drawing.Point(281, 2);
+            this.groupBoxFiltersList.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.groupBoxFiltersList.Name = "groupBoxFiltersList";
-            this.groupBoxFiltersList.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxFiltersList.Size = new System.Drawing.Size(332, 127);
+            this.groupBoxFiltersList.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.groupBoxFiltersList.Size = new System.Drawing.Size(509, 158);
             this.groupBoxFiltersList.TabIndex = 1;
             this.groupBoxFiltersList.TabStop = false;
             this.groupBoxFiltersList.Text = "Filters list";
@@ -518,32 +534,22 @@ namespace StudentTestResultsBrowser
             // 
             this.listBoxFiltersList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxFiltersList.FormattingEnabled = true;
-            this.listBoxFiltersList.Location = new System.Drawing.Point(3, 15);
+            this.listBoxFiltersList.ItemHeight = 17;
+            this.listBoxFiltersList.Location = new System.Drawing.Point(4, 18);
+            this.listBoxFiltersList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxFiltersList.Name = "listBoxFiltersList";
-            this.listBoxFiltersList.Size = new System.Drawing.Size(326, 110);
+            this.listBoxFiltersList.Size = new System.Drawing.Size(501, 138);
             this.listBoxFiltersList.TabIndex = 0;
-            // 
-            // filterConditionsListUserControl1
-            // 
-            this.filterConditionsListUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterConditionsListUserControl1.Location = new System.Drawing.Point(0, 40);
-            this.filterConditionsListUserControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.filterConditionsListUserControl1.Name = "filterConditionsListUserControl1";
-            this.filterConditionsListUserControl1.Size = new System.Drawing.Size(244, 173);
-            this.filterConditionsListUserControl1.TabIndex = 4;
-            this.filterConditionsListUserControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.filterConditionsListUserControl1_ControlAdded);
             // 
             // FormStudentTestsBrowser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 411);
+            this.ClientSize = new System.Drawing.Size(1135, 506);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "FormStudentTestsBrowser";
             this.Text = "FormStudentTestsBrowser";
             this.Load += new System.EventHandler(this.FormStudentTestsBrowser_Load);
