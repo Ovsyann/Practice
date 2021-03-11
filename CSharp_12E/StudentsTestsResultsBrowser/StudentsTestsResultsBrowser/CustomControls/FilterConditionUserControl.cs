@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BinarySearchTreeTask;
 
 namespace StudentsTestsResultsBrowser.CustomControls
 {
@@ -22,11 +23,78 @@ namespace StudentsTestsResultsBrowser.CustomControls
             InitializeComponent();
 
             comboBoxOperations.DataSource = Enum.GetValues(typeof(Operations));
-            Binding operationBinding = new Binding(nameof(comboBoxOperations.Text), comboBoxOperations, nameof(Operation));
-            comboBoxOperations.DataBindings.Add(operationBinding);
+            comboBoxProperty.DataSource = typeof(StudentTestResult).GetProperties()
+                .Select(property => property.Name)
+                .ToArray();
+
+            AddBinding(comboBoxOperations, nameof(comboBoxOperations.Text), nameof(Operation));
+            AddBinding(comboBoxProperty, nameof(comboBoxProperty.Text), nameof(Property));
+            AddBinding(textBoxValueA, nameof(textBoxValueA.Text), nameof(ValueA));
+            AddBinding(textBoxValueB, nameof(textBoxValueB.Text), nameof(ValueB));
         }
 
-        public string Operation { get; set; }
+        private string operation;
+        private string property;
+        private string valueA;
+        private string valueB;
+
+        public string Operation 
+        {
+            get
+            {
+                return operation;
+            } 
+            private set
+            {
+                operation = value;
+                NotifyPropertyChanged(nameof(Operation));
+            }
+        }
+
+        public string Property
+        {
+            get
+            {
+                return property;
+            }
+            private set
+            {
+                property = value;
+                NotifyPropertyChanged(nameof(Property));
+            }
+        }
+
+        public string ValueA
+        {
+            get
+            {
+                return valueA;
+            }
+            private set
+            {
+                valueA = value;
+                NotifyPropertyChanged(nameof(ValueA));
+            }
+        }
+
+        public string ValueB
+        {
+            get
+            {
+                return valueB;
+            }
+            private set
+            {
+                valueB = value;
+                NotifyPropertyChanged(nameof(ValueB));
+            }
+        }
+
+        private void AddBinding(Control control, string controlPropertyName, string memberName)
+        {
+            Binding binding = new Binding(controlPropertyName, this, memberName);
+            control.DataBindings.Add(binding);
+        }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {

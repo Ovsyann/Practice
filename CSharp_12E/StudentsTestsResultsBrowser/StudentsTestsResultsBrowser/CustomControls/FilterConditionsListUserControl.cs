@@ -33,7 +33,13 @@ namespace StudentsTestsResultsBrowser.CustomControls
         private void AddCondition(FilterConditionUserControl condition)
         {
             condition.Removing += RemoveCondition;
+            condition.PropertyChanged += ChangeFilterConditions;
             FilterConditions.Add(condition);
+        }
+
+        private void ChangeFilterConditions(object sender, PropertyChangedEventArgs e)
+        {
+            FilterConditionUserControl filterCondition = FilterConditions.Find(condition => condition.Equals(sender));
         }
 
         private void RemoveCondition(object sender, FilterConditionUserControl condition)

@@ -37,17 +37,17 @@ namespace StudentTestResultsBrowser
 
         private void buttonAddCondition_Click(object sender, EventArgs e)
         {
-            filterConditionsListUserControl1.LayoutPanel.Controls.Add(new FilterConditionUserControl());
+            filterConditionsList.LayoutPanel.Controls.Add(new FilterConditionUserControl());
         }
 
-        private void filterConditionsListUserControl1_ControlAdded(object sender, ControlEventArgs e)
+        private void filterConditionsList_ControlAdded(object sender, ControlEventArgs e)
         {
         }
 
         private void buttonClearConditions_Click(object sender, EventArgs e)
         {
             filter.RemoveAllFilters();
-            filterConditionsListUserControl1.LayoutPanel.Controls.Clear();
+            filterConditionsList.LayoutPanel.Controls.Clear();
         }
     }
 }

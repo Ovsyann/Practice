@@ -45,7 +45,7 @@ namespace StudentTestResultsBrowser
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
-            this.filterConditionsListUserControl1 = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
+            this.filterConditionsList = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
             this.buttonApplyFilter = new System.Windows.Forms.Button();
             this.buttonAddToFiltersList = new System.Windows.Forms.Button();
             this.buttonAddCondition = new System.Windows.Forms.Button();
@@ -210,7 +210,7 @@ namespace StudentTestResultsBrowser
             // 
             // groupBoxFilter
             // 
-            this.groupBoxFilter.Controls.Add(this.filterConditionsListUserControl1);
+            this.groupBoxFilter.Controls.Add(this.filterConditionsList);
             this.groupBoxFilter.Controls.Add(this.buttonApplyFilter);
             this.groupBoxFilter.Controls.Add(this.buttonAddToFiltersList);
             this.groupBoxFilter.Controls.Add(this.buttonAddCondition);
@@ -228,15 +228,15 @@ namespace StudentTestResultsBrowser
             // 
             // filterConditionsListUserControl1
             // 
-            this.filterConditionsListUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.filterConditionsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterConditionsListUserControl1.Location = new System.Drawing.Point(0, 49);
-            this.filterConditionsListUserControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.filterConditionsListUserControl1.Name = "filterConditionsListUserControl1";
-            this.filterConditionsListUserControl1.Size = new System.Drawing.Size(325, 216);
-            this.filterConditionsListUserControl1.TabIndex = 4;
-            this.filterConditionsListUserControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.filterConditionsListUserControl1_ControlAdded);
+            this.filterConditionsList.Location = new System.Drawing.Point(0, 49);
+            this.filterConditionsList.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.filterConditionsList.Name = "filterConditionsListUserControl1";
+            this.filterConditionsList.Size = new System.Drawing.Size(325, 216);
+            this.filterConditionsList.TabIndex = 4;
+            this.filterConditionsList.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.filterConditionsList_ControlAdded);
             // 
             // buttonApplyFilter
             // 
@@ -613,7 +613,7 @@ namespace StudentTestResultsBrowser
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.GroupBox groupBoxFiltersList;
         private System.Windows.Forms.ListBox listBoxFiltersList;
-        private StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl filterConditionsListUserControl1;
+        private StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl filterConditionsList;
         private System.Windows.Forms.DataGridView dataGridViewFilterConditions;
     }
 }
