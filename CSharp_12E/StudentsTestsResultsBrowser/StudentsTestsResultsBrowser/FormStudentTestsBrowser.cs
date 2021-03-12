@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using StudentsTestsResultsBrowser.CustomControls;
 using BinarySearchTreeTask;
 using DynamicLinqExpressions;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using StudentsTestsResultsBrowser;
 
 namespace StudentTestResultsBrowser
 {
     public partial class FormStudentTestsBrowser : Form
     {
         Filter<StudentTestResult> filter = new Filter<StudentTestResult>();
+        BinarySearchTree<StudentTestResult> studentTestResults = new IterativeTree<StudentTestResult>();
 
         public FormStudentTestsBrowser()
         {
@@ -48,6 +52,44 @@ namespace StudentTestResultsBrowser
         {
             filter.RemoveAllFilters();
             filterConditionsList.LayoutPanel.Controls.Clear();
+        }
+
+        private void itemOpenTestResults_Click(object sender, EventArgs e)
+        {
+            dataGridViewResults.Rows.Clear();
+
+            LoadStudentsTestsResults();
+
+            dataGridViewResults.Rows.Add(studentTestResults.ToArray());
+        }
+
+        private void itemSaveTestResults_Click(object sender, EventArgs e)
+        {
+            UploadStudentsTestsResults();
+        }
+
+        private void LoadStudentsTestsResults()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream stream = File.OpenRead("SerializedStudentsTests.bin"))
+            {
+                studentTestResults = (BinarySearchTree<StudentTestResult>)formatter.Deserialize(stream);
+            }
+        }
+
+        private void UploadStudentsTestsResults()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream stream = File.OpenWrite("SerializedStudentsTests.bin"))
+            {
+                formatter.Serialize(stream, studentTestResults);
+            }
+        }
+
+        private void itemAddStudentTestResult_Click(object sender, EventArgs e)
+        {
+            FormAddingStudentTestResult form = new FormAddingStudentTestResult();
+            form.ShowDialog(this);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
 
         private void ChangeControlProperty(object sender, PropertyChangedEventArgs e)
         {
-
+            //FilterConditionUserControl control = 
         }
 
         private void RemoveCondition(object sender, FilterConditionUserControl condition)

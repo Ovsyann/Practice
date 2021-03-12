@@ -59,6 +59,12 @@
       <DependentUpon>FilterConditionsListUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\Operations.cs" />
+    <Compile Include="FormAddingStudentTestResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddingStudentTestResult.Designer.cs">
+      <DependentUpon>FormAddingStudentTestResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStudentTestsBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\FilterConditionsListUserControl.resx">
       <DependentUpon>FilterConditionsListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddingStudentTestResult.resx">
+      <DependentUpon>FormAddingStudentTestResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStudentTestsBrowser.resx">
       <DependentUpon>FormStudentTestsBrowser.cs</DependentUpon>
