@@ -226,14 +226,14 @@ namespace StudentTestResultsBrowser
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filter";
             // 
-            // filterConditionsListUserControl1
+            // filterConditionsList
             // 
             this.filterConditionsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filterConditionsList.Location = new System.Drawing.Point(0, 49);
-            this.filterConditionsList.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.filterConditionsList.Name = "filterConditionsListUserControl1";
+            this.filterConditionsList.Margin = new System.Windows.Forms.Padding(5);
+            this.filterConditionsList.Name = "filterConditionsList";
             this.filterConditionsList.Size = new System.Drawing.Size(325, 216);
             this.filterConditionsList.TabIndex = 4;
             this.filterConditionsList.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.filterConditionsList_ControlAdded);
@@ -427,6 +427,7 @@ namespace StudentTestResultsBrowser
             // comboBox2
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(132, 37);
@@ -437,6 +438,7 @@ namespace StudentTestResultsBrowser
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(3, 37);
@@ -499,7 +501,7 @@ namespace StudentTestResultsBrowser
             // 
             this.numericUpDown1.AutoSize = true;
             this.numericUpDown1.Location = new System.Drawing.Point(105, 14);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(69, 23);
             this.numericUpDown1.TabIndex = 1;
@@ -536,7 +538,7 @@ namespace StudentTestResultsBrowser
             this.listBoxFiltersList.FormattingEnabled = true;
             this.listBoxFiltersList.ItemHeight = 17;
             this.listBoxFiltersList.Location = new System.Drawing.Point(4, 18);
-            this.listBoxFiltersList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxFiltersList.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxFiltersList.Name = "listBoxFiltersList";
             this.listBoxFiltersList.Size = new System.Drawing.Size(501, 138);
             this.listBoxFiltersList.TabIndex = 0;
