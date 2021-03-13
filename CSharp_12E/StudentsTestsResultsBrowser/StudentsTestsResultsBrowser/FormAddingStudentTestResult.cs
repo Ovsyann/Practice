@@ -13,6 +13,9 @@ namespace StudentsTestsResultsBrowser
 {
     public partial class FormAddingStudentTestResult : Form
     {
+        public delegate void StudentTestResultCreatedEventHandler(StudentTestResult studentTestResult);
+        public event StudentTestResultCreatedEventHandler StudentTestCreated;
+
         public FormAddingStudentTestResult()
         {
             InitializeComponent();
@@ -22,15 +25,15 @@ namespace StudentsTestsResultsBrowser
 
         private void BindPropertiesToControls()
         {
-            textBoxFirstName.DataBindings.Add(nameof(textBoxFirstName.Text), textBoxFirstName,
+            textBoxFirstName.DataBindings.Add(nameof(textBoxFirstName.Text), this,
                 nameof(FirstName));
-            textBoxLastName.DataBindings.Add(nameof(textBoxLastName.Text), textBoxLastName,
+            textBoxLastName.DataBindings.Add(nameof(textBoxLastName.Text), this,
                 nameof(LastName));
-            textBoxTestName.DataBindings.Add(nameof(textBoxTestName.Text), textBoxTestName,
+            textBoxTestName.DataBindings.Add(nameof(textBoxTestName.Text), this,
                 nameof(TestName));
-            dateTimePickerTestDate.DataBindings.Add(nameof(dateTimePickerTestDate.Value), dateTimePickerTestDate,
+            dateTimePickerTestDate.DataBindings.Add(nameof(dateTimePickerTestDate.Value), this,
                 nameof(TestDate));
-            numericUpDownTestScore.DataBindings.Add(nameof(numericUpDownTestScore.Value), numericUpDownTestScore,
+            numericUpDownTestScore.DataBindings.Add(nameof(numericUpDownTestScore.Value), this,
                 nameof(Score));
         }
 
@@ -48,8 +51,14 @@ namespace StudentsTestsResultsBrowser
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            if (TestDate == default)
+            {
+                TestDate = DateTime.Now;
+            }
+
             StudentTestResult studentTestResult = new StudentTestResult(FirstName, LastName, TestName, TestDate, Score);
-            //ПЕРЕДАТЬ В БРАУЗЕР
+            StudentTestCreated?.Invoke(studentTestResult);
+            Close();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace StudentTestResultsBrowser
+namespace StudentsTestsResultsBrowser
 {
     partial class FormStudentTestsBrowser
     {
@@ -44,6 +44,11 @@ namespace StudentTestResultsBrowser
             this.itemClearFilters = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewResults = new System.Windows.Forms.DataGridView();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
             this.filterConditionsList = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
             this.buttonApplyFilter = new System.Windows.Forms.Button();
@@ -68,16 +73,11 @@ namespace StudentTestResultsBrowser
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBoxOnlyTake = new System.Windows.Forms.CheckBox();
             this.groupBoxFiltersList = new System.Windows.Forms.GroupBox();
-            this.listBoxFiltersList = new System.Windows.Forms.ListBox();
-            this.buttonClearList = new System.Windows.Forms.Button();
-            this.buttonOpenFilters = new System.Windows.Forms.Button();
-            this.buttonSaveFilters = new System.Windows.Forms.Button();
             this.buttonApplyCheckedFilter = new System.Windows.Forms.Button();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonSaveFilters = new System.Windows.Forms.Button();
+            this.buttonOpenFilters = new System.Windows.Forms.Button();
+            this.buttonClearList = new System.Windows.Forms.Button();
+            this.listBoxFiltersList = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -130,20 +130,20 @@ namespace StudentTestResultsBrowser
             // 
             this.itemSaveTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemSaveTestResults.Image")));
             this.itemSaveTestResults.Name = "itemSaveTestResults";
-            this.itemSaveTestResults.Size = new System.Drawing.Size(209, 26);
+            this.itemSaveTestResults.Size = new System.Drawing.Size(205, 22);
             this.itemSaveTestResults.Text = "Save test results";
             this.itemSaveTestResults.Click += new System.EventHandler(this.itemSaveTestResults_Click);
             // 
             // itemClearTestReaults
             // 
             this.itemClearTestReaults.Name = "itemClearTestReaults";
-            this.itemClearTestReaults.Size = new System.Drawing.Size(209, 26);
+            this.itemClearTestReaults.Size = new System.Drawing.Size(205, 22);
             this.itemClearTestReaults.Text = "Clear test results";
             // 
             // itemExit
             // 
             this.itemExit.Name = "itemExit";
-            this.itemExit.Size = new System.Drawing.Size(209, 26);
+            this.itemExit.Size = new System.Drawing.Size(205, 22);
             this.itemExit.Text = "Exit";
             // 
             // itemEdit
@@ -174,20 +174,21 @@ namespace StudentTestResultsBrowser
             // itemOpenFilters
             // 
             this.itemOpenFilters.Name = "itemOpenFilters";
-            this.itemOpenFilters.Size = new System.Drawing.Size(180, 22);
+            this.itemOpenFilters.Size = new System.Drawing.Size(153, 22);
             this.itemOpenFilters.Text = "Open filters...";
             // 
             // itemSaveFiltersAs
             // 
             this.itemSaveFiltersAs.Name = "itemSaveFiltersAs";
-            this.itemSaveFiltersAs.Size = new System.Drawing.Size(180, 22);
+            this.itemSaveFiltersAs.Size = new System.Drawing.Size(153, 22);
             this.itemSaveFiltersAs.Text = "Save filters as...";
             // 
             // itemClearFilters
             // 
             this.itemClearFilters.Name = "itemClearFilters";
-            this.itemClearFilters.Size = new System.Drawing.Size(180, 22);
+            this.itemClearFilters.Size = new System.Drawing.Size(153, 22);
             this.itemClearFilters.Text = "Clear filters";
+            this.itemClearFilters.Click += new System.EventHandler(this.itemClearFilters_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -227,6 +228,36 @@ namespace StudentTestResultsBrowser
             this.dataGridViewResults.Size = new System.Drawing.Size(598, 285);
             this.dataGridViewResults.TabIndex = 0;
             // 
+            // FirstName
+            // 
+            this.FirstName.HeaderText = "First name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // Score
+            // 
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            this.Score.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Last name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // TestName
+            // 
+            this.TestName.HeaderText = "Test name";
+            this.TestName.Name = "TestName";
+            this.TestName.ReadOnly = true;
+            // 
+            // TestDate
+            // 
+            this.TestDate.HeaderText = "Test date";
+            this.TestDate.Name = "TestDate";
+            this.TestDate.ReadOnly = true;
+            // 
             // groupBoxFilter
             // 
             this.groupBoxFilter.Controls.Add(this.filterConditionsList);
@@ -251,7 +282,7 @@ namespace StudentTestResultsBrowser
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filterConditionsList.Location = new System.Drawing.Point(0, 40);
-            this.filterConditionsList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filterConditionsList.Margin = new System.Windows.Forms.Padding(4);
             this.filterConditionsList.Name = "filterConditionsList";
             this.filterConditionsList.Size = new System.Drawing.Size(244, 211);
             this.filterConditionsList.TabIndex = 4;
@@ -268,6 +299,7 @@ namespace StudentTestResultsBrowser
             this.buttonApplyFilter.TabIndex = 3;
             this.buttonApplyFilter.Text = "Apply";
             this.buttonApplyFilter.UseVisualStyleBackColor = true;
+            this.buttonApplyFilter.Click += new System.EventHandler(this.buttonApplyFilter_Click);
             // 
             // buttonAddToFiltersList
             // 
@@ -304,7 +336,7 @@ namespace StudentTestResultsBrowser
             this.buttonClearConditions.TabIndex = 0;
             this.buttonClearConditions.Text = "Clear conditions";
             this.buttonClearConditions.UseVisualStyleBackColor = true;
-            this.buttonClearConditions.Click += new System.EventHandler(this.buttonClearConditions_Click);
+            this.buttonClearConditions.Click += new System.EventHandler(this.itemClearFilters_Click);
             // 
             // groupBoxFilterConditions
             // 
@@ -552,35 +584,15 @@ namespace StudentTestResultsBrowser
             this.groupBoxFiltersList.TabStop = false;
             this.groupBoxFiltersList.Text = "Filters list";
             // 
-            // listBoxFiltersList
+            // buttonApplyCheckedFilter
             // 
-            this.listBoxFiltersList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxFiltersList.FormattingEnabled = true;
-            this.listBoxFiltersList.Location = new System.Drawing.Point(3, 15);
-            this.listBoxFiltersList.Name = "listBoxFiltersList";
-            this.listBoxFiltersList.Size = new System.Drawing.Size(373, 69);
-            this.listBoxFiltersList.TabIndex = 0;
-            // 
-            // buttonClearList
-            // 
-            this.buttonClearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonClearList.Location = new System.Drawing.Point(6, 90);
-            this.buttonClearList.Name = "buttonClearList";
-            this.buttonClearList.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearList.TabIndex = 1;
-            this.buttonClearList.Text = "Clear list";
-            this.buttonClearList.UseVisualStyleBackColor = true;
-            // 
-            // buttonOpenFilters
-            // 
-            this.buttonOpenFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOpenFilters.Location = new System.Drawing.Point(87, 90);
-            this.buttonOpenFilters.Name = "buttonOpenFilters";
-            this.buttonOpenFilters.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenFilters.TabIndex = 2;
-            this.buttonOpenFilters.Text = "Open filters";
-            this.buttonOpenFilters.UseVisualStyleBackColor = true;
+            this.buttonApplyCheckedFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonApplyCheckedFilter.Location = new System.Drawing.Point(301, 90);
+            this.buttonApplyCheckedFilter.Name = "buttonApplyCheckedFilter";
+            this.buttonApplyCheckedFilter.Size = new System.Drawing.Size(75, 23);
+            this.buttonApplyCheckedFilter.TabIndex = 4;
+            this.buttonApplyCheckedFilter.Text = "Apply filter";
+            this.buttonApplyCheckedFilter.UseVisualStyleBackColor = true;
             // 
             // buttonSaveFilters
             // 
@@ -592,45 +604,35 @@ namespace StudentTestResultsBrowser
             this.buttonSaveFilters.Text = "Save filters";
             this.buttonSaveFilters.UseVisualStyleBackColor = true;
             // 
-            // buttonApplyCheckedFilter
+            // buttonOpenFilters
             // 
-            this.buttonApplyCheckedFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonApplyCheckedFilter.Location = new System.Drawing.Point(301, 90);
-            this.buttonApplyCheckedFilter.Name = "buttonApplyCheckedFilter";
-            this.buttonApplyCheckedFilter.Size = new System.Drawing.Size(75, 23);
-            this.buttonApplyCheckedFilter.TabIndex = 4;
-            this.buttonApplyCheckedFilter.Text = "Apply filter";
-            this.buttonApplyCheckedFilter.UseVisualStyleBackColor = true;
+            this.buttonOpenFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonOpenFilters.Location = new System.Drawing.Point(87, 90);
+            this.buttonOpenFilters.Name = "buttonOpenFilters";
+            this.buttonOpenFilters.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFilters.TabIndex = 2;
+            this.buttonOpenFilters.Text = "Open filters";
+            this.buttonOpenFilters.UseVisualStyleBackColor = true;
             // 
-            // FirstName
+            // buttonClearList
             // 
-            this.FirstName.HeaderText = "First name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
+            this.buttonClearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonClearList.Location = new System.Drawing.Point(6, 90);
+            this.buttonClearList.Name = "buttonClearList";
+            this.buttonClearList.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearList.TabIndex = 1;
+            this.buttonClearList.Text = "Clear list";
+            this.buttonClearList.UseVisualStyleBackColor = true;
             // 
-            // Score
+            // listBoxFiltersList
             // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            this.Score.ReadOnly = true;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Last name";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // TestName
-            // 
-            this.TestName.HeaderText = "Test name";
-            this.TestName.Name = "TestName";
-            this.TestName.ReadOnly = true;
-            // 
-            // TestDate
-            // 
-            this.TestDate.HeaderText = "Test date";
-            this.TestDate.Name = "TestDate";
-            this.TestDate.ReadOnly = true;
+            this.listBoxFiltersList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxFiltersList.FormattingEnabled = true;
+            this.listBoxFiltersList.Location = new System.Drawing.Point(3, 15);
+            this.listBoxFiltersList.Name = "listBoxFiltersList";
+            this.listBoxFiltersList.Size = new System.Drawing.Size(373, 69);
+            this.listBoxFiltersList.TabIndex = 0;
             // 
             // FormStudentTestsBrowser
             // 

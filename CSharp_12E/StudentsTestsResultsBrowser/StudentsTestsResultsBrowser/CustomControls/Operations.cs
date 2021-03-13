@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentTestResultsBrowser.CustomControls
+namespace StudentsTestsResultsBrowser.CustomControls
 {
     public enum Operations
     {

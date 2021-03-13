@@ -14,7 +14,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
 {
     public partial class FilterConditionsListUserControl : UserControl
     {
-        private List<FilterConditionUserControl> FilterConditions { get; set; }
+        public List<FilterConditionUserControl> FilterConditions { get; set; }
 
         public FilterConditionsListUserControl()
         {

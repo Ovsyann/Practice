@@ -31,20 +31,20 @@ namespace StudentsTestsResultsBrowser
         {
             this.tableLayoutPanelOuter = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxStudent = new System.Windows.Forms.GroupBox();
-            this.labelFirstName = new System.Windows.Forms.Label();
-            this.labelLastName = new System.Windows.Forms.Label();
-            this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
+            this.labelLastName = new System.Windows.Forms.Label();
+            this.labelFirstName = new System.Windows.Forms.Label();
             this.groupBoxTestResult = new System.Windows.Forms.GroupBox();
-            this.labelTestName = new System.Windows.Forms.Label();
-            this.labelTestDate = new System.Windows.Forms.Label();
-            this.labelScore = new System.Windows.Forms.Label();
-            this.textBoxTestName = new System.Windows.Forms.TextBox();
-            this.dateTimePickerTestDate = new System.Windows.Forms.DateTimePicker();
             this.numericUpDownTestScore = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePickerTestDate = new System.Windows.Forms.DateTimePicker();
+            this.labelScore = new System.Windows.Forms.Label();
+            this.labelTestDate = new System.Windows.Forms.Label();
+            this.labelTestName = new System.Windows.Forms.Label();
             this.tableLayoutPanelInner = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.textBoxTestName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelOuter.SuspendLayout();
             this.groupBoxStudent.SuspendLayout();
             this.groupBoxTestResult.SuspendLayout();
@@ -79,19 +79,24 @@ namespace StudentsTestsResultsBrowser
             this.groupBoxStudent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxStudent.Location = new System.Drawing.Point(3, 3);
             this.groupBoxStudent.Name = "groupBoxStudent";
-            this.groupBoxStudent.Size = new System.Drawing.Size(306, 79);
+            this.groupBoxStudent.Size = new System.Drawing.Size(306, 72);
             this.groupBoxStudent.TabIndex = 0;
             this.groupBoxStudent.TabStop = false;
             this.groupBoxStudent.Text = "Student";
             // 
-            // labelFirstName
+            // textBoxLastName
             // 
-            this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(6, 27);
-            this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(55, 13);
-            this.labelFirstName.TabIndex = 0;
-            this.labelFirstName.Text = "Firstname:";
+            this.textBoxLastName.Location = new System.Drawing.Point(68, 48);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(229, 20);
+            this.textBoxLastName.TabIndex = 3;
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Location = new System.Drawing.Point(68, 24);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(229, 20);
+            this.textBoxFirstName.TabIndex = 2;
             // 
             // labelLastName
             // 
@@ -102,53 +107,45 @@ namespace StudentsTestsResultsBrowser
             this.labelLastName.TabIndex = 1;
             this.labelLastName.Text = "Lastname:";
             // 
-            // textBoxFirstName
+            // labelFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(68, 24);
-            this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(229, 20);
-            this.textBoxFirstName.TabIndex = 2;
-            // 
-            // textBoxLastName
-            // 
-            this.textBoxLastName.Location = new System.Drawing.Point(68, 48);
-            this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(229, 20);
-            this.textBoxLastName.TabIndex = 3;
+            this.labelFirstName.AutoSize = true;
+            this.labelFirstName.Location = new System.Drawing.Point(6, 27);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(55, 13);
+            this.labelFirstName.TabIndex = 0;
+            this.labelFirstName.Text = "Firstname:";
             // 
             // groupBoxTestResult
             // 
+            this.groupBoxTestResult.Controls.Add(this.textBoxTestName);
             this.groupBoxTestResult.Controls.Add(this.numericUpDownTestScore);
             this.groupBoxTestResult.Controls.Add(this.dateTimePickerTestDate);
-            this.groupBoxTestResult.Controls.Add(this.textBoxTestName);
             this.groupBoxTestResult.Controls.Add(this.labelScore);
             this.groupBoxTestResult.Controls.Add(this.labelTestDate);
             this.groupBoxTestResult.Controls.Add(this.labelTestName);
             this.groupBoxTestResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxTestResult.Location = new System.Drawing.Point(3, 88);
+            this.groupBoxTestResult.Location = new System.Drawing.Point(3, 81);
             this.groupBoxTestResult.Name = "groupBoxTestResult";
-            this.groupBoxTestResult.Size = new System.Drawing.Size(306, 136);
+            this.groupBoxTestResult.Size = new System.Drawing.Size(306, 125);
             this.groupBoxTestResult.TabIndex = 1;
             this.groupBoxTestResult.TabStop = false;
             this.groupBoxTestResult.Text = "Test result";
             // 
-            // labelTestName
+            // numericUpDownTestScore
             // 
-            this.labelTestName.AutoSize = true;
-            this.labelTestName.Location = new System.Drawing.Point(6, 28);
-            this.labelTestName.Name = "labelTestName";
-            this.labelTestName.Size = new System.Drawing.Size(60, 13);
-            this.labelTestName.TabIndex = 0;
-            this.labelTestName.Text = "Test name:";
+            this.numericUpDownTestScore.Location = new System.Drawing.Point(68, 78);
+            this.numericUpDownTestScore.Name = "numericUpDownTestScore";
+            this.numericUpDownTestScore.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDownTestScore.TabIndex = 6;
             // 
-            // labelTestDate
+            // dateTimePickerTestDate
             // 
-            this.labelTestDate.AutoSize = true;
-            this.labelTestDate.Location = new System.Drawing.Point(6, 54);
-            this.labelTestDate.Name = "labelTestDate";
-            this.labelTestDate.Size = new System.Drawing.Size(55, 13);
-            this.labelTestDate.TabIndex = 1;
-            this.labelTestDate.Text = "Test date:";
+            this.dateTimePickerTestDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerTestDate.Location = new System.Drawing.Point(68, 51);
+            this.dateTimePickerTestDate.Name = "dateTimePickerTestDate";
+            this.dateTimePickerTestDate.Size = new System.Drawing.Size(229, 20);
+            this.dateTimePickerTestDate.TabIndex = 5;
             // 
             // labelScore
             // 
@@ -159,27 +156,23 @@ namespace StudentsTestsResultsBrowser
             this.labelScore.TabIndex = 2;
             this.labelScore.Text = "Score:";
             // 
-            // textBoxTestName
+            // labelTestDate
             // 
-            this.textBoxTestName.Location = new System.Drawing.Point(68, 25);
-            this.textBoxTestName.Name = "textBoxTestName";
-            this.textBoxTestName.Size = new System.Drawing.Size(229, 20);
-            this.textBoxTestName.TabIndex = 3;
+            this.labelTestDate.AutoSize = true;
+            this.labelTestDate.Location = new System.Drawing.Point(6, 54);
+            this.labelTestDate.Name = "labelTestDate";
+            this.labelTestDate.Size = new System.Drawing.Size(55, 13);
+            this.labelTestDate.TabIndex = 1;
+            this.labelTestDate.Text = "Test date:";
             // 
-            // dateTimePickerTestDate
+            // labelTestName
             // 
-            this.dateTimePickerTestDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerTestDate.Location = new System.Drawing.Point(68, 51);
-            this.dateTimePickerTestDate.Name = "dateTimePickerTestDate";
-            this.dateTimePickerTestDate.Size = new System.Drawing.Size(229, 20);
-            this.dateTimePickerTestDate.TabIndex = 4;
-            // 
-            // numericUpDownTestScore
-            // 
-            this.numericUpDownTestScore.Location = new System.Drawing.Point(68, 78);
-            this.numericUpDownTestScore.Name = "numericUpDownTestScore";
-            this.numericUpDownTestScore.Size = new System.Drawing.Size(39, 20);
-            this.numericUpDownTestScore.TabIndex = 5;
+            this.labelTestName.AutoSize = true;
+            this.labelTestName.Location = new System.Drawing.Point(6, 28);
+            this.labelTestName.Name = "labelTestName";
+            this.labelTestName.Size = new System.Drawing.Size(60, 13);
+            this.labelTestName.TabIndex = 0;
+            this.labelTestName.Text = "Test name:";
             // 
             // tableLayoutPanelInner
             // 
@@ -188,19 +181,19 @@ namespace StudentsTestsResultsBrowser
             this.tableLayoutPanelInner.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelInner.Controls.Add(this.buttonCancel, 1, 0);
             this.tableLayoutPanelInner.Controls.Add(this.buttonAdd, 0, 0);
-            this.tableLayoutPanelInner.Location = new System.Drawing.Point(0, 229);
+            this.tableLayoutPanelInner.Location = new System.Drawing.Point(3, 212);
             this.tableLayoutPanelInner.Name = "tableLayoutPanelInner";
             this.tableLayoutPanelInner.RowCount = 1;
             this.tableLayoutPanelInner.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelInner.Size = new System.Drawing.Size(312, 33);
+            this.tableLayoutPanelInner.Size = new System.Drawing.Size(306, 33);
             this.tableLayoutPanelInner.TabIndex = 2;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCancel.Location = new System.Drawing.Point(159, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(156, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(150, 27);
+            this.buttonCancel.Size = new System.Drawing.Size(147, 27);
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -211,11 +204,18 @@ namespace StudentsTestsResultsBrowser
             this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAdd.Location = new System.Drawing.Point(3, 3);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(150, 27);
+            this.buttonAdd.Size = new System.Drawing.Size(147, 27);
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // textBoxTestName
+            // 
+            this.textBoxTestName.Location = new System.Drawing.Point(68, 25);
+            this.textBoxTestName.Name = "textBoxTestName";
+            this.textBoxTestName.Size = new System.Drawing.Size(229, 20);
+            this.textBoxTestName.TabIndex = 4;
             // 
             // FormAddingStudentTestResult
             // 
@@ -252,12 +252,12 @@ namespace StudentsTestsResultsBrowser
         private System.Windows.Forms.GroupBox groupBoxTestResult;
         private System.Windows.Forms.NumericUpDown numericUpDownTestScore;
         private System.Windows.Forms.DateTimePicker dateTimePickerTestDate;
-        private System.Windows.Forms.TextBox textBoxTestName;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label labelTestDate;
         private System.Windows.Forms.Label labelTestName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelInner;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.TextBox textBoxTestName;
     }
 }

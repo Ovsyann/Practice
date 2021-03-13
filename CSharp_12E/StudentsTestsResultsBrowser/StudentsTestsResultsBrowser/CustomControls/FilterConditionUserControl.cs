@@ -1,4 +1,4 @@
-﻿using StudentTestResultsBrowser.CustomControls;
+﻿using StudentsTestsResultsBrowser.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

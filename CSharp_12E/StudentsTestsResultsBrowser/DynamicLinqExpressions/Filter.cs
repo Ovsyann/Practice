@@ -142,7 +142,7 @@ namespace DynamicLinqExpressions
 
         private void AddCondition(Expression expression)
         {
-            if (this.expression == null)
+            if (this.expression == default)
             {
                 this.expression = expression;
             }

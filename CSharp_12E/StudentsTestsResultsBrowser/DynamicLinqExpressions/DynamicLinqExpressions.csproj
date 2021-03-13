@@ -47,5 +47,11 @@
     <Compile Include="Sorter.cs" />
     <Compile Include="SortingDirection.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BinarySearchTreeTask\BinarySearchTreeTask.csproj">
+      <Project>{EB05BE68-D894-4814-B8B8-291C90214FA4}</Project>
+      <Name>BinarySearchTreeTask</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
