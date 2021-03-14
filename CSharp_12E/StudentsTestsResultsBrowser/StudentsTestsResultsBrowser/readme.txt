@@ -5,3 +5,5 @@
 ---------------------------------
 System.InvalidOperationException: 
 'Двоичный оператор And не определен для типов "BinarySearchTreeTask.StudentTestResult" и "System.Boolean".'
+------------------------------------
+Реализовать сериализацию через пользовательские классы

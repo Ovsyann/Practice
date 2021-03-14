@@ -118,7 +118,7 @@ namespace DynamicLinqExpressions
 
         public void RemoveAllFilters()
         {
-            expression = Expression.Default(type);
+            expression = Expression.Constant(true);
         }
 
         public IEnumerable<TElement> ApplyFilterSettings(IEnumerable<TElement> items)
@@ -142,7 +142,7 @@ namespace DynamicLinqExpressions
 
         private void AddCondition(Expression expression)
         {
-            if (this.expression == default)
+            if (this.expression == Expression.Constant(true))
             {
                 this.expression = expression;
             }

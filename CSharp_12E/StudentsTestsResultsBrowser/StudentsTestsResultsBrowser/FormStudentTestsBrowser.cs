@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace StudentsTestsResultsBrowser
 {
@@ -22,6 +23,7 @@ namespace StudentsTestsResultsBrowser
         Filter<StudentTestResult> filter = new Filter<StudentTestResult>();
         BinarySearchTree<StudentTestResult> studentTestResults = new IterativeTree<StudentTestResult>();
         BinarySearchTree<StudentTestResult> visibleStudentsTestsResults;
+        List<FilterKeeper> filters;
 
         public FormStudentTestsBrowser()
         {
@@ -71,13 +73,24 @@ namespace StudentsTestsResultsBrowser
         private void itemClearFilters_Click(object sender, EventArgs e)
         {
             ClearConditions();
-            ApplyConditions();
+            ShowStudentsTestsResults();
         }
 
         private void buttonApplyFilter_Click(object sender, EventArgs e)
         {
-            ClearConditions();
-            Type type = typeof(StudentTestResult);
+            ConfigureCondition();
+            ShowStudentsTestsResults();
+        }
+
+        private void UpdateVisualization(FilterConditionUserControl condition)
+        {
+            dataGridViewFilterConditions.Rows.Add(condition.Property, condition.Operation, condition.ValueA, condition.ValueB);
+        }
+
+        private void ConfigureCondition()
+        {
+            filter.RemoveAllFilters();
+
             object propertyValueA;
             object propertyValueB;
             string propertyName;
@@ -123,10 +136,9 @@ namespace StudentsTestsResultsBrowser
                     propertyName = GetProperty(condition, out propertyValueA, out propertyValueB);
                     filter.AndIntoRange(propertyName, propertyValueA, propertyValueB);
                 }
-            }
 
-            ApplyConditions();
-            ShowStudentsTestsResults();
+                UpdateVisualization(condition);
+            }
         }
 
         private string GetProperty(FilterConditionUserControl condition, out object propertyValueA, out object propertyValueB)
@@ -170,6 +182,11 @@ namespace StudentsTestsResultsBrowser
 
         private void ShowStudentsTestsResults()
         {
+            if (filterConditionsList.FilterConditions.Any())
+            {
+                ApplyExistingConditions();
+            }
+
             dataGridViewResults.Rows.Clear();
             foreach(StudentTestResult testResult in visibleStudentsTestsResults)
             {
@@ -208,12 +225,50 @@ namespace StudentsTestsResultsBrowser
         private void ClearConditions()
         {
             filter.RemoveAllFilters();
+
+            dataGridViewFilterConditions.Rows.Clear();
             filterConditionsList.LayoutPanel.Controls.Clear();
         }
 
-        private void ApplyConditions()
+        private void ApplyExistingConditions()
         {
-            visibleStudentsTestsResults = (IterativeTree<StudentTestResult>)filter.ApplyFilterSettings(studentTestResults);
+            visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(filter.ApplyFilterSettings(studentTestResults));
+        }
+
+        private void buttonAddToFiltersList_Click(object sender, EventArgs e)
+        {
+            FormAddingFilterToList form = new FormAddingFilterToList();
+            form.nameSetted += AddFilterToList;
+            if(filters == null)
+            {
+                filters = new List<FilterKeeper>();
+            }
+
+            form.ShowDialog(this);
+        }
+
+        private void AddFilterToList(string name)
+        {
+            filters.Add(new FilterKeeper(name, filterConditionsList.FilterConditions));
+            listBoxFiltersList.Items.Add(name);
+        }
+        //Dictionary не умеет в сериализацию
+        private void buttonSaveFilters_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(FilterKeeper));
+            using(FileStream stream = File.OpenWrite("SerializedFilters.xml"))
+            {
+                serializer.Serialize(stream, filters);
+            }
+        }
+
+        private void buttonOpenFilters_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, FilterConditionsListUserControl>));
+            using (FileStream stream = File.OpenRead("SerializedFilters.xml"))
+            {
+                filters = (List<FilterKeeper>)serializer.Deserialize(stream);
+            }
         }
     }
 }

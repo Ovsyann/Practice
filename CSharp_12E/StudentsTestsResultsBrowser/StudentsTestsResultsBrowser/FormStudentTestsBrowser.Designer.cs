@@ -44,11 +44,6 @@ namespace StudentsTestsResultsBrowser
             this.itemClearFilters = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewResults = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
             this.filterConditionsList = new StudentsTestsResultsBrowser.CustomControls.FilterConditionsListUserControl();
             this.buttonApplyFilter = new System.Windows.Forms.Button();
@@ -78,6 +73,15 @@ namespace StudentsTestsResultsBrowser
             this.buttonOpenFilters = new System.Windows.Forms.Button();
             this.buttonClearList = new System.Windows.Forms.Button();
             this.listBoxFiltersList = new System.Windows.Forms.ListBox();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OperationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -122,7 +126,7 @@ namespace StudentsTestsResultsBrowser
             this.itemOpenTestResults.Image = ((System.Drawing.Image)(resources.GetObject("itemOpenTestResults.Image")));
             this.itemOpenTestResults.Name = "itemOpenTestResults";
             this.itemOpenTestResults.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.itemOpenTestResults.Size = new System.Drawing.Size(209, 26);
+            this.itemOpenTestResults.Size = new System.Drawing.Size(205, 22);
             this.itemOpenTestResults.Text = "Open test results";
             this.itemOpenTestResults.Click += new System.EventHandler(this.itemOpenTestResults_Click);
             // 
@@ -211,14 +215,16 @@ namespace StudentsTestsResultsBrowser
             // 
             // dataGridViewResults
             // 
+            this.dataGridViewResults.AllowUserToAddRows = false;
+            this.dataGridViewResults.AllowUserToDeleteRows = false;
             this.dataGridViewResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FirstName,
-            this.Score,
             this.LastName,
             this.TestName,
-            this.TestDate});
+            this.TestDate,
+            this.Score});
             this.dataGridViewResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewResults.Location = new System.Drawing.Point(3, 2);
             this.dataGridViewResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -227,36 +233,6 @@ namespace StudentsTestsResultsBrowser
             this.dataGridViewResults.RowTemplate.Height = 29;
             this.dataGridViewResults.Size = new System.Drawing.Size(598, 285);
             this.dataGridViewResults.TabIndex = 0;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "First name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            this.Score.ReadOnly = true;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Last name";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // TestName
-            // 
-            this.TestName.HeaderText = "Test name";
-            this.TestName.Name = "TestName";
-            this.TestName.ReadOnly = true;
-            // 
-            // TestDate
-            // 
-            this.TestDate.HeaderText = "Test date";
-            this.TestDate.Name = "TestDate";
-            this.TestDate.ReadOnly = true;
             // 
             // groupBoxFilter
             // 
@@ -312,6 +288,7 @@ namespace StudentsTestsResultsBrowser
             this.buttonAddToFiltersList.TabIndex = 2;
             this.buttonAddToFiltersList.Text = "Add to filters list";
             this.buttonAddToFiltersList.UseVisualStyleBackColor = true;
+            this.buttonAddToFiltersList.Click += new System.EventHandler(this.buttonAddToFiltersList_Click);
             // 
             // buttonAddCondition
             // 
@@ -354,7 +331,16 @@ namespace StudentsTestsResultsBrowser
             // 
             // dataGridViewFilterConditions
             // 
+            this.dataGridViewFilterConditions.AllowUserToAddRows = false;
+            this.dataGridViewFilterConditions.AllowUserToDeleteRows = false;
+            this.dataGridViewFilterConditions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewFilterConditions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewFilterConditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFilterConditions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PropertyName,
+            this.OperationName,
+            this.ValueA,
+            this.ValueB});
             this.dataGridViewFilterConditions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewFilterConditions.Location = new System.Drawing.Point(3, 15);
             this.dataGridViewFilterConditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -603,6 +589,7 @@ namespace StudentsTestsResultsBrowser
             this.buttonSaveFilters.TabIndex = 3;
             this.buttonSaveFilters.Text = "Save filters";
             this.buttonSaveFilters.UseVisualStyleBackColor = true;
+            this.buttonSaveFilters.Click += new System.EventHandler(this.buttonSaveFilters_Click);
             // 
             // buttonOpenFilters
             // 
@@ -613,6 +600,7 @@ namespace StudentsTestsResultsBrowser
             this.buttonOpenFilters.TabIndex = 2;
             this.buttonOpenFilters.Text = "Open filters";
             this.buttonOpenFilters.UseVisualStyleBackColor = true;
+            this.buttonOpenFilters.Click += new System.EventHandler(this.buttonOpenFilters_Click);
             // 
             // buttonClearList
             // 
@@ -633,6 +621,64 @@ namespace StudentsTestsResultsBrowser
             this.listBoxFiltersList.Name = "listBoxFiltersList";
             this.listBoxFiltersList.Size = new System.Drawing.Size(373, 69);
             this.listBoxFiltersList.TabIndex = 0;
+            // 
+            // FirstName
+            // 
+            this.FirstName.HeaderText = "First name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Last name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // TestName
+            // 
+            this.TestName.HeaderText = "Test name";
+            this.TestName.Name = "TestName";
+            this.TestName.ReadOnly = true;
+            // 
+            // TestDate
+            // 
+            this.TestDate.HeaderText = "Test date";
+            this.TestDate.Name = "TestDate";
+            this.TestDate.ReadOnly = true;
+            // 
+            // Score
+            // 
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            this.Score.ReadOnly = true;
+            // 
+            // PropertyName
+            // 
+            this.PropertyName.HeaderText = "Property";
+            this.PropertyName.Name = "PropertyName";
+            this.PropertyName.ReadOnly = true;
+            this.PropertyName.Width = 71;
+            // 
+            // OperationName
+            // 
+            this.OperationName.HeaderText = "Operation";
+            this.OperationName.Name = "OperationName";
+            this.OperationName.ReadOnly = true;
+            this.OperationName.Width = 78;
+            // 
+            // ValueA
+            // 
+            this.ValueA.HeaderText = "Value A";
+            this.ValueA.Name = "ValueA";
+            this.ValueA.ReadOnly = true;
+            this.ValueA.Width = 64;
+            // 
+            // ValueB
+            // 
+            this.ValueB.HeaderText = "Value B";
+            this.ValueB.Name = "ValueB";
+            this.ValueB.ReadOnly = true;
+            this.ValueB.Width = 64;
             // 
             // FormStudentTestsBrowser
             // 
@@ -713,10 +759,14 @@ namespace StudentsTestsResultsBrowser
         private System.Windows.Forms.Button buttonOpenFilters;
         private System.Windows.Forms.Button buttonClearList;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PropertyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OperationName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValueA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValueB;
     }
 }
 

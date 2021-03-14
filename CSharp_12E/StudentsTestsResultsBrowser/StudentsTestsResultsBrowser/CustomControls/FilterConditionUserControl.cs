@@ -10,9 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BinarySearchTreeTask;
+using System.Xml.Serialization;
 
 namespace StudentsTestsResultsBrowser.CustomControls
 {
+    [Serializable]
     public partial class FilterConditionUserControl : UserControl, INotifyPropertyChanged
     {
         public event EventHandler<FilterConditionUserControl> Removing;
@@ -27,6 +29,9 @@ namespace StudentsTestsResultsBrowser.CustomControls
                 .Select(property => property.Name)
                 .ToArray();
 
+            property = "FirstName";
+            operation = "EqualTo";
+
             AddBinding(comboBoxOperations, nameof(comboBoxOperations.Text), nameof(Operation));
             AddBinding(comboBoxProperty, nameof(comboBoxProperty.Text), nameof(Property));
             AddBinding(textBoxValueA, nameof(textBoxValueA.Text), nameof(ValueA));
@@ -38,6 +43,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
         private string valueA;
         private string valueB;
 
+        [XmlElement]
         public string Operation 
         {
             get
@@ -51,6 +57,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             }
         }
 
+        [XmlElement]
         public string Property
         {
             get
@@ -64,6 +71,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             }
         }
 
+        [XmlElement]
         public string ValueA
         {
             get
@@ -77,6 +85,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             }
         }
 
+        [XmlElement]
         public string ValueB
         {
             get
