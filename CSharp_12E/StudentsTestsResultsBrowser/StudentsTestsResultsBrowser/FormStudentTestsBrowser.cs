@@ -28,13 +28,14 @@ namespace StudentsTestsResultsBrowser
         public FormStudentTestsBrowser()
         {
             InitializeComponent();
+            groupBoxFiltersList.Parent = tableLayoutPanel2;
         }
 
-        private void FormStudentTestsBrowser_SizeChanged(object sender, EventArgs e)
-        {
-            groupBoxFiltersList.Left = groupBoxSort.Left + groupBoxSort.Width + 2;
-            groupBoxFiltersList.Width = tableLayoutPanel2.Right - groupBoxFiltersList.Left;
-        }
+        //private void FormStudentTestsBrowser_SizeChanged(object sender, EventArgs e)
+        //{
+        //    groupBoxFiltersList.Left = groupBoxSort.Left + groupBoxSort.Width + 2;
+        //    groupBoxFiltersList.Width = tableLayoutPanel2.Right - groupBoxFiltersList.Left;
+        //}
 
         private void FormStudentTestsBrowser_Load(object sender, EventArgs e)
         {
@@ -67,7 +68,7 @@ namespace StudentsTestsResultsBrowser
         {
             FormAddingStudentTestResult form = new FormAddingStudentTestResult();
             form.StudentTestCreated += AddStudentTestResult;
-            form.ShowDialog(this);
+            form.ShowDialog();
         }
 
         private void itemClearFilters_Click(object sender, EventArgs e)
@@ -218,7 +219,15 @@ namespace StudentsTestsResultsBrowser
         private void AddStudentTestResult(StudentTestResult studentTestResult)
         {
             studentTestResults.Add(studentTestResult);
-            visibleStudentsTestsResults.Add(studentTestResult);
+            if (visibleStudentsTestsResults == null)
+            {
+                visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(studentTestResults);
+            }
+            else
+            {
+                visibleStudentsTestsResults.Add(studentTestResult);
+            }
+
             ShowStudentsTestsResults();
         }
 
@@ -255,7 +264,7 @@ namespace StudentsTestsResultsBrowser
         //Dictionary не умеет в сериализацию
         private void buttonSaveFilters_Click(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(FilterKeeper));
+            XmlSerializer serializer = new XmlSerializer(typeof(List<FilterKeeper>));
             using(FileStream stream = File.OpenWrite("SerializedFilters.xml"))
             {
                 serializer.Serialize(stream, filters);
@@ -264,10 +273,30 @@ namespace StudentsTestsResultsBrowser
 
         private void buttonOpenFilters_Click(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, FilterConditionsListUserControl>));
+            XmlSerializer serializer = new XmlSerializer(typeof(List<FilterKeeper>));
             using (FileStream stream = File.OpenRead("SerializedFilters.xml"))
             {
                 filters = (List<FilterKeeper>)serializer.Deserialize(stream);
+            }
+
+            listBoxFiltersList.Items.AddRange(filters.Select(filter => filter.Name).ToArray());
+        }
+
+        private void buttonApplyCheckedFilter_Click(object sender, EventArgs e)
+        {
+            filterConditionsList.LayoutPanel.Controls.Clear();
+            filterConditionsList.FilterConditions = new List<FilterConditionUserControl>();
+
+            FilterKeeper filterKeeper = filters.Find(filter => filter.Name == (string)listBoxFiltersList.SelectedItem);
+            foreach (FilterConditionKeeper conditionKeeper in filterKeeper.FilterConditions)
+            {
+                FilterConditionUserControl condition = new FilterConditionUserControl();
+                condition.Property = conditionKeeper.Property;
+                condition.Operation = conditionKeeper.Operation;
+                condition.ValueA = conditionKeeper.ValueA;
+                condition.ValueB = conditionKeeper.ValueB;
+                filterConditionsList.FilterConditions.Add(condition);
+                filterConditionsList.LayoutPanel.Controls.Add(condition);
             }
         }
     }

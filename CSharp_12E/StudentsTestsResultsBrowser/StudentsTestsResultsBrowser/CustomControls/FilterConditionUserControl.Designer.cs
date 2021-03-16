@@ -47,9 +47,10 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelProperty.AutoSize = true;
             this.labelProperty.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelProperty.Location = new System.Drawing.Point(3, 11);
+            this.labelProperty.Location = new System.Drawing.Point(4, 13);
+            this.labelProperty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProperty.Name = "labelProperty";
-            this.labelProperty.Size = new System.Drawing.Size(100, 13);
+            this.labelProperty.Size = new System.Drawing.Size(133, 17);
             this.labelProperty.TabIndex = 0;
             this.labelProperty.Text = "Property";
             // 
@@ -57,9 +58,10 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelOperations.AutoSize = true;
             this.labelOperations.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelOperations.Location = new System.Drawing.Point(109, 11);
+            this.labelOperations.Location = new System.Drawing.Point(145, 13);
+            this.labelOperations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOperations.Name = "labelOperations";
-            this.labelOperations.Size = new System.Drawing.Size(100, 13);
+            this.labelOperations.Size = new System.Drawing.Size(134, 17);
             this.labelOperations.TabIndex = 1;
             this.labelOperations.Text = "Operations";
             // 
@@ -67,9 +69,10 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.comboBoxProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProperty.FormattingEnabled = true;
-            this.comboBoxProperty.Location = new System.Drawing.Point(3, 27);
+            this.comboBoxProperty.Location = new System.Drawing.Point(4, 34);
+            this.comboBoxProperty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxProperty.Name = "comboBoxProperty";
-            this.comboBoxProperty.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxProperty.Size = new System.Drawing.Size(132, 24);
             this.comboBoxProperty.TabIndex = 2;
             // 
             // comboBoxOperations
@@ -77,33 +80,37 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.comboBoxOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxOperations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOperations.FormattingEnabled = true;
-            this.comboBoxOperations.Location = new System.Drawing.Point(109, 27);
+            this.comboBoxOperations.Location = new System.Drawing.Point(147, 34);
+            this.comboBoxOperations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxOperations.Name = "comboBoxOperations";
-            this.comboBoxOperations.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxOperations.Size = new System.Drawing.Size(132, 24);
             this.comboBoxOperations.TabIndex = 3;
             // 
             // textBoxValueA
             // 
-            this.textBoxValueA.Location = new System.Drawing.Point(3, 75);
+            this.textBoxValueA.Location = new System.Drawing.Point(4, 94);
+            this.textBoxValueA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxValueA.Name = "textBoxValueA";
-            this.textBoxValueA.Size = new System.Drawing.Size(100, 20);
+            this.textBoxValueA.Size = new System.Drawing.Size(132, 22);
             this.textBoxValueA.TabIndex = 4;
             // 
             // textBoxValueB
             // 
             this.textBoxValueB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxValueB.Location = new System.Drawing.Point(109, 75);
+            this.textBoxValueB.Location = new System.Drawing.Point(147, 94);
+            this.textBoxValueB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxValueB.Name = "textBoxValueB";
-            this.textBoxValueB.Size = new System.Drawing.Size(100, 20);
+            this.textBoxValueB.Size = new System.Drawing.Size(132, 22);
             this.textBoxValueB.TabIndex = 5;
             // 
             // labelValueA
             // 
             this.labelValueA.AutoSize = true;
             this.labelValueA.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelValueA.Location = new System.Drawing.Point(3, 59);
+            this.labelValueA.Location = new System.Drawing.Point(4, 73);
+            this.labelValueA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelValueA.Name = "labelValueA";
-            this.labelValueA.Size = new System.Drawing.Size(100, 13);
+            this.labelValueA.Size = new System.Drawing.Size(133, 17);
             this.labelValueA.TabIndex = 6;
             this.labelValueA.Text = "Value A";
             // 
@@ -111,9 +118,10 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.labelValueB.AutoSize = true;
             this.labelValueB.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelValueB.Location = new System.Drawing.Point(109, 59);
+            this.labelValueB.Location = new System.Drawing.Point(145, 73);
+            this.labelValueB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelValueB.Name = "labelValueB";
-            this.labelValueB.Size = new System.Drawing.Size(100, 13);
+            this.labelValueB.Size = new System.Drawing.Size(134, 17);
             this.labelValueB.TabIndex = 7;
             this.labelValueB.Text = "Value B";
             // 
@@ -132,35 +140,38 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.tableLayoutPanel1.Controls.Add(this.labelOperations, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(212, 99);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(283, 122);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
             // buttonRemoveCondition
             // 
             this.buttonRemoveCondition.Image = ((System.Drawing.Image)(resources.GetObject("buttonRemoveCondition.Image")));
-            this.buttonRemoveCondition.Location = new System.Drawing.Point(195, 0);
+            this.buttonRemoveCondition.Location = new System.Drawing.Point(260, 0);
+            this.buttonRemoveCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRemoveCondition.Name = "buttonRemoveCondition";
-            this.buttonRemoveCondition.Size = new System.Drawing.Size(15, 15);
+            this.buttonRemoveCondition.Size = new System.Drawing.Size(20, 18);
             this.buttonRemoveCondition.TabIndex = 8;
             this.buttonRemoveCondition.UseVisualStyleBackColor = true;
             this.buttonRemoveCondition.Click += new System.EventHandler(this.buttonRemoveCondition_Click);
             // 
             // FilterConditionUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonRemoveCondition);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FilterConditionUserControl";
-            this.Size = new System.Drawing.Size(212, 99);
+            this.Size = new System.Drawing.Size(283, 122);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

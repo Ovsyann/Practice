@@ -29,8 +29,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
                 .Select(property => property.Name)
                 .ToArray();
 
-            property = "FirstName";
-            operation = "EqualTo";
+            InitializeStartValues();
 
             AddBinding(comboBoxOperations, nameof(comboBoxOperations.Text), nameof(Operation));
             AddBinding(comboBoxProperty, nameof(comboBoxProperty.Text), nameof(Property));
@@ -38,10 +37,17 @@ namespace StudentsTestsResultsBrowser.CustomControls
             AddBinding(textBoxValueB, nameof(textBoxValueB.Text), nameof(ValueB));
         }
 
+
         private string operation;
         private string property;
         private string valueA;
         private string valueB;
+
+        private void InitializeStartValues()
+        {
+            property = "FirstName";
+            operation = "EqualTo";
+        }
 
         [XmlElement]
         public string Operation 

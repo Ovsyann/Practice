@@ -19,8 +19,6 @@ namespace StudentsTestsResultsBrowser
         public FormAddingStudentTestResult()
         {
             InitializeComponent();
-            tableLayoutPanelInner.Parent = tableLayoutPanelOuter;
-            BindPropertiesToControls();
         }
 
         private void BindPropertiesToControls()
@@ -43,7 +41,6 @@ namespace StudentsTestsResultsBrowser
         public DateTime TestDate { get; set; }
         public byte Score { get; set; }
 
-
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -51,14 +48,18 @@ namespace StudentsTestsResultsBrowser
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (TestDate == default)
-            {
-                TestDate = DateTime.Now;
-            }
-
             StudentTestResult studentTestResult = new StudentTestResult(FirstName, LastName, TestName, TestDate, Score);
             StudentTestCreated?.Invoke(studentTestResult);
             Close();
+        }
+
+        private void FormAddingStudentTestResult_Load(object sender, EventArgs e)
+        {
+            tableLayoutPanelInner.Parent = tableLayoutPanelOuter;
+            dateTimePickerTestDate.Value = new DateTime(2021, 3, 15);
+            TestDate = dateTimePickerTestDate.Value;
+            BindPropertiesToControls();
+            
         }
     }
 }
