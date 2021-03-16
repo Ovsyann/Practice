@@ -91,6 +91,7 @@ namespace StudentsTestsResultsBrowser
         private void ConfigureCondition()
         {
             filter.RemoveAllFilters();
+            dataGridViewFilterConditions.Rows.Clear();
 
             object propertyValueA;
             object propertyValueB;
@@ -273,13 +274,16 @@ namespace StudentsTestsResultsBrowser
 
         private void buttonOpenFilters_Click(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<FilterKeeper>));
-            using (FileStream stream = File.OpenRead("SerializedFilters.xml"))
+            if (File.Exists("SerializedFilters.xml")) 
             {
-                filters = (List<FilterKeeper>)serializer.Deserialize(stream);
-            }
+                XmlSerializer serializer = new XmlSerializer(typeof(List<FilterKeeper>));
+                using (FileStream stream = File.OpenRead("SerializedFilters.xml"))
+                {
+                    filters = (List<FilterKeeper>)serializer.Deserialize(stream);
+                }
 
-            listBoxFiltersList.Items.AddRange(filters.Select(filter => filter.Name).ToArray());
+                listBoxFiltersList.Items.AddRange(filters.Select(filter => filter.Name).ToArray());
+            }
         }
 
         private void buttonApplyCheckedFilter_Click(object sender, EventArgs e)

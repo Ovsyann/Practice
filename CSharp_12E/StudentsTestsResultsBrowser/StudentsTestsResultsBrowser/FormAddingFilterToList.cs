@@ -22,13 +22,14 @@ namespace StudentsTestsResultsBrowser
 
         private void buttonAddFilter_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxFilterName.Text))
+            if (string.IsNullOrEmpty(textBoxFilterName.Text))
             {
-                nameSetted?.Invoke(textBoxFilterName.Text);
-                Close();
+                MessageBox.Show("Input any name");
+                return;
             }
 
-            MessageBox.Show("Input any name");
+            nameSetted?.Invoke(textBoxFilterName.Text);
+            Close();
         }
 
         private void FormAddingFilterToList_KeyUp(object sender, KeyEventArgs e)

@@ -70,7 +70,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.comboBoxProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProperty.FormattingEnabled = true;
             this.comboBoxProperty.Location = new System.Drawing.Point(4, 34);
-            this.comboBoxProperty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxProperty.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxProperty.Name = "comboBoxProperty";
             this.comboBoxProperty.Size = new System.Drawing.Size(132, 24);
             this.comboBoxProperty.TabIndex = 2;
@@ -81,7 +81,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.comboBoxOperations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOperations.FormattingEnabled = true;
             this.comboBoxOperations.Location = new System.Drawing.Point(147, 34);
-            this.comboBoxOperations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxOperations.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxOperations.Name = "comboBoxOperations";
             this.comboBoxOperations.Size = new System.Drawing.Size(132, 24);
             this.comboBoxOperations.TabIndex = 3;
@@ -89,7 +89,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // textBoxValueA
             // 
             this.textBoxValueA.Location = new System.Drawing.Point(4, 94);
-            this.textBoxValueA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxValueA.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxValueA.Name = "textBoxValueA";
             this.textBoxValueA.Size = new System.Drawing.Size(132, 22);
             this.textBoxValueA.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.textBoxValueB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValueB.Location = new System.Drawing.Point(147, 94);
-            this.textBoxValueB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxValueB.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxValueB.Name = "textBoxValueB";
             this.textBoxValueB.Size = new System.Drawing.Size(132, 22);
             this.textBoxValueB.TabIndex = 5;
@@ -140,7 +140,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.tableLayoutPanel1.Controls.Add(this.labelOperations, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -155,7 +155,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             // 
             this.buttonRemoveCondition.Image = ((System.Drawing.Image)(resources.GetObject("buttonRemoveCondition.Image")));
             this.buttonRemoveCondition.Location = new System.Drawing.Point(260, 0);
-            this.buttonRemoveCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveCondition.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRemoveCondition.Name = "buttonRemoveCondition";
             this.buttonRemoveCondition.Size = new System.Drawing.Size(20, 18);
             this.buttonRemoveCondition.TabIndex = 8;
@@ -169,7 +169,7 @@ namespace StudentsTestsResultsBrowser.CustomControls
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonRemoveCondition);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FilterConditionUserControl";
             this.Size = new System.Drawing.Size(283, 122);
             this.tableLayoutPanel1.ResumeLayout(false);
