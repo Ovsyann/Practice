@@ -23,6 +23,7 @@ namespace StudentsTestsResultsBrowser
         Filter<StudentTestResult> filter = new Filter<StudentTestResult>();
         BinarySearchTree<StudentTestResult> studentTestResults = new IterativeTree<StudentTestResult>();
         BinarySearchTree<StudentTestResult> visibleStudentsTestsResults;
+        Sorter<StudentTestResult> sorter = new Sorter<StudentTestResult>();
         List<FilterKeeper> filters;
 
         public FormStudentTestsBrowser()
