@@ -43,15 +43,18 @@ namespace StudentsTestsResultsBrowser
             groupBoxFilterConditions.Parent = tableLayoutPanel2;
             groupBoxFilterConditions.Parent = tableLayoutPanel1;
             dataGridViewFilterConditions.Parent = groupBoxFilterConditions;
+
+            comboBox1.DataSource = typeof(StudentTestResult).GetProperties()
+                .Select(property => property.Name)
+                .ToArray();
+            comboBoxPropertyB.DataSource = typeof(StudentTestResult).GetProperties()
+                .Select(property => property.Name)
+                .ToArray();
         }
 
         private void buttonAddCondition_Click(object sender, EventArgs e)
         {
             filterConditionsList.LayoutPanel.Controls.Add(new FilterConditionUserControl());
-        }
-
-        private void filterConditionsList_ControlAdded(object sender, ControlEventArgs e)
-        {
         }
 
         private void itemOpenTestResults_Click(object sender, EventArgs e)
@@ -187,6 +190,7 @@ namespace StudentsTestsResultsBrowser
         {
             if (filterConditionsList.FilterConditions.Any())
             {
+                ConstructSortingInfo();
                 ApplyExistingConditions();
             }
 
@@ -195,6 +199,84 @@ namespace StudentsTestsResultsBrowser
             {
                 dataGridViewResults.Rows.Add(testResult.FirstName, testResult.LastName,
                     testResult.TestName, testResult.TestDate.ToShortDateString(), testResult.Score);
+            }
+        }
+
+        private void ConstructSortingInfo()
+        {
+            ConstructFirstSortingInfo();
+            ConstructSecondSortingInfo();
+        }
+
+        private void ConstructSecondSortingInfo()
+        {
+            if (radioButton2Asc.Checked)
+            {
+                if (comboBox1.Text == "Score")
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(int));
+                }
+
+                if (comboBox1.Text == "TestDate")
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(DateTime));
+                }
+                else
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(string));
+                }
+            }
+            if (radioButton1.Checked)
+            {
+                if (comboBox1.Text == "Score")
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(int));
+                }
+
+                if (comboBox1.Text == "TestDate")
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(DateTime));
+                }
+                else
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(string));
+                }
+            }
+        }
+
+        private void ConstructFirstSortingInfo()
+        {
+            if (radioButtonAsc.Checked)
+            {
+                if (comboBox1.Text == "Score")
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(int));
+                }
+
+                if (comboBox1.Text == "TestDate")
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(DateTime));
+                }
+                else
+                {
+                    sorter.AndSortByAsc(comboBox1.Text, typeof(string));
+                }
+            }
+            if (radioButtonDesc.Checked)
+            {
+                if (comboBox1.Text == "Score")
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(int));
+                }
+
+                if (comboBox1.Text == "TestDate")
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(DateTime));
+                }
+                else
+                {
+                    sorter.AndSortByDesc(comboBox1.Text, typeof(string));
+                }
             }
         }
 
@@ -243,7 +325,8 @@ namespace StudentsTestsResultsBrowser
 
         private void ApplyExistingConditions()
         {
-            visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(filter.ApplyFilterSettings(studentTestResults));
+            IEnumerable<StudentTestResult> buffer = filter.ApplyFilterSettings(studentTestResults);
+            visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(sorter.ApplySort(buffer));
         }
 
         private void buttonAddToFiltersList_Click(object sender, EventArgs e)
@@ -303,6 +386,11 @@ namespace StudentsTestsResultsBrowser
                 filterConditionsList.FilterConditions.Add(condition);
                 filterConditionsList.LayoutPanel.Controls.Add(condition);
             }
+        }
+
+        private void filterConditionsList_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
