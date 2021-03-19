@@ -65,6 +65,7 @@ namespace StudentsTestsResultsBrowser
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
             this.groupBoxGrouping = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioButtonDesc = new System.Windows.Forms.RadioButton();
             this.radioButtonAsc = new System.Windows.Forms.RadioButton();
             this.groupBoxThenBy = new System.Windows.Forms.GroupBox();
@@ -82,7 +83,6 @@ namespace StudentsTestsResultsBrowser
             this.buttonClearList = new System.Windows.Forms.Button();
             this.listBoxFiltersList = new System.Windows.Forms.ListBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -487,6 +487,15 @@ namespace StudentsTestsResultsBrowser
             this.groupBoxGrouping.TabStop = false;
             this.groupBoxGrouping.Text = "GroupBy";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(6, 18);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
             // radioButtonDesc
             // 
             this.radioButtonDesc.AutoSize = true;
@@ -629,6 +638,7 @@ namespace StudentsTestsResultsBrowser
             // buttonApplyCheckedFilter
             // 
             this.buttonApplyCheckedFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonApplyCheckedFilter.Enabled = false;
             this.buttonApplyCheckedFilter.Location = new System.Drawing.Point(330, 91);
             this.buttonApplyCheckedFilter.Name = "buttonApplyCheckedFilter";
             this.buttonApplyCheckedFilter.Size = new System.Drawing.Size(75, 23);
@@ -640,6 +650,7 @@ namespace StudentsTestsResultsBrowser
             // buttonSaveFilters
             // 
             this.buttonSaveFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveFilters.Enabled = false;
             this.buttonSaveFilters.Location = new System.Drawing.Point(249, 92);
             this.buttonSaveFilters.Name = "buttonSaveFilters";
             this.buttonSaveFilters.Size = new System.Drawing.Size(75, 23);
@@ -668,6 +679,7 @@ namespace StudentsTestsResultsBrowser
             this.buttonClearList.TabIndex = 1;
             this.buttonClearList.Text = "Clear list";
             this.buttonClearList.UseVisualStyleBackColor = true;
+            this.buttonClearList.Click += new System.EventHandler(this.buttonClearList_Click);
             // 
             // listBoxFiltersList
             // 
@@ -692,15 +704,6 @@ namespace StudentsTestsResultsBrowser
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Desc";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 18);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(92, 21);
-            this.comboBox1.TabIndex = 4;
             // 
             // FormStudentTestsBrowser
             // 

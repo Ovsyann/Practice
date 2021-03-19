@@ -22,8 +22,8 @@ namespace StudentsTestsResultsBrowser
     {
         Filter<StudentTestResult> filter = new Filter<StudentTestResult>();
         BinarySearchTree<StudentTestResult> studentTestResults = new IterativeTree<StudentTestResult>();
-        BinarySearchTree<StudentTestResult> visibleStudentsTestsResults;
-        Sorter<StudentTestResult> sorter = new Sorter<StudentTestResult>();
+        List<StudentTestResult> visibleStudentsTestsResults;
+        Sorter<StudentTestResult> sorter;
         List<FilterKeeper> filters;
 
         public FormStudentTestsBrowser()
@@ -204,6 +204,7 @@ namespace StudentsTestsResultsBrowser
 
         private void ConstructSortingInfo()
         {
+            sorter = new Sorter<StudentTestResult>();
             ConstructFirstSortingInfo();
             ConstructSecondSortingInfo();
         }
@@ -212,34 +213,34 @@ namespace StudentsTestsResultsBrowser
         {
             if (radioButton2Asc.Checked)
             {
-                if (comboBox1.Text == "Score")
+                if (comboBoxPropertyB.Text == "Score")
                 {
-                    sorter.AndSortByAsc(comboBox1.Text, typeof(int));
+                    sorter.AndSortByAsc(comboBoxPropertyB.Text, typeof(int));
                 }
 
-                if (comboBox1.Text == "TestDate")
+                if (comboBoxPropertyB.Text == "TestDate")
                 {
-                    sorter.AndSortByAsc(comboBox1.Text, typeof(DateTime));
+                    sorter.AndSortByAsc(comboBoxPropertyB.Text, typeof(DateTime));
                 }
                 else
                 {
-                    sorter.AndSortByAsc(comboBox1.Text, typeof(string));
+                    sorter.AndSortByAsc(comboBoxPropertyB.Text, typeof(string));
                 }
             }
             if (radioButton1.Checked)
             {
-                if (comboBox1.Text == "Score")
+                if (comboBoxPropertyB.Text == "Score")
                 {
-                    sorter.AndSortByDesc(comboBox1.Text, typeof(int));
+                    sorter.AndSortByDesc(comboBoxPropertyB.Text, typeof(int));
                 }
 
-                if (comboBox1.Text == "TestDate")
+                if (comboBoxPropertyB.Text == "TestDate")
                 {
-                    sorter.AndSortByDesc(comboBox1.Text, typeof(DateTime));
+                    sorter.AndSortByDesc(comboBoxPropertyB.Text, typeof(DateTime));
                 }
                 else
                 {
-                    sorter.AndSortByDesc(comboBox1.Text, typeof(string));
+                    sorter.AndSortByDesc(comboBoxPropertyB.Text, typeof(string));
                 }
             }
         }
@@ -288,7 +289,7 @@ namespace StudentsTestsResultsBrowser
                 studentTestResults = (BinarySearchTree<StudentTestResult>)formatter.Deserialize(stream);
             }
 
-            visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(studentTestResults);
+            visibleStudentsTestsResults = new List<StudentTestResult>(studentTestResults);
         }
 
         private void UploadStudentsTestsResults()
@@ -305,7 +306,7 @@ namespace StudentsTestsResultsBrowser
             studentTestResults.Add(studentTestResult);
             if (visibleStudentsTestsResults == null)
             {
-                visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(studentTestResults);
+                visibleStudentsTestsResults = new List<StudentTestResult>(studentTestResults);
             }
             else
             {
@@ -325,8 +326,15 @@ namespace StudentsTestsResultsBrowser
 
         private void ApplyExistingConditions()
         {
-            IEnumerable<StudentTestResult> buffer = filter.ApplyFilterSettings(studentTestResults);
-            visibleStudentsTestsResults = new IterativeTree<StudentTestResult>(sorter.ApplySort(buffer));
+            IEnumerable<StudentTestResult> buffer = new List<StudentTestResult>(filter.ApplyFilterSettings(studentTestResults));
+            buffer = sorter.ApplySort(buffer);
+
+            if (checkBoxOnlyTake.Checked)
+            {
+                buffer = buffer.Take((int)numericUpDown1.Value);
+            }
+            
+            visibleStudentsTestsResults = new List<StudentTestResult>(buffer);
         }
 
         private void buttonAddToFiltersList_Click(object sender, EventArgs e)
@@ -339,6 +347,7 @@ namespace StudentsTestsResultsBrowser
             }
 
             form.ShowDialog(this);
+            buttonSaveFilters.Enabled = true;
         }
 
         private void AddFilterToList(string name)
@@ -346,7 +355,7 @@ namespace StudentsTestsResultsBrowser
             filters.Add(new FilterKeeper(name, filterConditionsList.FilterConditions));
             listBoxFiltersList.Items.Add(name);
         }
-        //Dictionary не умеет в сериализацию
+
         private void buttonSaveFilters_Click(object sender, EventArgs e)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<FilterKeeper>));
@@ -368,6 +377,8 @@ namespace StudentsTestsResultsBrowser
 
                 listBoxFiltersList.Items.AddRange(filters.Select(filter => filter.Name).ToArray());
             }
+
+            buttonApplyCheckedFilter.Enabled = true;
         }
 
         private void buttonApplyCheckedFilter_Click(object sender, EventArgs e)
@@ -391,6 +402,14 @@ namespace StudentsTestsResultsBrowser
         private void filterConditionsList_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonClearList_Click(object sender, EventArgs e)
+        {
+            filters.Clear();
+            listBoxFiltersList.Items.Clear();
+            buttonApplyCheckedFilter.Enabled = false;
+            buttonSaveFilters.Enabled = false;
         }
     }
 }
